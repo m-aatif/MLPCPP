@@ -1,0 +1,67 @@
+\hypertarget{_planner_8cpp_source}{}\doxysection{Planner.\+cpp}
+\label{_planner_8cpp_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/Planner.cpp@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/Planner.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include "{}Planner.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00007}00007 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00008}00008 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacegeon}{geon}};}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00010}00010 \textcolor{keyword}{namespace }afarcloud}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00011}00011 \{}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00020}\mbox{\hyperlink{classafarcloud_1_1_planner_afa4388c0a9a0425615be0cb70c414e87}{00020}}     \textcolor{keywordtype}{void}    \mbox{\hyperlink{classafarcloud_1_1_planner_afa4388c0a9a0425615be0cb70c414e87}{Planner::logPath}}(std::ofstream \&\_logfile, pointVec path)}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00021}00021     \{}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00022}00022         \_logfile << \textcolor{stringliteral}{"{}PATH. "{}} << path.size() << \textcolor{stringliteral}{"{} WAYPOINTS"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00023}00023         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} p = 0; p < path.size(); p++)}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00024}00024             \_logfile << \textcolor{stringliteral}{"{}("{}} << path[p].x() << \textcolor{stringliteral}{"{},"{}} << path[p].y() << \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00025}00025         \_logfile << endl;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00026}00026     \}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00034}\mbox{\hyperlink{classafarcloud_1_1_planner_aabee4a51fea8a12167f0ae733716cec6}{00034}}     pointVec \mbox{\hyperlink{classafarcloud_1_1_planner_aabee4a51fea8a12167f0ae733716cec6}{Planner::prunePath}}(pointVec path)}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00035}00035     \{}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00036}00036         aPoint pt0, pt1, pt2;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00037}00037         \textcolor{keywordtype}{bool} bBelongs;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00038}00038         pointVec outPath;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00040}00040         pt0 = path[0];}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00041}00041         outPath.push\_back(pt0);}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00042}00042         pt1 = path[1];}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00043}00043         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 2; n < path.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00044}00044         \{}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00045}00045             pt2 = path[n];}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00046}00046             \textcolor{keywordflow}{if} (}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00047}00047                 (pt0.x() == pt1.x()) \&\& }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00048}00048                 (pt0.y() == pt1.y())}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00049}00049                 )}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00050}00050             \{}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00051}00051                 pt0 = pt1;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00052}00052                 pt1 = pt2;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00053}00053             \}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00054}00054             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00055}00055             \{}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00056}00056                 bBelongs = GeometryTools::belongsToLine(pt0, pt1, pt2);}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00057}00057                 \textcolor{keywordflow}{if} (bBelongs \&\& (pt0.x() != pt2.x()) \&\& (pt0.y() != pt2.y()))}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00058}00058                 \{}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00059}00059                     pt1 = pt2;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00060}00060                 \}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00061}00061                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00062}00062                 \{}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00063}00063                     outPath.push\_back(pt1);}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00064}00064                     pt0 = pt1;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00065}00065                     pt1 = pt2;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00066}00066                 \}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00067}00067             \}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00068}00068         \}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00069}00069         outPath.push\_back(pt2);}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00071}00071         \textcolor{keywordflow}{return} outPath;}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00072}00072     \}}
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{_planner_8cpp_source_l00074}00074 \}}
+
+\end{DoxyCode}

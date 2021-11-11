@@ -1,0 +1,123 @@
+\hypertarget{classafarcloud_1_1_a_star_planner}{}\doxysection{afarcloud\+::AStar\+Planner Class Reference}
+\label{classafarcloud_1_1_a_star_planner}\index{afarcloud::AStarPlanner@{afarcloud::AStarPlanner}}
+
+
+{\ttfamily \#include $<$AStar\+Planner.\+h$>$}
+
+Inheritance diagram for afarcloud\+::AStar\+Planner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classafarcloud_1_1_a_star_planner}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classafarcloud_1_1_a_star_planner_a4226509a078be3c7869ac630bc8de003}{AStar\+Planner}} (bool b\+Auto\+Scale=false)
+\item 
+\mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ad8358c4a159c7a1d339d9dc852af1b96}{AStar\+Planner}} (a\+Point pt\+Start, a\+Point pt\+Goal, rectangle\+Vec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} rect\+Field, double resolution, double heuristic\+Weight=1.\+0, bool b\+Auto\+Scale=false)
+\item 
+point\+Vec \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{plan}} ()
+\item 
+point\+Vec \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_a3bdd1f3bddd2c30157b73adbe0a320c6}{plan}} (a\+Point pt\+Start, a\+Point pt\+Goal, rectangle\+Vec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} rect\+Field, double resolution, double heuristic\+Weight=1.\+0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_a9dea64746aa4f7bf8c3c9b863edc2160}{m\+\_\+log\+Number}} = 0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classafarcloud_1_1_a_star_planner}{AStar\+Planner}}\+: A class that implements the A$\ast$ planner algorithm. 
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00063}{63}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_planner_a4226509a078be3c7869ac630bc8de003}\label{classafarcloud_1_1_a_star_planner_a4226509a078be3c7869ac630bc8de003}} 
+\index{afarcloud::AStarPlanner@{afarcloud::AStarPlanner}!AStarPlanner@{AStarPlanner}}
+\index{AStarPlanner@{AStarPlanner}!afarcloud::AStarPlanner@{afarcloud::AStarPlanner}}
+\doxysubsubsection{\texorpdfstring{AStarPlanner()}{AStarPlanner()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily afarcloud\+::\+AStar\+Planner\+::\+AStar\+Planner (\begin{DoxyParamCaption}\item[{bool}]{b\+Auto\+Scale = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00066}{66}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_planner_ad8358c4a159c7a1d339d9dc852af1b96}\label{classafarcloud_1_1_a_star_planner_ad8358c4a159c7a1d339d9dc852af1b96}} 
+\index{afarcloud::AStarPlanner@{afarcloud::AStarPlanner}!AStarPlanner@{AStarPlanner}}
+\index{AStarPlanner@{AStarPlanner}!afarcloud::AStarPlanner@{afarcloud::AStarPlanner}}
+\doxysubsubsection{\texorpdfstring{AStarPlanner()}{AStarPlanner()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily afarcloud\+::\+AStar\+Planner\+::\+AStar\+Planner (\begin{DoxyParamCaption}\item[{a\+Point}]{pt\+Start,  }\item[{a\+Point}]{pt\+Goal,  }\item[{rectangle\+Vec}]{obstacles,  }\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{rect\+Field,  }\item[{double}]{resolution,  }\item[{double}]{heuristic\+Weight = {\ttfamily 1.0},  }\item[{bool}]{b\+Auto\+Scale = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ad8358c4a159c7a1d339d9dc852af1b96}{AStar\+Planner\+::\+AStar\+Planner(a\+Point pt\+Start, a\+Point pt\+Goal, rectangle\+Vec obstacles, a\+Rectangle rect\+Field, double resolution, double heuristic\+Weight, bool b\+Auto\+Scale)}} Summary\+: A$\ast$ \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. Params\+: pt\+Start a\+Point See \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. pt\+Goal a\+Point See \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. obstacles rectangle\+Vec See \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. rect\+Field a\+Rectangle See \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. resolution double \mbox{\hyperlink{classafarcloud_1_1_algorithm}{Algorithm}}\textquotesingle{}s resolution. heuristic\+Weight double \mbox{\hyperlink{classafarcloud_1_1_algorithm}{Algorithm}}\textquotesingle{}s heuristic weight. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{_a_star_planner_8cpp_source}{AStar\+Planner.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}\label{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}} 
+\index{afarcloud::AStarPlanner@{afarcloud::AStarPlanner}!plan@{plan}}
+\index{plan@{plan}!afarcloud::AStarPlanner@{afarcloud::AStarPlanner}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily point\+Vec afarcloud\+::\+AStar\+Planner\+::plan (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+point\+Vec \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{AStar\+Planner\+::plan()}} Summary\+: The planner algorithm. Params\+: none. Return\+: path point\+Vec The path obtained. Initialization check.
+
+Verifies if the path $<$start\+Node$>$ -\/\texorpdfstring{$>$}{>} $<$goal\+Node$>$ is clear.
+
+Calculates the $<$start\+Node$>$ index in grid and insert the node into the Open Set.
+
+Loops until the Open Set is not empty.
+
+Gets the Open Set entry with lowest cost. Calcs the heuristic distance.
+
+Verifies if the goal has been reached.
+
+Remove the item from the open set
+
+Add it to the closed set
+
+Sets up all motion nodes
+
+If the node is not safe, do nothing
+
+Implements \mbox{\hyperlink{classafarcloud_1_1_planner_a19776520ea5516ab7592dc1e2d6e0353}{afarcloud\+::\+Planner}}.
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8cpp_source_l00385}{385}} of file \mbox{\hyperlink{_a_star_planner_8cpp_source}{AStar\+Planner.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_planner_a3bdd1f3bddd2c30157b73adbe0a320c6}\label{classafarcloud_1_1_a_star_planner_a3bdd1f3bddd2c30157b73adbe0a320c6}} 
+\index{afarcloud::AStarPlanner@{afarcloud::AStarPlanner}!plan@{plan}}
+\index{plan@{plan}!afarcloud::AStarPlanner@{afarcloud::AStarPlanner}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily point\+Vec afarcloud\+::\+AStar\+Planner\+::plan (\begin{DoxyParamCaption}\item[{a\+Point}]{pt\+Start,  }\item[{a\+Point}]{pt\+Goal,  }\item[{rectangle\+Vec}]{obstacles,  }\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{rect\+Field,  }\item[{double}]{resolution,  }\item[{double}]{heuristic\+Weight = {\ttfamily 1.0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8cpp_source_l00548}{548}} of file \mbox{\hyperlink{_a_star_planner_8cpp_source}{AStar\+Planner.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_planner_a9dea64746aa4f7bf8c3c9b863edc2160}\label{classafarcloud_1_1_a_star_planner_a9dea64746aa4f7bf8c3c9b863edc2160}} 
+\index{afarcloud::AStarPlanner@{afarcloud::AStarPlanner}!m\_logNumber@{m\_logNumber}}
+\index{m\_logNumber@{m\_logNumber}!afarcloud::AStarPlanner@{afarcloud::AStarPlanner}}
+\doxysubsubsection{\texorpdfstring{m\_logNumber}{m\_logNumber}}
+{\footnotesize\ttfamily int afarcloud\+::\+AStar\+Planner\+::m\+\_\+log\+Number = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00070}{70}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/AStar\+Planner.\+h\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/AStar\+Planner.\+cpp\end{DoxyCompactItemize}

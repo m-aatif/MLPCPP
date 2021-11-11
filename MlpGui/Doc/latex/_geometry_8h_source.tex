@@ -1,0 +1,123 @@
+\hypertarget{_geometry_8h_source}{}\doxysection{Geometry.\+h}
+\label{_geometry_8h_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/Geometry.h@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/Geometry.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00001}00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00003}00003 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00005}00005 \textcolor{preprocessor}{\#include <boost/geometry.hpp>}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <boost/geometry/geometries/adapted/boost\_polygon.hpp>}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00008}00008 \textcolor{keyword}{namespace }bpn = boost::polygon;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00009}00009 \textcolor{keyword}{namespace }bgn = boost::geometry;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00010}00010 \textcolor{keyword}{using namespace }boost::polygon::operators;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00012}00012 \textcolor{keyword}{typedef} bpn::polygon\_data<double> aPolygon;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00013}00013 \textcolor{keyword}{typedef} bpn::polygon\_traits<aPolygon>::point\_type aPoint;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00018}00018 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacegeon}{geon}}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00019}00019 \{}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00023}\mbox{\hyperlink{classgeon_1_1a_rectangle}{00023}}     \textcolor{keyword}{class }\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00024}00024     \{}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00025}00025     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00026}00026         \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} nullRect;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00028}00028         \mbox{\hyperlink{classgeon_1_1a_rectangle_abdbd02d417a175f1549ef1d84f5b534d}{aRectangle}}();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00029}00029         \mbox{\hyperlink{classgeon_1_1a_rectangle_abdbd02d417a175f1549ef1d84f5b534d}{aRectangle}}(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} width, \textcolor{keywordtype}{double} height);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00030}00030         \mbox{\hyperlink{classgeon_1_1a_rectangle_abdbd02d417a175f1549ef1d84f5b534d}{aRectangle}}(aPoint ptStart, aPoint ptStop);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00032}00032         \textcolor{keywordtype}{long} \textcolor{keywordtype}{double} \mbox{\hyperlink{classgeon_1_1a_rectangle_a32272d10a95a87d46cad5002c7d9223c}{area}}();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00033}00033         \textcolor{keywordtype}{bool} contains(aPoint pt, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00034}00034         \textcolor{keywordtype}{bool} contains(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00035}00035         \textcolor{keywordtype}{bool} contains(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00036}00036         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} \mbox{\hyperlink{classgeon_1_1a_rectangle_aeb5d2a94ef6635764ac54b71e9f49a86}{operator + }}(aPoint pt);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00037}00037         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} \mbox{\hyperlink{classgeon_1_1a_rectangle_a2165008974ef7cb751cfea3f84ee3c64}{operator += }}(aPoint pt);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00038}00038         \textcolor{keywordtype}{bool} \mbox{\hyperlink{classgeon_1_1a_rectangle_a5a1e852d84c2eac7d1a684981595b1f8}{operator == }}(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00039}00039         \textcolor{keywordtype}{void} scaleUp(\textcolor{keywordtype}{double} amount);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00040}00040         \textcolor{keywordtype}{void} scaleDown(\textcolor{keywordtype}{double} amount);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00041}00041         \textcolor{keywordtype}{bool} intersect(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00042}00042         \textcolor{keywordtype}{bool} intersectMod(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00043}00043         \textcolor{keywordtype}{bool} intersect(aPoint pt1, aPoint pt2, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00044}00044         \textcolor{keywordtype}{bool} intersect2(aPoint pt1, aPoint pt2, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00045}00045         \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} isPositive(\textcolor{keywordtype}{double} num) \{ \textcolor{keywordflow}{return} num >= 0.0; \}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00047}00047         \textcolor{keywordtype}{void} \mbox{\hyperlink{classgeon_1_1a_rectangle_a4163f2ecbf284a7b5552c46016308787}{inflate}}(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00048}00048         \textcolor{keywordtype}{void} \mbox{\hyperlink{classgeon_1_1a_rectangle_a4163f2ecbf284a7b5552c46016308787}{inflate}}(\textcolor{keywordtype}{double} l, \textcolor{keywordtype}{double} t, \textcolor{keywordtype}{double} r, \textcolor{keywordtype}{double} b);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00050}00050         \textcolor{keywordtype}{double} centerDistance(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00051}00051         \textcolor{keywordtype}{bool} joinableLeft(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00052}00052         \textcolor{keywordtype}{bool} joinableTopLeft(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00053}00053         \textcolor{keywordtype}{bool} joinableTop(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00054}00054         \textcolor{keywordtype}{bool} joinableTopRight(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00055}00055         \textcolor{keywordtype}{bool} joinableRight(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00056}00056         \textcolor{keywordtype}{bool} joinableBottomRight(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00057}00057         \textcolor{keywordtype}{bool} joinableBottom(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00058}00058         \textcolor{keywordtype}{bool} joinableBottomLeft(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00059}00059         }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00060}00060         \textcolor{keywordtype}{bool} joinable(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00062}00062         \textcolor{keywordtype}{bool} joinLeft(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00063}00063         \textcolor{keywordtype}{bool} joinTop(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00064}00064         \textcolor{keywordtype}{bool} joinRight(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00065}00065         \textcolor{keywordtype}{bool} joinBottom(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00066}00066         }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00067}00067         \textcolor{keywordtype}{bool} join(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00069}00069         \textcolor{keywordtype}{bool} alignedLeft(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00070}00070         \textcolor{keywordtype}{bool} alignedRight(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00071}00071         \textcolor{keywordtype}{bool} alignedTop(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00072}00072         \textcolor{keywordtype}{bool} alignedBottom(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other, \textcolor{keywordtype}{bool} considerTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00074}00074         \textcolor{keywordtype}{bool} dockableAtRight(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00075}00075         \textcolor{keywordtype}{bool} dockableAtLeft(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00076}00076         \textcolor{keywordtype}{bool} dockableAtBottom(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00077}00077         \textcolor{keywordtype}{bool} dockableAtTop(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} other);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00079}00079         \textcolor{keywordtype}{double} left();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00080}00080         \textcolor{keywordtype}{double} bottom();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00081}00081         \textcolor{keywordtype}{double} right();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00082}00082         \textcolor{keywordtype}{double} top();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00083}00083         \textcolor{keywordtype}{double} width();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00084}00084         \textcolor{keywordtype}{double} height();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00085}00085         aPoint bottomLeft();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00086}00086         aPoint bottomRight();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00087}00087         aPoint topLeft();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00088}00088         aPoint topRight();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00089}00089         aPoint center();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00091}00091         \textcolor{keyword}{inline} bpn::rectangle\_data<double> GetRectData()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_rectData; \}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00092}00092         \textcolor{keywordtype}{void} dump(std::string s);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00094}00094         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setTag(\textcolor{keywordtype}{int} tag) \{ m\_tag = tag; \}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00095}00095         \textcolor{keyword}{inline} \textcolor{keywordtype}{int} getTag()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_tag; \}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00096}00096     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00097}00097         aPolygon m\_poly;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00098}00098         bpn::rectangle\_data<double> m\_rectData;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00099}00099         bpn::interval\_data<double> m\_horzIntervalData;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00100}00100         bpn::interval\_data<double> m\_vertIntervalData;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00101}00101         \textcolor{keywordtype}{bool} m\_bChanged;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00103}00103         \textcolor{keywordtype}{void} remapDimensions();}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00105}00105         \textcolor{keywordtype}{int} m\_tag;  }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00106}00106     \};}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00108}00108     \textcolor{keyword}{typedef} std::vector<aPoint> pointVec;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00109}00109     \textcolor{keyword}{typedef} std::vector<aRectangle> rectangleVec;}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00114}\mbox{\hyperlink{classgeon_1_1_geometry_tools}{00114}}     \textcolor{keyword}{class }\mbox{\hyperlink{classgeon_1_1_geometry_tools}{GeometryTools}}}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00115}00115     \{}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00116}00116     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00117}00117         \textcolor{keyword}{static} \textcolor{keywordtype}{int} orientation(aPoint p, aPoint q, aPoint r);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00118}00118         \textcolor{keyword}{static} \textcolor{keywordtype}{int} onSegment(aPoint p, aPoint q, aPoint r);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00119}00119         \textcolor{keyword}{static} \textcolor{keywordtype}{bool} intersectSegment(aPoint p1, aPoint q1, aPoint p2, aPoint q2);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00120}00120         \textcolor{keyword}{static} \textcolor{keywordtype}{bool} belongsToLine(aPoint pt0, aPoint pt, aPoint pt1);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00121}00121         \textcolor{keyword}{static} aPoint scalePoint(aPoint pt, \textcolor{keywordtype}{double} minX, \textcolor{keywordtype}{double} minY, \textcolor{keywordtype}{double} res);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00122}00122         \textcolor{keyword}{static} aPoint descalePoint(aPoint pt, \textcolor{keywordtype}{double} minX, \textcolor{keywordtype}{double} minY, \textcolor{keywordtype}{double} res);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00123}00123         \textcolor{keyword}{static} \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} scaleRect(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} minX, \textcolor{keywordtype}{double} minY, \textcolor{keywordtype}{double} res);}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00124}00124     \};}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00125}00125 \};}
+\DoxyCodeLine{\Hypertarget{_geometry_8h_source_l00126}00126 }
+
+\end{DoxyCode}

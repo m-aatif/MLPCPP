@@ -1,0 +1,322 @@
+\hypertarget{_aggregators_8cpp_source}{}\doxysection{Aggregators.\+cpp}
+\label{_aggregators_8cpp_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/Aggregators.cpp@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/Aggregators.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}CoveragePlanner.h"{}}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00002}00002 \textcolor{preprocessor}{\#include <boost/numeric/ublas/matrix.hpp>}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00004}00004 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00006}00006 \textcolor{keyword}{namespace }afarcloud}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00007}00007 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00008}00008     \textcolor{keywordtype}{void} CoveragePlanner::findAndJoinRectanglesLeft(vector<aRectangle> inRects, vector<aRectangle> \&outRects)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00009}00009     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00010}00010         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aBase, ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00011}00011         \textcolor{keywordtype}{size\_t} ix = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00012}00012         \textcolor{keywordtype}{int} newTag = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00014}00014         aBase = inRects[ix++];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00015}00015         \textcolor{keywordflow}{while} (ix < inRects.size())}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00016}00016         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00017}00017             ar = inRects[ix++];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00018}00018             \textcolor{keywordflow}{if} (!aBase.joinLeft(ar))}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00019}00019             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00020}00020                 aBase.setTag(newTag++);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00021}00021                 outRects.push\_back(aBase);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00022}00022                 aBase = ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00023}00023             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00024}00024         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00025}00025         aBase.setTag(newTag);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00026}00026         outRects.push\_back(aBase);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00027}00027     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00029}00029     \textcolor{keywordtype}{void} CoveragePlanner::findAndJoinRectanglesRight(vector<aRectangle> inRects, vector<aRectangle> \&outRects)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00030}00030     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00031}00031         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aBase, ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00032}00032         \textcolor{keywordtype}{size\_t} ix = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00033}00033         \textcolor{keywordtype}{int} newTag = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00035}00035         aBase = inRects[ix++];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00036}00036         \textcolor{keywordflow}{while} (ix < inRects.size())}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00037}00037         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00038}00038             ar = inRects[ix++];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00039}00039             \textcolor{keywordflow}{if} (!aBase.joinRight(ar))}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00040}00040             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00041}00041                 aBase.setTag(newTag++);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00042}00042                 outRects.push\_back(aBase);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00043}00043                 aBase = ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00044}00044             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00045}00045         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00046}00046         aBase.setTag(newTag);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00047}00047         outRects.push\_back(aBase);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00048}00048     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00050}00050     \textcolor{keywordtype}{void} CoveragePlanner::findAndJoinRectanglesBottom(rectangleMap inRectsMap, \textcolor{keywordtype}{size\_t} xSize, \textcolor{keywordtype}{size\_t} ySize, vector<aRectangle> \&outRects)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00051}00051     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00052}00052         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aBase, ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00053}00053         \textcolor{keywordtype}{bool} set = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00054}00054         rectangleMap::iterator it;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00055}00055         \textcolor{keywordtype}{int} tag, newTag = 0;;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00057}00057         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} x = 0; x < xSize; x++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00058}00058             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} y = 0; y < ySize; y++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00059}00059             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00060}00060                 tag = (y << 16) + x;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00061}00061                 \textcolor{keywordflow}{if} (!set)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00062}00062                 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00063}00063                     aBase = inRectsMap[tag];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00064}00064                     set = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00065}00065                 \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00066}00066                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00067}00067                 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00068}00068                     it = inRectsMap.find(tag);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00069}00069                     \textcolor{keywordflow}{if} (it != inRectsMap.end())}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00070}00070                     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00071}00071                         ar = it-\/>second;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00072}00072                         \textcolor{keywordflow}{if} (!aBase.joinBottom(ar))}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00073}00073                         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00074}00074                             aBase.setTag(newTag++);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00075}00075                             outRects.push\_back(aBase);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00076}00076                             aBase = ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00077}00077                         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00078}00078                     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00079}00079                 \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00080}00080             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00082}00082         aBase.setTag(newTag);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00083}00083         outRects.push\_back(aBase);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00084}00084     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00086}00086     \textcolor{keywordtype}{void} CoveragePlanner::findAndJoinRectanglesTop(rectangleMap inRectsMap, \textcolor{keywordtype}{size\_t} xSize, \textcolor{keywordtype}{size\_t} ySize, vector<aRectangle> \&outRects)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00087}00087     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00088}00088         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aBase, ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00089}00089         \textcolor{keywordtype}{bool} set = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00090}00090         rectangleMap::iterator it;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00091}00091         \textcolor{keywordtype}{int} tag, newTag = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00093}00093         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} x = 0; x < xSize; x++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00094}00094             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} y = 0; y < ySize; y++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00095}00095             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00096}00096                 tag = (y << 16) + x;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00097}00097                 \textcolor{keywordflow}{if} (!set)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00098}00098                 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00099}00099                     aBase = inRectsMap[tag];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00100}00100                     set = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00101}00101                 \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00102}00102                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00103}00103                 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00104}00104                     it = inRectsMap.find(tag);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00105}00105                     \textcolor{keywordflow}{if} (it != inRectsMap.end())}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00106}00106                     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00107}00107                         ar = it-\/>second;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00108}00108                         \textcolor{keywordflow}{if} (!aBase.joinTop(ar))}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00109}00109                         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00110}00110                             aBase.setTag(newTag++);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00111}00111                             outRects.push\_back(aBase);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00112}00112                             aBase = ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00113}00113                         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00114}00114                     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00115}00115                 \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00116}00116             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00117}00117 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00118}00118         aBase.setTag(newTag);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00119}00119         outRects.push\_back(aBase);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00120}00120     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00122}00122     \textcolor{keywordtype}{void} CoveragePlanner::adjustRectanglesLeft(vector<aRectangle> \&outRects)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00123}00123     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00124}00124         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aBase, ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00125}00125         \textcolor{keywordtype}{size\_t} ixBase, ixRun;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00126}00126         \textcolor{keywordtype}{bool} joint;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00128}00128         ixBase = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00129}00129         \textcolor{keywordflow}{do}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00130}00130         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00131}00131             aBase = outRects[ixBase];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00132}00132             joint = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00133}00133             \textcolor{keywordflow}{for} (ixRun = ixBase + 1; ixRun < outRects.size(); ixRun++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00134}00134             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00135}00135                 ar = outRects[ixRun];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00136}00136                 \textcolor{keywordflow}{if} (aBase.joinLeft(ar))}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00137}00137                 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00138}00138                     outRects[ixBase] = aBase;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00139}00139                     joint = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00140}00140                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00141}00141                 \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00142}00142             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00143}00143             \textcolor{keywordflow}{if} (joint)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00144}00144             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00145}00145                 outRects.erase(outRects.begin() + ixRun);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00146}00146             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00147}00147             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00148}00148                 ixBase++;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00149}00149         \} \textcolor{keywordflow}{while} (ixBase < outRects.size());}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00150}00150     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00152}00152     \textcolor{keywordtype}{void} CoveragePlanner::adjustRectanglesRight(vector<aRectangle> \&outRects)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00153}00153     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00154}00154         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aBase, ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00155}00155         \textcolor{keywordtype}{size\_t} ixBase, ixRun;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00156}00156         \textcolor{keywordtype}{bool} joint;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00158}00158         ixBase = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00159}00159         \textcolor{keywordflow}{do}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00160}00160         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00161}00161             aBase = outRects[ixBase];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00162}00162             joint = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00163}00163             \textcolor{keywordflow}{for} (ixRun = ixBase + 1; ixRun < outRects.size(); ixRun++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00164}00164             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00165}00165                 ar = outRects[ixRun];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00166}00166                 \textcolor{keywordflow}{if} (aBase.joinRight(ar))}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00167}00167                 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00168}00168                     outRects[ixBase] = aBase;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00169}00169                     joint = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00170}00170                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00171}00171                 \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00172}00172             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00173}00173             \textcolor{keywordflow}{if} (joint)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00174}00174             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00175}00175                 outRects.erase(outRects.begin() + ixRun);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00176}00176             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00177}00177             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00178}00178                 ixBase++;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00179}00179         \} \textcolor{keywordflow}{while} (ixBase < outRects.size());}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00180}00180     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00181}00181 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00182}00182     \textcolor{keywordtype}{void} CoveragePlanner::adjustRectanglesBottom(vector<aRectangle> \&outRects)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00183}00183     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00184}00184         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aBase, ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00185}00185         \textcolor{keywordtype}{size\_t} ixBase, ixRun;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00186}00186         \textcolor{keywordtype}{bool} joint;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00187}00187 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00188}00188         ixBase = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00189}00189         \textcolor{keywordflow}{do}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00190}00190         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00191}00191             aBase = outRects[ixBase];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00192}00192             joint = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00193}00193             \textcolor{keywordflow}{for} (ixRun = ixBase + 1; ixRun < outRects.size(); ixRun++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00194}00194             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00195}00195                 ar = outRects[ixRun];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00196}00196                 \textcolor{keywordflow}{if} (aBase.joinBottom(ar))}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00197}00197                 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00198}00198                     outRects[ixBase] = aBase;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00199}00199                     joint = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00200}00200                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00201}00201                 \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00202}00202             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00203}00203             \textcolor{keywordflow}{if} (joint)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00204}00204             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00205}00205                 outRects.erase(outRects.begin() + ixRun);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00206}00206             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00207}00207             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00208}00208                 ixBase++;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00209}00209         \} \textcolor{keywordflow}{while} (ixBase < outRects.size());}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00210}00210     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00211}00211 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00212}00212     \textcolor{keywordtype}{void} CoveragePlanner::adjustRectanglesTop(vector<aRectangle> \&outRects)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00213}00213     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00214}00214         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aBase, ar;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00215}00215         \textcolor{keywordtype}{size\_t} ixBase, ixRun;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00216}00216         \textcolor{keywordtype}{bool} joint;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00217}00217 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00218}00218         ixBase = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00219}00219         \textcolor{keywordflow}{do}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00220}00220         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00221}00221             aBase = outRects[ixBase];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00222}00222             joint = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00223}00223             \textcolor{keywordflow}{for} (ixRun = ixBase + 1; ixRun < outRects.size(); ixRun++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00224}00224             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00225}00225                 ar = outRects[ixRun];}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00226}00226                 \textcolor{keywordflow}{if} (aBase.joinTop(ar))}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00227}00227                 \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00228}00228                     outRects[ixBase] = aBase;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00229}00229                     joint = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00230}00230                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00231}00231                 \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00232}00232             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00233}00233             \textcolor{keywordflow}{if} (joint)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00234}00234             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00235}00235                 outRects.erase(outRects.begin() + ixRun);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00236}00236             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00237}00237             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00238}00238                 ixBase++;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00239}00239         \} \textcolor{keywordflow}{while} (ixBase < outRects.size());}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00240}00240     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00241}00241 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00249}00249     \textcolor{keywordtype}{void} CoveragePlanner::aggregateRectanglesA()}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00250}00250     \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00255}00255         \textcolor{keywordflow}{switch} (m\_direction)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00256}00256         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00257}00257         \textcolor{keywordflow}{case} NE\_DIRECTION:}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00258}00258             findAndJoinRectanglesRight(m\_basicCells, m\_compoundCellsH);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00259}00259             findAndJoinRectanglesTop(m\_basicCellRectangleMap, m\_xCoords.size(), m\_yCoords.size(), m\_compoundCellsV);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00260}00260             adjustRectanglesTop(m\_compoundCellsH);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00261}00261             adjustRectanglesRight(m\_compoundCellsV);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00262}00262             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00263}00263         \textcolor{keywordflow}{case} SE\_DIRECTION:}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00264}00264             findAndJoinRectanglesRight(m\_basicCells, m\_compoundCellsH);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00265}00265             findAndJoinRectanglesBottom(m\_basicCellRectangleMap, m\_xCoords.size(), m\_yCoords.size(), m\_compoundCellsV);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00266}00266             adjustRectanglesBottom(m\_compoundCellsH);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00267}00267             adjustRectanglesRight(m\_compoundCellsV);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00268}00268             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00269}00269         \textcolor{keywordflow}{case} NW\_DIRECTION:}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00270}00270             findAndJoinRectanglesLeft(m\_basicCells, m\_compoundCellsH);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00271}00271             findAndJoinRectanglesTop(m\_basicCellRectangleMap, m\_xCoords.size(), m\_yCoords.size(), m\_compoundCellsV);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00272}00272             adjustRectanglesTop(m\_compoundCellsH);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00273}00273             adjustRectanglesLeft(m\_compoundCellsV);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00274}00274             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00275}00275         \textcolor{keywordflow}{case} SW\_DIRECTION:}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00276}00276             findAndJoinRectanglesLeft(m\_basicCells, m\_compoundCellsH);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00277}00277             findAndJoinRectanglesBottom(m\_basicCellRectangleMap, m\_xCoords.size(), m\_yCoords.size(), m\_compoundCellsV);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00278}00278             adjustRectanglesBottom(m\_compoundCellsH);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00279}00279             adjustRectanglesLeft(m\_compoundCellsV);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00280}00280             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00281}00281         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00282}00282 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00286}00286         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00287}00287         vector<aRectangle>::iterator ito;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00288}00288 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00289}00289         \textcolor{keywordtype}{int} tag = 0;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00290}00290         \textcolor{keywordflow}{if} (m\_compoundCellsH.size() < m\_compoundCellsV.size())}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00291}00291         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00292}00292             m\_expansion = HORZ\_EXPANSION;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00293}00293             ito = m\_compoundCellsH.begin();}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00294}00294             \textcolor{keywordflow}{while} (ito != m\_compoundCellsH.end())}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00295}00295             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00296}00296                 rc = *ito;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00297}00297                 rc.setTag(tag++);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00298}00298                 m\_compoundCells.push\_back(rc);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00299}00299                 ito++;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00300}00300             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00301}00301         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00302}00302         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00303}00303         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00304}00304             m\_expansion = VERT\_EXPANSION;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00305}00305             ito = m\_compoundCellsV.begin();}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00306}00306             \textcolor{keywordflow}{while} (ito != m\_compoundCellsV.end())}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00307}00307             \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00308}00308                 rc = *ito;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00309}00309                 rc.setTag(tag++);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00310}00310                 m\_compoundCells.push\_back(rc);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00311}00311                 ito++;}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00312}00312             \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00313}00313         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00314}00314         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < m\_compoundCells.size(); i++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00315}00315         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00316}00316             m\_compoundCells[i].setTag(i);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00317}00317         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00318}00318 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00319}00319         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < m\_compoundCellsV.size(); i++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00320}00320         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00321}00321             m\_compoundCellsV[i].setTag(i);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00322}00322         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00323}00323 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00324}00324         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < m\_compoundCellsH.size(); i++)}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00325}00325         \{}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00326}00326             m\_compoundCellsH[i].setTag(i);}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00327}00327         \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00328}00328     \}}
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00329}00329 }
+\DoxyCodeLine{\Hypertarget{_aggregators_8cpp_source_l00330}00330 \}}
+
+\end{DoxyCode}

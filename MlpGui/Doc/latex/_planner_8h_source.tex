@@ -1,0 +1,50 @@
+\hypertarget{_planner_8h_source}{}\doxysection{Planner.\+h}
+\label{_planner_8h_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/Planner.h@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/Planner.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00001}00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00003}00003 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00004}00004 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00005}00005 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00007}00007 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00009}00009 \textcolor{preprocessor}{\#include "{}Geometry.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00011}00011 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00012}00012 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacegeon}{geon}};}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00014}00014 \textcolor{keyword}{namespace }afarcloud}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00015}00015 \{}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00019}00019     \textcolor{keyword}{typedef} std::vector<double> doubleVec;}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00020}00020     \textcolor{keyword}{typedef} std::vector<string> stringVec;}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00027}\mbox{\hyperlink{classafarcloud_1_1_planner}{00027}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00028}00028     \{}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00029}00029     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00033}\mbox{\hyperlink{classafarcloud_1_1_planner_a19776520ea5516ab7592dc1e2d6e0353}{00033}}         \textcolor{keyword}{virtual} pointVec \mbox{\hyperlink{classafarcloud_1_1_planner_a19776520ea5516ab7592dc1e2d6e0353}{plan}}() = 0;}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00034}00034         \textcolor{keyword}{virtual} \mbox{\hyperlink{classafarcloud_1_1_planner}{\string~Planner}}() \{ ; \}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00036}00036         \textcolor{keywordtype}{void} enableLog(\textcolor{keywordtype}{bool} bEnable) \{ m\_bLog = bEnable; \}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00038}00038         \textcolor{keyword}{static}  pointVec \mbox{\hyperlink{classafarcloud_1_1_planner_aabee4a51fea8a12167f0ae733716cec6}{prunePath}}(pointVec path);}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00039}00039         \textcolor{keyword}{static}  \textcolor{keywordtype}{void}    \mbox{\hyperlink{classafarcloud_1_1_planner_afa4388c0a9a0425615be0cb70c414e87}{logPath}}(std::ofstream \&\_logfile, pointVec path);}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00040}00040     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00044}\mbox{\hyperlink{classafarcloud_1_1_planner_ae80432ae7ffe3004ad863fd0520b9224}{00044}}         \mbox{\hyperlink{classafarcloud_1_1_planner_ae80432ae7ffe3004ad863fd0520b9224}{Planner}}()}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00045}00045         \{}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00046}00046             ;}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00047}00047         \}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00057}\mbox{\hyperlink{classafarcloud_1_1_planner_a340e770a280770067de28943616216c1}{00057}}         \mbox{\hyperlink{classafarcloud_1_1_planner_a340e770a280770067de28943616216c1}{Planner}}(aPoint ptStart, aPoint ptGoal, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField)}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00058}00058         \{}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00059}00059             m\_bLog = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00060}00060         \}}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00062}00062         rectangleVec m\_obstacles;}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00063}00063         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} m\_rectField;}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00064}00064         \textcolor{keywordtype}{bool} m\_bLog;}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00065}00065     \};}
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{_planner_8h_source_l00067}00067 \}}
+
+\end{DoxyCode}

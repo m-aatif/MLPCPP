@@ -1,0 +1,103 @@
+\hypertarget{_a_star_planner_8h_source}{}\doxysection{AStar\+Planner.\+h}
+\label{_a_star_planner_8h_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/AStarPlanner.h@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/AStarPlanner.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00001}00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00003}00003 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}Planner.h"{}}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00006}00006 \textcolor{preprocessor}{\#include "{}Geometry.h"{}}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00008}00008 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00009}00009 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacegeon}{geon}};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00011}00011 \textcolor{preprocessor}{\#define DEFAULT\_ASTAR\_HEURISTIC\_WEIGHT  (0.5)}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00013}00013 \textcolor{keyword}{namespace }afarcloud}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00018}\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{00018}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00019}00019     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00020}00020     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00021}00021         \mbox{\hyperlink{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}{AStarNode}}();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00022}00022         \mbox{\hyperlink{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}{AStarNode}}(aPoint ptStart, \textcolor{keywordtype}{double} cost, int32\_t parentIndex);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00024}00024         \textcolor{keyword}{inline} aPoint origin()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_ptStart; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00025}00025         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} cost()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_cost; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00026}00026         \textcolor{keyword}{inline} int32\_t parentIndex()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_parentIndex; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00027}00027         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} x()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_ptStart.x(); \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00028}00028         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} y()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_ptStart.y(); \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00029}00029         }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00030}00030         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setCost(\textcolor{keywordtype}{double} cost) \{ m\_cost = cost; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00031}00031         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setParentIndex(int32\_t index) \{ m\_parentIndex = index; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00033}00033     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00034}00034         aPoint m\_ptStart;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00035}00035         \textcolor{keywordtype}{double} m\_cost;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00036}00036         int32\_t m\_parentIndex;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00037}00037     \};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00042}\mbox{\hyperlink{classafarcloud_1_1_a_star_motion}{00042}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_a_star_motion}{AStarMotion}}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00043}00043     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00044}00044     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00045}00045         \mbox{\hyperlink{classafarcloud_1_1_a_star_motion_a5ec5ee9a8725bcce06bd25cc316d5713}{AStarMotion}}(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} cost, \textcolor{keywordtype}{double} scaling);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00047}00047         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} x()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_x; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00048}00048         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} y()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_y; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00049}00049         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} cost()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_cost; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00050}00050     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00051}00051         \textcolor{keywordtype}{double} m\_x;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00052}00052         \textcolor{keywordtype}{double} m\_y;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00053}00053         \textcolor{keywordtype}{double} m\_cost;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00054}00054     \};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00056}00056     \textcolor{keyword}{typedef} map<int32\_t, AStarNode> nodeMap;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00057}00057     \textcolor{keyword}{typedef} std::vector<AStarNode> nodeVec;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00058}00058     \textcolor{keyword}{typedef} std::vector<AStarMotion> motionVec;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00063}\mbox{\hyperlink{classafarcloud_1_1_a_star_planner}{00063}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_a_star_planner}{AStarPlanner}} : \textcolor{keyword}{public} \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00064}00064     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00065}00065     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00066}00066         \mbox{\hyperlink{classafarcloud_1_1_a_star_planner}{AStarPlanner}}(\textcolor{keywordtype}{bool} bAutoScale = \textcolor{keyword}{false}) \{ m\_bAutoScale = bAutoScale; m\_bInitialized = \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00067}00067         \mbox{\hyperlink{classafarcloud_1_1_a_star_planner}{AStarPlanner}}(aPoint ptStart, aPoint ptGoal, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, \textcolor{keywordtype}{double} resolution, \textcolor{keywordtype}{double} heuristicWeight = 1.0, \textcolor{keywordtype}{bool} bAutoScale = \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00068}00068         pointVec \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{plan}}();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00069}00069         pointVec \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{plan}}(aPoint ptStart, aPoint ptGoal, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, \textcolor{keywordtype}{double} resolution, \textcolor{keywordtype}{double} heuristicWeight = 1.0);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00070}00070         \textcolor{keyword}{static} \textcolor{keywordtype}{int} m\_logNumber;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00072}00072     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00073}00073         \textcolor{keywordtype}{void} init(aPoint ptStart, aPoint ptGoal, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, \textcolor{keywordtype}{double} resolution, \textcolor{keywordtype}{double} heuristicWeight);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00074}00074         int32\_t calcGridIndex(\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} node);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00075}00075         \textcolor{keywordtype}{bool} collides(\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} baseNode, \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} nearNode);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00076}00076         \textcolor{keywordtype}{bool} collides(aPoint p1, aPoint p2);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00077}00077         \textcolor{keywordtype}{double} calcHeuristic(\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} node1, \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} node2);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00078}00078         int32\_t getOpenSetLowestCostIndex(\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} goalNode);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00079}00079         \textcolor{keywordtype}{bool} verifyNode(\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} node, \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} current);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00080}00080         pointVec calcFinalPath(\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} goalNode);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00081}00081         pointVec prunePath(pointVec path);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00082}00082         \textcolor{keywordtype}{void} setMotion();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00084}00084         \textcolor{keywordtype}{bool} m\_bAutoScale;              }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00085}00085         \textcolor{keywordtype}{bool} m\_bInitialized;            }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00087}00087         \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} m\_startNode;         }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00088}00088         \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} m\_goalNode;          }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00089}00089         rectangleVec m\_obstacles;       }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00090}00090         motionVec m\_motion;             }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00091}00091         nodeMap m\_openSet;              }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00092}00092         nodeMap m\_closedSet;            }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00093}00093         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} m\_rectField;           }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00094}00094         \textcolor{keywordtype}{double} m\_resolution;            }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00095}00095         \textcolor{keywordtype}{double} m\_heuristicWeight;       }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00097}00097         \textcolor{keywordtype}{double} m\_min\_x;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00098}00098         \textcolor{keywordtype}{double} m\_min\_y;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00099}00099         \textcolor{keywordtype}{double} m\_max\_x;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00100}00100         \textcolor{keywordtype}{double} m\_max\_y;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00101}00101         \textcolor{keywordtype}{double} m\_width;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00102}00102         \textcolor{keywordtype}{double} m\_height;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00104}00104     \};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8h_source_l00106}00106 \}}
+
+\end{DoxyCode}

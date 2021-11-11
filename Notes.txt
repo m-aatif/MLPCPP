@@ -105,3 +105,4 @@ The file MLP.json contains the MLP configuration, in JSON format.
 This file contains information about the possibility to log the incoming and/or outgoing mission.
 Moreover, by means of this file, the user can configure the algorithm to use on a task basis.
 This file is processed each time a mission information is received by MMT.
+

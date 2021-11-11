@@ -1,0 +1,276 @@
+\hypertarget{_coverage_planner_8h_source}{}\doxysection{Coverage\+Planner.\+h}
+\label{_coverage_planner_8h_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/CoveragePlanner.h@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/CoveragePlanner.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00001}00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00003}00003 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}Planner.h"{}}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <boost/numeric/ublas/matrix.hpp>}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00010}00010 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00011}00011 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00013}00013 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00014}00014 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacegeon}{geon}};}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00016}00016 \textcolor{keyword}{namespace }afarcloud}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00017}00017 \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00018}00018     \textcolor{keyword}{class }CoveragePlannerCell;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00019}00019     \textcolor{keyword}{class }BoustrophedonCell;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00020}00020     \textcolor{keyword}{class }BoustrophedonMotion;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00022}00022     \textcolor{keyword}{typedef} map<int32\_t, aRectangle> rectangleMap;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00023}00023     \textcolor{keyword}{typedef} std::vector<size\_t> tagVec;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00024}00024     \textcolor{keyword}{typedef} std::vector<tagVec> tagSegmentVec;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00025}00025     \textcolor{keyword}{typedef} std::vector<CoveragePlannerCell> coverageCellVec;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00038}00038     \textcolor{keyword}{typedef} std::map<size\_t, int> cellStatusMap;                }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00040}00040     \textcolor{keyword}{typedef} std::vector<BoustrophedonCell> boustrophedonCellVec;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00041}00041     \textcolor{keyword}{typedef} std::vector<BoustrophedonMotion> boustrophedonMotionVec;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00046}\mbox{\hyperlink{classafarcloud_1_1_boustrophedon_cell}{00046}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_boustrophedon_cell}{BoustrophedonCell}}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00047}00047     \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00048}00048     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00049}00049         \mbox{\hyperlink{classafarcloud_1_1_boustrophedon_cell}{BoustrophedonCell}}(\textcolor{keywordtype}{int} tag, \textcolor{keywordtype}{bool} bVisited = \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00050}00050         \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00051}00051             m\_bVisited = bVisited;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00052}00052             m\_tag = tag;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00053}00053             m\_neighborCells.clear();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00054}00054         \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00056}00056         \textcolor{keywordtype}{int} m\_tag;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00057}00057         \textcolor{keywordtype}{bool} m\_bVisited;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00058}00058         boustrophedonCellVec m\_neighborCells;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00059}00059     \};}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00064}\mbox{\hyperlink{classafarcloud_1_1_coverage_planner_cell}{00064}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_coverage_planner_cell}{CoveragePlannerCell}}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00065}00065     \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00066}00066     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00067}00067         \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_cell}{CoveragePlannerCell}}() \{ ; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00068}00068         \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_cell}{CoveragePlannerCell}}(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rect, \textcolor{keywordtype}{int} startCorner, \textcolor{keywordtype}{int} endCorner) \{ m\_rect = rect; m\_startCorner = startCorner; m\_endCorner = endCorner; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00069}00069         \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_cell}{CoveragePlannerCell}}(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rect) \{ m\_rect = rect; m\_startCorner = 0; m\_endCorner = 0; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00071}00071         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} m\_rect;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00072}00072         \textcolor{keywordtype}{int} m\_stepsH;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00073}00073         \textcolor{keywordtype}{int} m\_stepsV;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00074}00074         \textcolor{keywordtype}{int} m\_mask;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00075}00075         \textcolor{keywordtype}{int} m\_startCorner;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00076}00076         \textcolor{keywordtype}{int} m\_endCorner;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00077}00077         \textcolor{keywordtype}{int} m\_procId;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00078}00078     \};}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00080}\mbox{\hyperlink{classafarcloud_1_1_boustrophedon_motion}{00080}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_boustrophedon_motion}{BoustrophedonMotion}}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00081}00081     \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00082}00082     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00083}00083         \mbox{\hyperlink{classafarcloud_1_1_boustrophedon_motion}{BoustrophedonMotion}}(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y)}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00084}00084         \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00085}00085             m\_x = x;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00086}00086             m\_y = y;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00087}00087         \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00089}00089         \textcolor{keyword}{inline} \textcolor{keywordtype}{int} x()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_x; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00090}00090         \textcolor{keyword}{inline} \textcolor{keywordtype}{int} y()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_y; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00091}00091     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00092}00092         \textcolor{keywordtype}{int} m\_x;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00093}00093         \textcolor{keywordtype}{int} m\_y;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00094}00094     \};}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00099}\mbox{\hyperlink{classafarcloud_1_1_coverage_planner}{00099}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_coverage_planner}{CoveragePlanner}} : \textcolor{keyword}{public} \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00100}00100     \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00101}00101     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00102}00102         \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a3f3fe42b637d27e2f42295fc283e0002}{CoveragePlanner}}();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00103}00103         \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a3f3fe42b637d27e2f42295fc283e0002}{CoveragePlanner}}(aPoint ptStart, aPoint ptEnd, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, aPoint ptHome, \textcolor{keywordtype}{double} resolution);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00104}00104         \textcolor{keywordtype}{void} setUp(aPoint ptStart, aPoint ptEnd, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, aPoint ptHome, \textcolor{keywordtype}{double} resolution);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00105}00105         \mbox{\hyperlink{classafarcloud_1_1_coverage_planner}{\string~CoveragePlanner}}();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00106}00106         pointVec \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a683d847171e2eec798964de3d775f28b}{plan}}();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00108}00108         \textcolor{keywordtype}{void} setConnectionAlgorithm(\textcolor{keywordtype}{int} algorithm, \textcolor{keywordtype}{double} connAlgoRes, \textcolor{keywordtype}{double} connAlgoExtra1 = 0.0, \textcolor{keywordtype}{double} connAlgoExtra2 = 0.0 )}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00109}00109         \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00110}00110             m\_connectionAlgorithm = algorithm;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00111}00111             m\_connectionAlgorithmResolution = connAlgoRes;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00112}00112             m\_connectionAlgorithmExtraParam1 = connAlgoExtra1;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00113}00113             m\_connectionAlgorithmExtraParam2 = connAlgoExtra2;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00114}00114         \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00116}00116         \textcolor{keywordtype}{void} setDecompositionType(\textcolor{keywordtype}{int} decompositionType)}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00117}00117         \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00118}00118             m\_decompositionType = decompositionType;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00119}00119         \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00121}00121         rectangleVec getBasicCells()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_basicCells; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00122}00122         rectangleVec getCompoundCells()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_compoundCells; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00123}00123         rectangleVec getCompoundCellsH()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_compoundCellsH; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00124}00124         rectangleVec getCompoundCellsV()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_compoundCellsV; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00126}00126     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00127}00127         \textcolor{keyword}{inline} \textcolor{keywordtype}{size\_t} makeTag(\textcolor{keywordtype}{int} r, \textcolor{keywordtype}{int} c) \{ \textcolor{keywordflow}{return} (r << 16) + c; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00128}00128         \textcolor{keyword}{inline} \textcolor{keywordtype}{int} rowFromTag(\textcolor{keywordtype}{size\_t} tag) \{ \textcolor{keywordflow}{return} (tag >> 16) \& 0xFFFF; \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00129}00129         \textcolor{keyword}{inline} \textcolor{keywordtype}{int} colFromTag(\textcolor{keywordtype}{size\_t} tag) \{ \textcolor{keywordflow}{return} (tag \& 0xFFFF); \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00130}00130         \textcolor{keyword}{enum}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00131}00131         \{}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00132}00132             NONE\_DIRECTION = -\/1,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00133}00133             NE\_DIRECTION = 0,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00134}00134             SE\_DIRECTION,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00135}00135             NW\_DIRECTION,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00136}00136             SW\_DIRECTION,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00137}00137             N\_DIRECTION,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00138}00138             E\_DIRECTION,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00139}00139             S\_DIRECTION,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00140}00140             W\_DIRECTION,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00141}00141             \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00142}00142             HORZ\_EXPANSION = 0,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00143}00143             VERT\_EXPANSION,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00144}00144             \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00145}00145             NOT\_ALIGNED = 0,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00146}00146             TOP\_ALIGNED,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00147}00147             RIGHT\_ALIGNED,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00148}00148             BOTTOM\_ALIGNED,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00149}00149             LEFT\_ALIGNED,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00150}00150             \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00151}00151             NO\_SIDE = 0,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00152}00152             TOP\_SIDE,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00153}00153             RIGHT\_SIDE,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00154}00154             BOTTOM\_SIDE,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00155}00155             LEFT\_SIDE,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00156}00156             \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00157}00157             DISJOINT = 0,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00158}00158             JOINT,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00159}00159             JOINT\_TL\_BR,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00160}00160             JOINT\_T\_L,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00161}00161             JOINT\_TC,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00162}00162             JOINT\_TR,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00163}00163             \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00164}00164             UNSET\_CORNER = 0,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00165}00165             BL\_CORNER = 1,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00166}00166             TL\_CORNER = 2,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00167}00167             TR\_CORNER = 4,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00168}00168             BR\_CORNER = 8,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00169}00169             \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00170}00170             CELL\_STATUS\_FORBIDDEN = -\/2,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00171}00171             CELL\_STATUS\_EXTERNAL,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00172}00172             CELL\_STATUS\_UNEXPLORED,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00173}00173             CELL\_STATUS\_EXPLORED,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00174}00174             \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00175}00175             RU\_PROC = 0,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00176}00176             UR\_PROC,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00177}00177             RD\_PROC,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00178}00178             DR\_PROC,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00179}00179             LU\_PROC,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00180}00180             UL\_PROC,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00181}00181             LD\_PROC,}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00182}00182             DL\_PROC}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00183}00183         \};}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00184}00184         aPoint m\_pointStart, m\_pointEnd, m\_pointHome;   }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00185}00185         rectangleVec m\_obstacles;                       }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00186}00186         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} m\_rectField;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00187}00187         \textcolor{keywordtype}{double} m\_resolution;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00188}00188         \textcolor{keywordtype}{int} m\_direction;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00189}00189         \textcolor{keywordtype}{int} m\_expansion;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00190}00190         \textcolor{keywordtype}{int} m\_bSetUp;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00191}00191         \textcolor{keywordtype}{int} m\_connectionAlgorithm;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00192}00192         \textcolor{keywordtype}{double} m\_connectionAlgorithmResolution;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00193}00193         \textcolor{keywordtype}{double} m\_connectionAlgorithmExtraParam1;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00194}00194         \textcolor{keywordtype}{double} m\_connectionAlgorithmExtraParam2;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00195}00195         \textcolor{keywordtype}{int} m\_decompositionType;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00196}00196 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00197}00197         doubleVec m\_xCoords;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00198}00198         doubleVec m\_yCoords;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00199}00199         rectangleVec m\_forbiddenRects;  \textcolor{comment}{/*Forbidden areas resolution fitted, cut to fit coverage area.*/}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00200}00200         pointVec m\_vertices;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00201}00201         rectangleVec m\_basicCells;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00202}00202         rectangleVec m\_compoundCells;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00203}00203         rectangleVec m\_compoundCellsH;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00204}00204         rectangleVec m\_compoundCellsV;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00205}00205         rectangleMap m\_basicCellRectangleMap;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00206}00206         cellStatusMap m\_basicCellStatusMap;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00207}00207 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00208}00208         \textcolor{keywordtype}{void} calcCoordinatesWithResolution();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00209}00209         \textcolor{keywordtype}{void} calcCoordinatesWithoutResolution();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00210}00210         \textcolor{keywordtype}{void} createBasicCellStatusMap();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00211}00211         \textcolor{keywordtype}{int} howManySteps(\textcolor{keywordtype}{double} from, \textcolor{keywordtype}{double} to);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00212}00212         \textcolor{keywordtype}{void} howManyTurnsInRectangle(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aRect, \textcolor{keywordtype}{int} \&turnsH, \textcolor{keywordtype}{int} \&turnsV);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00213}00213         \textcolor{keywordtype}{void} sortAscendingCoordinates(doubleVec \&coord);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00214}00214         \textcolor{keywordtype}{void} sortDescendingCoordinates(doubleVec \&coord);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00215}00215         \textcolor{keywordtype}{double} getNearestInGridFromLesser(\textcolor{keywordtype}{double} v0, \textcolor{keywordtype}{double} v1, \textcolor{keywordtype}{bool} bConsiderTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00216}00216         \textcolor{keywordtype}{double} getNearestInGridFromGreater(\textcolor{keywordtype}{double} v0, \textcolor{keywordtype}{double} v1, \textcolor{keywordtype}{bool} bConsiderTouch = \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00217}00217         \textcolor{keywordtype}{bool} isPointInsideAnObstacle(aPoint pt);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00218}00218         \textcolor{keywordtype}{bool} intersectsAnObstacle(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} ar);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00219}00219         \textcolor{keywordtype}{bool} intersectsAnObstacle(aPoint pt1, aPoint pt2);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00220}00220         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} getObstacleIntercepted(aPoint pt1, aPoint pt2);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00221}00221         pointVec prunePath(pointVec path, \textcolor{keywordtype}{int} \&turns);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00222}00222 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00223}00223         \textcolor{keywordtype}{int} getCoverageProcType(\textcolor{keywordtype}{int} startCorner, \textcolor{keywordtype}{int} endCorner, \textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00224}00224         pointVec getCoverageProcPathWithResolution(\textcolor{keywordtype}{int} procType, \textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00225}00225         pointVec getCoverageProcPathWithoutResolution(\textcolor{keywordtype}{int} procType, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00226}00226 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00227}00227         pointVec getRegularPathRightUp(\textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00228}00228         pointVec getRegularPathRightUpWithoutResolution(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00229}00229         pointVec getRegularPathUpRight(\textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00230}00230         pointVec getRegularPathUpRightWithoutResolution(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00231}00231 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00232}00232         pointVec getRegularPathRightDown(\textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00233}00233         pointVec getRegularPathRightDownWithoutResolution(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00234}00234         pointVec getRegularPathDownRight(\textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00235}00235         pointVec getRegularPathDownRightWithoutResolution(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00236}00236 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00237}00237         pointVec getRegularPathLeftUp(\textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00238}00238         pointVec getRegularPathLeftUpWithoutResolution(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00239}00239         pointVec getRegularPathUpLeft(\textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00240}00240         pointVec getRegularPathUpLeftWithoutResolution(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00241}00241 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00242}00242         pointVec getRegularPathLeftDown(\textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00243}00243         pointVec getRegularPathLeftDownWithoutResolution(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00244}00244         pointVec getRegularPathDownLeft(\textcolor{keywordtype}{int} stepsHorz, \textcolor{keywordtype}{int} stepsVert);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00245}00245         pointVec getRegularPathDownLeftWithoutResolution(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc, \textcolor{keywordtype}{double} step);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00246}00246 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00247}00247         \textcolor{comment}{/*  CoverageUtils.cpp   */}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00248}00248         \textcolor{keywordtype}{void} addPathToPath(pointVec \&pathToUpdate, pointVec pathToAdd);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00249}00249         \textcolor{keywordtype}{void} addPathToPathWithOffset(pointVec \&pathToUpdate, pointVec pathToAdd, aPoint ptOffset);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00250}00250         \textcolor{keywordtype}{void} logTotalCellsTurns(rectangleVec cells);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00251}00251 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00252}00252 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00253}00253         \textcolor{keywordtype}{void} logBoustrophedonCellList(boustrophedonCellVec cellList);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00254}00254         \textcolor{keywordtype}{int} getBestDirectionForAggregation(\textcolor{keywordtype}{size\_t} startCellIndex, boustrophedonCellVec cellList);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00255}00255 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00256}00256         \textcolor{comment}{/*  Strategies.cpp  */}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00257}00257         pointVec strategyAggregation();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00258}00258         pointVec strategyBoustrophedon();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00259}00259         pointVec pathPlan(aPoint ptStart, aPoint ptEnd);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00260}00260         \textcolor{keywordtype}{size\_t} findClosestCellToStartPosition(pointVec \&path, coverageCellVec \&cells);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00261}00261         \textcolor{keywordtype}{void} calculatePathWithResolution(coverageCellVec cellSpec, pointVec \&path);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00262}00262         \textcolor{keywordtype}{void} calculatePathWithoutResolution(coverageCellVec cellSpec, pointVec \&path);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00263}00263         \textcolor{keywordtype}{void} step1fwd(\textcolor{keywordtype}{int} tag, map<size\_t, int> \&cellStatusMap, boustrophedonCellVec \&cellList, \textcolor{keywordtype}{int} lastMotionIndex);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00264}00264         \textcolor{keywordtype}{void} setCellSpecCorners(coverageCellVec \&cellSpec);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00265}00265         \textcolor{keywordtype}{double} optimizeCellPath(\mbox{\hyperlink{classafarcloud_1_1_coverage_planner_cell}{CoveragePlannerCell}} \&cell);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00267}00267         \textcolor{comment}{/*  Aggregators.cpp */}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00268}00268         \textcolor{keywordtype}{void} findAndJoinRectanglesLeft(rectangleVec inRects, rectangleVec \&outRects);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00269}00269         \textcolor{keywordtype}{void} findAndJoinRectanglesRight(rectangleVec inRects, rectangleVec \&outRects);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00270}00270         \textcolor{keywordtype}{void} findAndJoinRectanglesBottom(rectangleMap inRectsMap, \textcolor{keywordtype}{size\_t} xSize, \textcolor{keywordtype}{size\_t} ySize, rectangleVec \&outRects);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00271}00271         \textcolor{keywordtype}{void} findAndJoinRectanglesTop(rectangleMap inRectsMap, \textcolor{keywordtype}{size\_t} xSize, \textcolor{keywordtype}{size\_t} ySize, rectangleVec \&outRects);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00272}00272         \textcolor{keywordtype}{void} adjustRectanglesLeft(rectangleVec \&outRects);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00273}00273         \textcolor{keywordtype}{void} adjustRectanglesRight(rectangleVec \&outRects);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00274}00274         \textcolor{keywordtype}{void} adjustRectanglesBottom(rectangleVec \&outRects);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00275}00275         \textcolor{keywordtype}{void} adjustRectanglesTop(rectangleVec \&outRects);}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00276}00276         \textcolor{keywordtype}{void} aggregateRectanglesA();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00277}00277 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00278}00278         std::ofstream m\_logfile;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00279}00279 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00280}00280         boustrophedonMotionVec m\_motion;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00281}00281         \textcolor{keywordtype}{void} setMotion();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00282}00282 }
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00283}00283         \textcolor{keywordtype}{void} setHelperStrings();}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00284}00284         stringVec m\_alignmentStr;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00285}00285         stringVec m\_joinStatusStr;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00286}00286         stringVec m\_pointStr;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00287}00287         stringVec m\_procStr;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00288}00288         stringVec m\_expansionStr;}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00289}00289     \};}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00290}00290 \}}
+\DoxyCodeLine{\Hypertarget{_coverage_planner_8h_source_l00291}00291 }
+
+\end{DoxyCode}

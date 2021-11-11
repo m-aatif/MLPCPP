@@ -1,0 +1,109 @@
+\hypertarget{classgeon_1_1_geometry_tools}{}\doxysection{geon\+::Geometry\+Tools Class Reference}
+\label{classgeon_1_1_geometry_tools}\index{geon::GeometryTools@{geon::GeometryTools}}
+
+
+{\ttfamily \#include $<$Geometry.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{classgeon_1_1_geometry_tools_a81f824bef44cf9e3b515765676ca2603}{orientation}} (a\+Point p, a\+Point q, a\+Point r)
+\item 
+static int \mbox{\hyperlink{classgeon_1_1_geometry_tools_a9abb49510329d16ea16961b3341dfde2}{on\+Segment}} (a\+Point p, a\+Point q, a\+Point r)
+\item 
+static bool \mbox{\hyperlink{classgeon_1_1_geometry_tools_a67a338857f8cfcd4fd73c256aa5e7337}{intersect\+Segment}} (a\+Point p1, a\+Point q1, a\+Point p2, a\+Point q2)
+\item 
+static bool \mbox{\hyperlink{classgeon_1_1_geometry_tools_ae21609a4fa4ed1409e37b17b37495fed}{belongs\+To\+Line}} (a\+Point pt0, a\+Point pt, a\+Point pt1)
+\item 
+static a\+Point \mbox{\hyperlink{classgeon_1_1_geometry_tools_a82d3d4e0b13be4979c059d002b6f795c}{scale\+Point}} (a\+Point pt, double minX, double minY, double res)
+\item 
+static a\+Point \mbox{\hyperlink{classgeon_1_1_geometry_tools_af5b7e0833f41af23cfe2996d487b0c58}{descale\+Point}} (a\+Point pt, double minX, double minY, double res)
+\item 
+static \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} \mbox{\hyperlink{classgeon_1_1_geometry_tools_ace0c50ef336cc32a93c6e17b0051bf71}{scale\+Rect}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} rc, double minX, double minY, double res)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Geometrytools\+: A static class that implements some useful features. 
+
+Definition at line \mbox{\hyperlink{_geometry_8h_source_l00114}{114}} of file \mbox{\hyperlink{_geometry_8h_source}{Geometry.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgeon_1_1_geometry_tools_ae21609a4fa4ed1409e37b17b37495fed}\label{classgeon_1_1_geometry_tools_ae21609a4fa4ed1409e37b17b37495fed}} 
+\index{geon::GeometryTools@{geon::GeometryTools}!belongsToLine@{belongsToLine}}
+\index{belongsToLine@{belongsToLine}!geon::GeometryTools@{geon::GeometryTools}}
+\doxysubsubsection{\texorpdfstring{belongsToLine()}{belongsToLine()}}
+{\footnotesize\ttfamily bool geon\+::\+Geometry\+Tools\+::belongs\+To\+Line (\begin{DoxyParamCaption}\item[{a\+Point}]{pt0,  }\item[{a\+Point}]{pt,  }\item[{a\+Point}]{pt1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00692}{692}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1_geometry_tools_af5b7e0833f41af23cfe2996d487b0c58}\label{classgeon_1_1_geometry_tools_af5b7e0833f41af23cfe2996d487b0c58}} 
+\index{geon::GeometryTools@{geon::GeometryTools}!descalePoint@{descalePoint}}
+\index{descalePoint@{descalePoint}!geon::GeometryTools@{geon::GeometryTools}}
+\doxysubsubsection{\texorpdfstring{descalePoint()}{descalePoint()}}
+{\footnotesize\ttfamily a\+Point geon\+::\+Geometry\+Tools\+::descale\+Point (\begin{DoxyParamCaption}\item[{a\+Point}]{pt,  }\item[{double}]{minX,  }\item[{double}]{minY,  }\item[{double}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00721}{721}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1_geometry_tools_a67a338857f8cfcd4fd73c256aa5e7337}\label{classgeon_1_1_geometry_tools_a67a338857f8cfcd4fd73c256aa5e7337}} 
+\index{geon::GeometryTools@{geon::GeometryTools}!intersectSegment@{intersectSegment}}
+\index{intersectSegment@{intersectSegment}!geon::GeometryTools@{geon::GeometryTools}}
+\doxysubsubsection{\texorpdfstring{intersectSegment()}{intersectSegment()}}
+{\footnotesize\ttfamily bool geon\+::\+Geometry\+Tools\+::intersect\+Segment (\begin{DoxyParamCaption}\item[{a\+Point}]{p1,  }\item[{a\+Point}]{q1,  }\item[{a\+Point}]{p2,  }\item[{a\+Point}]{q2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00657}{657}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1_geometry_tools_a9abb49510329d16ea16961b3341dfde2}\label{classgeon_1_1_geometry_tools_a9abb49510329d16ea16961b3341dfde2}} 
+\index{geon::GeometryTools@{geon::GeometryTools}!onSegment@{onSegment}}
+\index{onSegment@{onSegment}!geon::GeometryTools@{geon::GeometryTools}}
+\doxysubsubsection{\texorpdfstring{onSegment()}{onSegment()}}
+{\footnotesize\ttfamily int geon\+::\+Geometry\+Tools\+::on\+Segment (\begin{DoxyParamCaption}\item[{a\+Point}]{p,  }\item[{a\+Point}]{q,  }\item[{a\+Point}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00651}{651}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1_geometry_tools_a81f824bef44cf9e3b515765676ca2603}\label{classgeon_1_1_geometry_tools_a81f824bef44cf9e3b515765676ca2603}} 
+\index{geon::GeometryTools@{geon::GeometryTools}!orientation@{orientation}}
+\index{orientation@{orientation}!geon::GeometryTools@{geon::GeometryTools}}
+\doxysubsubsection{\texorpdfstring{orientation()}{orientation()}}
+{\footnotesize\ttfamily int geon\+::\+Geometry\+Tools\+::orientation (\begin{DoxyParamCaption}\item[{a\+Point}]{p,  }\item[{a\+Point}]{q,  }\item[{a\+Point}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00637}{637}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1_geometry_tools_a82d3d4e0b13be4979c059d002b6f795c}\label{classgeon_1_1_geometry_tools_a82d3d4e0b13be4979c059d002b6f795c}} 
+\index{geon::GeometryTools@{geon::GeometryTools}!scalePoint@{scalePoint}}
+\index{scalePoint@{scalePoint}!geon::GeometryTools@{geon::GeometryTools}}
+\doxysubsubsection{\texorpdfstring{scalePoint()}{scalePoint()}}
+{\footnotesize\ttfamily a\+Point geon\+::\+Geometry\+Tools\+::scale\+Point (\begin{DoxyParamCaption}\item[{a\+Point}]{pt,  }\item[{double}]{minX,  }\item[{double}]{minY,  }\item[{double}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00713}{713}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1_geometry_tools_ace0c50ef336cc32a93c6e17b0051bf71}\label{classgeon_1_1_geometry_tools_ace0c50ef336cc32a93c6e17b0051bf71}} 
+\index{geon::GeometryTools@{geon::GeometryTools}!scaleRect@{scaleRect}}
+\index{scaleRect@{scaleRect}!geon::GeometryTools@{geon::GeometryTools}}
+\doxysubsubsection{\texorpdfstring{scaleRect()}{scaleRect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} geon\+::\+Geometry\+Tools\+::scale\+Rect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{rc,  }\item[{double}]{minX,  }\item[{double}]{minY,  }\item[{double}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00729}{729}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Geometry.\+h\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Geometry.\+cpp\end{DoxyCompactItemize}

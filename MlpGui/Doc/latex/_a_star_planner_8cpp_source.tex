@@ -1,0 +1,404 @@
+\hypertarget{_a_star_planner_8cpp_source}{}\doxysection{AStar\+Planner.\+cpp}
+\label{_a_star_planner_8cpp_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/AStarPlanner.cpp@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/AStarPlanner.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}AStarPlanner.h"{}}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include <boost\(\backslash\)math\(\backslash\)special\_functions\(\backslash\)hypot.hpp>}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00010}00010 \textcolor{preprocessor}{\#include "{}Configurator.h"{}}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00012}00012 \textcolor{keyword}{namespace }afarcloud}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00013}00013 \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00020}\mbox{\hyperlink{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}{00020}}     \mbox{\hyperlink{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}{AStarNode::AStarNode}}()}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00021}00021     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00022}00022         m\_ptStart = aPoint(0, 0);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00023}00023         m\_cost = 0;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00024}00024         m\_parentIndex = -\/1;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00025}00025     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00036}\mbox{\hyperlink{classafarcloud_1_1_a_star_node_a2a53c2f9ade6e382fd17e59a5ee9fdb6}{00036}}     \mbox{\hyperlink{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}{AStarNode::AStarNode}}(aPoint ptStart, \textcolor{keywordtype}{double} cost, int32\_t parentIndex)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00037}00037     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00038}00038         m\_ptStart = ptStart;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00039}00039         m\_cost = cost;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00040}00040         m\_parentIndex = parentIndex;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00041}00041     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00053}\mbox{\hyperlink{classafarcloud_1_1_a_star_motion_a5ec5ee9a8725bcce06bd25cc316d5713}{00053}}     \mbox{\hyperlink{classafarcloud_1_1_a_star_motion_a5ec5ee9a8725bcce06bd25cc316d5713}{AStarMotion::AStarMotion}}(\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y, \textcolor{keywordtype}{double} cost, \textcolor{keywordtype}{double} scaling)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00054}00054     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00055}00055         m\_x = x;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00056}00056         m\_y = y;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00057}00057         m\_cost = cost * scaling;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00058}00058     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00060}00060     \textcolor{keywordtype}{int} AStarPlanner::m\_logNumber = 0;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00073}\mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ad8358c4a159c7a1d339d9dc852af1b96}{00073}}     AStarPlanner::AStarPlanner(aPoint ptStart, aPoint ptGoal, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, \textcolor{keywordtype}{double} resolution, \textcolor{keywordtype}{double} heuristicWeight, \textcolor{keywordtype}{bool} bAutoScale)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00074}00074     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00075}00075         m\_bAutoScale = bAutoScale;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00076}00076         init(ptStart, ptGoal, obstacles, rectField, resolution, heuristicWeight);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00077}00077     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00090}00090     \textcolor{keywordtype}{void} AStarPlanner::init(aPoint ptStart, aPoint ptGoal, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, \textcolor{keywordtype}{double} resolution, \textcolor{keywordtype}{double} heuristicWeight)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00091}00091     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00092}00092         \textcolor{keywordtype}{double} dist, scalingFactor;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00094}00094         scalingFactor = 1.0;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00099}00099         \textcolor{keywordflow}{if} (m\_bAutoScale)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00100}00100         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00101}00101             dist = hypot(rectField.width(), rectField.height());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00102}00102             \textcolor{keywordflow}{while} (dist < 100)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00103}00103             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00104}00104                 scalingFactor *= 10.0;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00105}00105                 rectField.scaleUp(10.0);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00106}00106                 dist = hypot(rectField.width(), rectField.height());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00107}00107             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00108}00108             m\_resolution = dist / resolution;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00109}00109         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00110}00110         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00111}00111             m\_resolution = resolution;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00116}00116         m\_min\_x = rectField.left();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00117}00117         m\_min\_y = rectField.bottom();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00118}00118 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00119}00119         m\_rectField = GeometryTools::scaleRect(rectField, m\_min\_x, m\_min\_y, m\_resolution);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00121}00121         m\_max\_x = rectField.right();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00122}00122         m\_max\_y = rectField.top();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00123}00123         m\_width = (m\_max\_x -\/ m\_min\_x) / m\_resolution;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00124}00124         m\_height = (m\_max\_y -\/ m\_min\_y) / m\_resolution;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00125}00125         m\_max\_x = m\_min\_x + m\_width;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00126}00126         m\_max\_y = m\_min\_y + m\_height;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00128}00128         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rcx;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00129}00129         rectangleVec::iterator ito = obstacles.begin();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00130}00130         \textcolor{keywordflow}{while} (ito != obstacles.end())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00131}00131         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00132}00132             rcx = GeometryTools::scaleRect(*ito, m\_min\_x, m\_min\_y, m\_resolution);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00133}00133             m\_obstacles.push\_back(rcx);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00134}00134             ito++;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00135}00135         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00137}00137         m\_startNode = AStarNode(GeometryTools::scalePoint(ptStart, m\_min\_x, m\_min\_y, m\_resolution), 0.0, -\/1);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00138}00138         m\_goalNode = AStarNode(GeometryTools::scalePoint(ptGoal, m\_min\_x, m\_min\_y, m\_resolution), 0.0, -\/1);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00139}00139 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00140}00140         m\_heuristicWeight = heuristicWeight;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00141}00141         setMotion();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00142}00142         m\_bInitialized = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00143}00143     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00144}00144 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00152}00152     \textcolor{keywordtype}{double} AStarPlanner::calcHeuristic(AStarNode node1, AStarNode node2)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00153}00153     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00154}00154         \textcolor{keywordflow}{return} m\_heuristicWeight * hypot(node1.x() -\/ node2.x(), node1.y() -\/ node2.y());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00155}00155     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00165}00165     int32\_t AStarPlanner::getOpenSetLowestCostIndex(AStarNode goalNode)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00166}00166     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00167}00167         int32\_t retVal = -\/1;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00168}00168         \textcolor{keywordtype}{double} minCost = 1.0E10, cost;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00169}00169         nodeMap::iterator it = m\_openSet.begin();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00170}00170         \textcolor{keywordflow}{while} (it != m\_openSet.end())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00171}00171         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00172}00172             cost = (it-\/>second).cost() + calcHeuristic(goalNode, it-\/>second);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00173}00173             \textcolor{keywordflow}{if} (cost < minCost)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00174}00174             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00175}00175                 minCost = cost;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00176}00176                 retVal = it-\/>first;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00177}00177             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00178}00178             it++;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00179}00179         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00180}00180 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00181}00181         \textcolor{keywordflow}{return} retVal;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00182}00182     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00183}00183 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00191}00191     \textcolor{keywordtype}{bool} AStarPlanner::verifyNode(AStarNode node, AStarNode current)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00192}00192     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00193}00193         \textcolor{keywordflow}{if} (node.x() < m\_rectField.left())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00194}00194             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00195}00195         \textcolor{keywordflow}{if} (node.y() < m\_rectField.bottom())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00196}00196             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00197}00197         \textcolor{keywordflow}{if} (node.x() > m\_rectField.right())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00198}00198             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00199}00199         \textcolor{keywordflow}{if} (node.y() > m\_rectField.top())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00200}00200             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00201}00201 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00202}00202         \textcolor{keywordflow}{if} (collides(node, current))}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00203}00203             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00205}00205         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00206}00206     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00207}00207 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00214}00214     int32\_t AStarPlanner::calcGridIndex(AStarNode node)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00215}00215     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00216}00216         \textcolor{keywordflow}{return} (int32\_t)(node.y() * m\_rectField.width() + node.x());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00217}00217     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00226}00226     \textcolor{keywordtype}{bool} AStarPlanner::collides(AStarNode baseNode, AStarNode nearNode)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00227}00227     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00228}00228         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00229}00229         rectangleVec::iterator ito = m\_obstacles.begin();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00230}00230         \textcolor{keywordflow}{while} (ito != m\_obstacles.end())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00231}00231         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00232}00232             rc = *ito;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00233}00233             \textcolor{keywordflow}{if} (rc.intersect2(baseNode.origin(), nearNode.origin()))}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00234}00234                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00235}00235             ito++;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00236}00236         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00237}00237         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00238}00238     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00239}00239 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00247}00247     \textcolor{keywordtype}{bool} AStarPlanner::collides(aPoint p1, aPoint p2)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00248}00248     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00249}00249         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00250}00250         rectangleVec::iterator ito = m\_obstacles.begin();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00251}00251         \textcolor{keywordflow}{while} (ito != m\_obstacles.end())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00252}00252         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00253}00253             rc = *ito;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00254}00254             \textcolor{keywordflow}{if} (rc.intersect2(p1, p2))}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00255}00255                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00256}00256             ito++;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00257}00257         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00258}00258         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00259}00259     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00260}00260 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00268}00268     pointVec AStarPlanner::calcFinalPath(AStarNode goalNode)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00269}00269     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00270}00270         pointVec path;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00271}00271         path.push\_back(GeometryTools::descalePoint(goalNode.origin(), m\_min\_x, m\_min\_y, m\_resolution));}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00272}00272         int32\_t parentIndex = goalNode.parentIndex();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00273}00273         \textcolor{keywordflow}{while} (parentIndex != -\/1)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00274}00274         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00275}00275             AStarNode n = m\_closedSet[parentIndex];}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00276}00276             path.push\_back(GeometryTools::descalePoint(n.origin(), m\_min\_x, m\_min\_y, m\_resolution));}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00277}00277             parentIndex = n.parentIndex();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00278}00278         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00279}00279         \textcolor{keywordflow}{return} path;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00280}00280     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00281}00281 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00290}00290     pointVec AStarPlanner::prunePath(pointVec path)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00291}00291     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00292}00292         pointVec ppath;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00293}00293         aPoint p1, p2;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00294}00294         pointVec::iterator it = path.begin();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00295}00295         \textcolor{keywordtype}{bool} bAdded = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00296}00296 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00300}00300         \textcolor{keywordflow}{if} (path.size() <= 2)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00301}00301         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00302}00302             std::reverse(path.begin(), path.end());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00303}00303             \textcolor{keywordflow}{return} path;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00304}00304         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00305}00305 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00309}00309         p1 = *it;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00310}00310         ppath.push\_back(p1);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00311}00311         it++;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00312}00312         \textcolor{keywordflow}{while} (it != path.end())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00313}00313         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00314}00314             p2 = *it;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00315}00315             it++;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00316}00316             bAdded = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00317}00317             \textcolor{keywordflow}{if} (!collides(p1, p2))}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00318}00318             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00319}00319                 ppath.push\_back(p2);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00320}00320                 p1 = p2;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00321}00321                 bAdded = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00322}00322             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00323}00323         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00324}00324         \textcolor{keywordflow}{if} (!bAdded)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00325}00325             ppath.push\_back(p2);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00326}00326 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00330}00330         aPoint pt0, pt1, pt2;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00331}00331         \textcolor{keywordtype}{bool} bBelongs;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00332}00332         pointVec outPath;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00333}00333 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00334}00334         pt0 = ppath[0];}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00335}00335         outPath.push\_back(pt0);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00336}00336         pt1 = ppath[1];}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00337}00337         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 2; n < ppath.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00338}00338         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00339}00339             pt2 = ppath[n];}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00340}00340             bBelongs = GeometryTools::belongsToLine(pt0, pt1, pt2);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00341}00341             \textcolor{keywordflow}{if} (bBelongs)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00342}00342             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00343}00343                 pt1 = pt2;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00344}00344             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00345}00345             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00346}00346             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00347}00347                 outPath.push\_back(pt1);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00348}00348                 pt0 = pt1;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00349}00349                 pt1 = pt2;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00350}00350             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00351}00351         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00352}00352         outPath.push\_back(pt2);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00356}00356         std::reverse(outPath.begin(), outPath.end());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00357}00357 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00358}00358         \textcolor{keywordflow}{return} outPath;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00359}00359     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00360}00360 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00367}00367     \textcolor{keywordtype}{void} AStarPlanner::setMotion()}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00368}00368     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00369}00369         m\_motion.push\_back(AStarMotion(1, 0, 1, m\_resolution));             }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00370}00370         m\_motion.push\_back(AStarMotion(0, 1, 1, m\_resolution));             }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00371}00371         m\_motion.push\_back(AStarMotion(-\/1, 0, 1, m\_resolution));            }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00372}00372         m\_motion.push\_back(AStarMotion(0, -\/1, 1, m\_resolution));            }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00373}00373         m\_motion.push\_back(AStarMotion(-\/1, -\/1, sqrt(2), m\_resolution));     }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00374}00374         m\_motion.push\_back(AStarMotion(-\/1, 1, sqrt(2), m\_resolution));      }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00375}00375         m\_motion.push\_back(AStarMotion(1, -\/1, sqrt(2), m\_resolution));      }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00376}00376         m\_motion.push\_back(AStarMotion(1, 1, sqrt(2), m\_resolution));       }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00377}00377     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00378}00378 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00385}\mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{00385}}     pointVec \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{AStarPlanner::plan}}()}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00386}00386     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00387}00387         pointVec path;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00388}00388 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00392}00392         \textcolor{keywordflow}{if} (!m\_bInitialized)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00393}00393             \textcolor{keywordflow}{return} path;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00394}00394 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00395}00395         \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} node, currentNode;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00396}00396         \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} startNode = m\_startNode;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00397}00397         \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}} goalNode = m\_goalNode;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00398}00398 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00399}00399         int32\_t c\_id;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00400}00400         std::ofstream \_logfile;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00401}00401 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00402}00402         \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00403}00403         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00404}00404             std::ostringstream oss;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00405}00405             oss << Configurator::getLogFolder() << \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)ASTAR"{}} << m\_logNumber << \textcolor{stringliteral}{"{}.log"{}};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00406}00406             \_logfile = std::ofstream(oss.str());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00407}00407         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00408}00408         }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00412}00412         \textcolor{keywordflow}{if} (!collides(startNode, goalNode))}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00413}00413         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00414}00414             path.push\_back(GeometryTools::descalePoint(goalNode.origin(), m\_min\_x, m\_min\_y, m\_resolution));}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00415}00415             path.push\_back(GeometryTools::descalePoint(startNode.origin(), m\_min\_x, m\_min\_y, m\_resolution));}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00416}00416 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00417}00417             path = prunePath(path);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00418}00418             \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00419}00419             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00420}00420                 \mbox{\hyperlink{classafarcloud_1_1_planner_afa4388c0a9a0425615be0cb70c414e87}{Planner::logPath}}(\_logfile, path);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00421}00421                 \_logfile.close();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00422}00422             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00423}00423             \textcolor{keywordflow}{return} path;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00424}00424         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00425}00425 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00426}00426         \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00427}00427         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00428}00428             std::ostringstream oss;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00429}00429             oss << \textcolor{stringliteral}{"{}./ASTAR"{}} << m\_logNumber << \textcolor{stringliteral}{"{}.log"{}};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00430}00430             \_logfile = std::ofstream(oss.str());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00431}00431 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00432}00432             \_logfile << \textcolor{stringliteral}{"{}FIELD        ("{}} << m\_rectField.left() << \textcolor{stringliteral}{"{},"{}} << m\_rectField.bottom() << \textcolor{stringliteral}{"{})-\/>("{}} << m\_rectField.right() << \textcolor{stringliteral}{"{},"{}} << m\_rectField.top() << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00433}00433             \_logfile << \textcolor{stringliteral}{"{}RESOLUTION   ("{}} << m\_resolution << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00434}00434             \_logfile << \textcolor{stringliteral}{"{}SN: ORIGIN   ("{}} << startNode.x() << \textcolor{stringliteral}{"{},"{}} << startNode.y() << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00435}00435             \_logfile << \textcolor{stringliteral}{"{}GN: ORIGIN   ("{}} << goalNode.x() << \textcolor{stringliteral}{"{},"{}} << goalNode.y() << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00436}00436 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00437}00437             \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rc;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00438}00438             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} o = 0; o < m\_obstacles.size(); o++)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00439}00439             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00440}00440                 rc = m\_obstacles[o];}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00441}00441                 \_logfile << \textcolor{stringliteral}{"{}OBS "{}} << o << \textcolor{stringliteral}{"{}        ("{}} << rc.left() << \textcolor{stringliteral}{"{},"{}} << rc.bottom() << \textcolor{stringliteral}{"{})-\/>("{}} << rc.right() << \textcolor{stringliteral}{"{},"{}} << rc.top() << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00442}00442             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00443}00443         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00444}00444 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00448}00448         c\_id = calcGridIndex(startNode);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00449}00449         m\_openSet[c\_id] = startNode;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00450}00450         \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00451}00451             \_logfile << \textcolor{stringliteral}{"{}INDEXOF: START ("{}} << c\_id << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00452}00452 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00456}00456         \textcolor{keywordflow}{while} (m\_openSet.size() > 0)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00457}00457         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00462}00462             int32\_t c\_id = getOpenSetLowestCostIndex(goalNode);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00463}00463             \textcolor{keywordflow}{if} (-\/1 == c\_id)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00464}00464             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00465}00465                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00466}00466             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00467}00467             currentNode = m\_openSet[c\_id];}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00468}00468             \textcolor{keywordtype}{double} dist = calcHeuristic(goalNode, currentNode);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00469}00469             \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00470}00470                 \_logfile << \textcolor{stringliteral}{"{}CN: ORIGIN   ("{}} << currentNode.x() << \textcolor{stringliteral}{"{},"{}} << currentNode.y() << \textcolor{stringliteral}{"{}) dist ("{}} << dist << \textcolor{stringliteral}{"{}) ix ("{}} << c\_id << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00471}00471 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00475}00475             \textcolor{keywordflow}{if} ((currentNode.x() == goalNode.x()) \&\& (currentNode.y() == goalNode.y()) || (dist <= m\_heuristicWeight))}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00476}00476             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00477}00477                 \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00478}00478                     \_logfile << \textcolor{stringliteral}{"{}GOAL REACHED AT COST ("{}} << currentNode.cost() << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00479}00479                 goalNode.setParentIndex(currentNode.parentIndex());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00480}00480                 goalNode.setCost(currentNode.cost());}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00481}00481                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00482}00482             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00483}00483 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00485}00485             m\_openSet.erase(c\_id);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00486}00486 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00488}00488             m\_closedSet[c\_id] = currentNode;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00489}00489 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00491}00491             \textcolor{keywordflow}{for} (uint32\_t m = 0; m < m\_motion.size(); m++)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00492}00492             \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00493}00493                 node = \mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStarNode}}(}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00494}00494                     aPoint(}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00495}00495                         currentNode.x() + m\_motion[m].x(),}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00496}00496                         currentNode.y() + m\_motion[m].y()}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00497}00497                     ),}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00498}00498                     currentNode.cost() + m\_motion[m].cost(),}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00499}00499                     c\_id}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00500}00500                 );}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00501}00501                 int32\_t n\_id = calcGridIndex(node);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00502}00502                 \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00503}00503                     \_logfile << \textcolor{stringliteral}{"{}          -\/> ("{}} << node.x() << \textcolor{stringliteral}{"{},"{}} << node.y() << \textcolor{stringliteral}{"{}) cost ("{}} << node.cost() << \textcolor{stringliteral}{"{}) ix ("{}} << n\_id << \textcolor{stringliteral}{"{}) "{}};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00504}00504 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00506}00506                 \textcolor{keywordflow}{if} (!verifyNode(node, currentNode))}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00507}00507                 \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00508}00508                     \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00509}00509                         \_logfile << \textcolor{stringliteral}{"{}NOT SAFE"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00510}00510                     \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00511}00511                 \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00512}00512 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00513}00513                 nodeMap::iterator itc;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00514}00514                 itc = m\_closedSet.find(n\_id);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00515}00515                 \textcolor{keywordflow}{if} (itc != m\_closedSet.end())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00516}00516                 \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00517}00517                     \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00518}00518                         \_logfile << \textcolor{stringliteral}{"{}ALREADY IN CLOSED SET"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00519}00519                     \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00520}00520                 \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00521}00521 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00522}00522                 nodeMap::iterator ito;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00523}00523                 ito = m\_openSet.find(n\_id);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00524}00524                 \textcolor{keywordflow}{if} (ito == m\_openSet.end())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00525}00525                     m\_openSet[n\_id] = node;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00526}00526                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00527}00527                 \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00528}00528                     \textcolor{keywordflow}{if} (m\_openSet[n\_id].cost() > node.cost())}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00529}00529                         m\_openSet[n\_id] = node;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00530}00530                 \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00531}00531                 \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00532}00532                     \_logfile << \textcolor{stringliteral}{"{}ADDED TO OPEN SET"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00533}00533             \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00534}00534         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00535}00535         \textcolor{keywordflow}{if} (m\_bLog)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00536}00536         \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00537}00537             \_logfile << \textcolor{stringliteral}{"{}OS: ("{}} << m\_openSet.size() << \textcolor{stringliteral}{"{}) items"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00538}00538             \_logfile << \textcolor{stringliteral}{"{}CS: ("{}} << m\_closedSet.size() << \textcolor{stringliteral}{"{}) items"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00539}00539             \_logfile.close();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00540}00540         \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00541}00541 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00542}00542         path = calcFinalPath(goalNode);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00543}00543         \textcolor{keywordflow}{return} prunePath(path);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00544}00544     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00545}00545 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00546}00546     \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00547}00547 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00548}00548     pointVec \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{AStarPlanner::plan}}(aPoint ptStart, aPoint ptGoal, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, \textcolor{keywordtype}{double} resolution, \textcolor{keywordtype}{double} heuristicWeight)}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00549}00549     \{}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00550}00550         init(ptStart, ptGoal, obstacles, rectField, resolution, heuristicWeight);}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00551}00551         \textcolor{keywordflow}{return} \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{plan}}();}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00552}00552     \}}
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00553}00553 }
+\DoxyCodeLine{\Hypertarget{_a_star_planner_8cpp_source_l00554}00554 \}}
+
+\end{DoxyCode}

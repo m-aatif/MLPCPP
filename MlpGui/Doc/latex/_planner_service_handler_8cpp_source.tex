@@ -1,0 +1,186 @@
+\hypertarget{_planner_service_handler_8cpp_source}{}\doxysection{Planner\+Service\+Handler.\+cpp}
+\label{_planner_service_handler_8cpp_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/PlannerServiceHandler.cpp@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/PlannerServiceHandler.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00002}00002 \textcolor{preprocessor}{\#include "{}pch.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00005}00005 \textcolor{comment}{//\#define   LOG\_MISSION\_AS\_JSON}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include "{}PlannerServiceHandler.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include "{}PlannerHelper.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00009}00009 \textcolor{preprocessor}{\#include "{}MmtService.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00010}00010 \textcolor{preprocessor}{\#include "{}NetConfig.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00011}00011 \textcolor{preprocessor}{\#include "{}Configurator.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00012}00012 \textcolor{preprocessor}{\#include <boost/chrono.hpp>}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00014}00014 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00015}00015 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00016}00016 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00018}00018 \textcolor{preprocessor}{\#include <thrift/transport/TSocket.h>}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00020}00020 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00021}00021 \textcolor{preprocessor}{\#include "{}WinMessages.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00022}00022 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00024}00024 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00025}00025 \textcolor{keyword}{using namespace }apache::thrift;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00026}00026 \textcolor{keyword}{using namespace }apache::thrift::concurrency;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00027}00027 \textcolor{keyword}{using namespace }apache::thrift::protocol;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00028}00028 \textcolor{keyword}{using namespace }apache::thrift::transport;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00029}00029 \textcolor{keyword}{using namespace }apache::thrift::server;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00031}00031 \textcolor{keyword}{using namespace }boost::chrono;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00033}00033 \textcolor{keyword}{using namespace }afarcloud;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00035}00035 PlannerServiceHandler::PlannerServiceHandler(}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00036}00036 \#ifdef \_WINDOWS}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00037}00037     CWnd *pWnd}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00038}00038 \#endif \textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00039}00039 )}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00040}00040 \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00041}00041 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00042}00042     m\_pWnd = pWnd;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00043}00043 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00044}00044 \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00045}00045 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00047}00047 \textcolor{keywordtype}{void} LogMission(std::string prefix, int32\_t requestId, \textcolor{keyword}{const} Mission\& context, \mbox{\hyperlink{classafarcloud_1_1_planner_helper}{PlannerHelper}}\& helper)}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00048}00048 \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00049}00049     std::ostringstream oss1;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00050}00050     oss1 << Configurator::getLogFolder() << \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)"{}} << prefix << \textcolor{stringliteral}{"{}Mission"{}} << requestId << \textcolor{stringliteral}{"{}\_"{}} << context.missionId << \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00051}00051     std::string logFileName1 = oss1.str();}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00052}00052     std::ofstream logfile1(logFileName1);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00054}00054     \textcolor{comment}{//helper.dumpMission(context, std::cout);}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00055}00055     helper.dumpMission(context, logfile1);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00057}00057     logfile1.close();}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00058}00058 \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00060}00060 \textcolor{keywordtype}{void} LogMissionJson(\textcolor{keyword}{const} int32\_t requestId, \textcolor{keyword}{const} Mission\& context, \mbox{\hyperlink{classafarcloud_1_1_planner_helper}{PlannerHelper}}\& helper)}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00061}00061 \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00062}00062     std::ostringstream oss2;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00063}00063     oss2 << Configurator::getLogFolder() << \textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)Mission"{}} << requestId << \textcolor{stringliteral}{"{}\_"{}} << context.missionId << \textcolor{stringliteral}{"{}.json"{}};}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00064}00064     std::string logFileName2 = oss2.str();}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00065}00065     std::ofstream logfile2(logFileName2);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00067}00067     helper.dumpMissionAsJson(context, logfile2);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00069}00069     logfile2.close();}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00070}00070 \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00072}\mbox{\hyperlink{class_planner_service_handler_a029e93a29dea9ddba0342d730d828d95}{00072}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_planner_service_handler_a029e93a29dea9ddba0342d730d828d95}{PlannerServiceHandler::computePlan}}(\textcolor{keyword}{const} int32\_t requestId, \textcolor{keyword}{const} Mission\& context) \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00073}00073     \mbox{\hyperlink{classafarcloud_1_1_planner_helper}{PlannerHelper}} plannerHelper}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00074}00074 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00075}00075     (m\_pWnd)}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00076}00076 \#endif \textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00077}00077     ;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00079}00079 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00080}00080     ::PostMessage(m\_pWnd-\/>m\_hWnd, WM\_MLP\_STATUS, WP\_MLP\_START, 0);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00081}00081     ::PostMessage(m\_pWnd-\/>m\_hWnd, WM\_MLP\_INFO, 0, (LPARAM)PlannerHelper::formatAndAllocateString(\_T(\textcolor{stringliteral}{"{}Computing plan ..."{}})));}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00082}00082 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00083}00083     cout << \textcolor{stringliteral}{"{}Computing Plan("{}} << requestId << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00084}00084 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00085}00085     }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00086}00086     Mission mission = context;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00088}00088     plannerHelper.changeMissionEndianness(mission);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00090}00090     \mbox{\hyperlink{classafarcloud_1_1_configurator}{Configurator}} cfg(\textcolor{stringliteral}{"{}MLP.json"{}});}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00091}00091     \textcolor{keywordflow}{if} (cfg.isMissionLogInEnabled())}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00092}00092     \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00093}00093         LogMission(\textcolor{stringliteral}{"{}IN\_"{}}, requestId, mission, plannerHelper);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00094}00094     \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00096}00096 \textcolor{preprocessor}{\#ifdef LOG\_MISSION\_AS\_JSON}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00097}00097     LogMissionJson(requestId, mission, plannerHelper);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00098}00098 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// LOG\_MISSION\_AS\_JSON}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00103}00103     steady\_clock::time\_point scStart = high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00104}00104     plannerHelper.preparePlan(mission);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00105}00105     steady\_clock::time\_point scStop = high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00106}00106     duration<double> sec = scStop -\/ scStart;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00107}00107 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00108}00108     ::PostMessage(m\_pWnd-\/>m\_hWnd, WM\_MLP\_MISSION\_DURATION, 0, (LPARAM)(\textcolor{keywordtype}{int})(10000.0 * sec.count()));}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00109}00109 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00110}00110     cout << \textcolor{stringliteral}{"{}Elapsed time : "{}} << sec.count() << \textcolor{stringliteral}{"{} seconds\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00111}00111 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00113}00113     \textcolor{keywordflow}{if} (cfg.isMissionLogOutEnabled())}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00114}00114     \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00115}00115         LogMission(\textcolor{stringliteral}{"{}OUT\_"{}}, requestId, mission, plannerHelper);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00116}00116     \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00117}00117 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00118}00118     \textcolor{keywordtype}{bool} bOk = sendPlanToMMt(requestId, mission);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00119}00119     \textcolor{keywordflow}{if} (bOk)}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00120}00120 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00121}00121         ::PostMessage(m\_pWnd-\/>m\_hWnd, WM\_MLP\_INFO, WP\_MLP\_INFO\_SUCCESS, (LPARAM)PlannerHelper::formatAndAllocateString(\_T(\textcolor{stringliteral}{"{}Done"{}})));}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00122}00122 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00123}00123         cout << \textcolor{stringliteral}{"{}Done"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00124}00124 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00125}00125     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00126}00126 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00127}00127         ::PostMessage(m\_pWnd-\/>m\_hWnd, WM\_MLP\_INFO, WP\_MLP\_INFO\_FAIL, (LPARAM)PlannerHelper::formatAndAllocateString(\_T(\textcolor{stringliteral}{"{}Error sending plan to MMT"{}})));}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00128}00128 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00129}00129         cout << \textcolor{stringliteral}{"{}Error sending plan to MMT"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00130}00130 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00131}00131 \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00132}00132 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00133}00133 \textcolor{keywordtype}{void} PlannerServiceHandler::ping(std::string\& \_return) \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00134}00134     \_return = \textcolor{stringliteral}{"{}It's a me! MLP!"{}};}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00135}00135 \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00137}00137 \textcolor{keywordtype}{bool} PlannerServiceHandler::sendPlanToMMt(\textcolor{keyword}{const} int32\_t requestId, \textcolor{keyword}{const} Mission\& context)}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00138}00138 \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00139}00139     hostParamsMap hostMap;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00140}00140     std::string hostName;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00141}00141     int32\_t hostPort;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00142}00142 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00143}00143     \mbox{\hyperlink{classafarcloud_1_1_configurator}{Configurator}} cfg(\textcolor{stringliteral}{"{}MLP.json"{}});}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00144}00144     \textcolor{keywordflow}{if} (cfg.loadHostsConfiguration(hostMap))}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00145}00145     \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00146}00146         \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00147}00147         \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00148}00148             hostName = hostMap[\textcolor{stringliteral}{"{}MMT"{}}].name;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00149}00149             hostPort = hostMap[\textcolor{stringliteral}{"{}MMT"{}}].port;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00150}00150         \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00151}00151         \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::exception\&)}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00152}00152         \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00153}00153             hostName = MMT\_HOST\_NAME;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00154}00154             hostPort = MMT\_HOST\_PORT;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00155}00155         \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00156}00156 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00157}00157         \textcolor{keywordtype}{wchar\_t} sH[128];}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00158}00158         PlannerHelper::s2ws(hostName, sH);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00159}00159         ::PostMessage(m\_pWnd-\/>m\_hWnd, WM\_MLP\_INFO, 0, (LPARAM)PlannerHelper::formatAndAllocateString(\_T(\textcolor{stringliteral}{"{}Sending plan to MMT [\%s] [\%d] ..."{}}), sH, hostPort));}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00160}00160 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00161}00161         cout << \textcolor{stringliteral}{"{}Sending plan to MMT ["{}} << hostName << \textcolor{stringliteral}{"{}]["{}} << hostPort << \textcolor{stringliteral}{"{}] ..."{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00162}00162 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00163}00163     \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00164}00164 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00165}00165     boost::shared\_ptr<TTransport> socket(\textcolor{keyword}{new} TSocket(hostName, hostPort));}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00166}00166     boost::shared\_ptr<TTransport> transport(\textcolor{keyword}{new} TBufferedTransport(socket));}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00167}00167     boost::shared\_ptr<TProtocol> protocol(\textcolor{keyword}{new} TBinaryProtocol(transport));}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00168}00168     MmtServiceClient client(protocol);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00169}00169 }
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00170}00170     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00171}00171         std::string gpString;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00172}00172         transport-\/>open();}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00173}00173         client.ping(gpString);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00174}00174         cout << \textcolor{stringliteral}{"{}ping("{}} << gpString << \textcolor{stringliteral}{"{})"{}} << endl;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00175}00175         client.sendPlan(requestId, context);}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00176}00176         transport-\/>close();}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00177}00177         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00178}00178     \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00179}00179     \textcolor{keywordflow}{catch} (TException\& tx) \{}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00180}00180         cout << \textcolor{stringliteral}{"{}ERROR: "{}} << tx.what() << endl;}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00181}00181         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00182}00182     \}}
+\DoxyCodeLine{\Hypertarget{_planner_service_handler_8cpp_source_l00183}00183 \}}
+
+\end{DoxyCode}

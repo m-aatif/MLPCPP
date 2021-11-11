@@ -1,0 +1,64 @@
+{
+	"logMissionIn": false,
+	"logMissionOut": true,
+	"hosts": [
+		{
+			"app": "MLP",
+			"name": "localhost",
+			"port": 9090
+		},
+		{
+			"app": "MMT",
+			"name": "localhost",
+			"port": 9096
+		}
+	],
+	"algorithms": [
+		{
+			"id": 0,
+			"name": "A*"
+		},
+		{
+			"id": 1,
+			"name": "RRT*"
+		},
+		{
+			"id": 2,
+			"name": "COV"
+		},
+		{
+			"id": 3,
+			"name": "S"
+		}
+	],
+	"tasks": [
+		{
+			"name": "TRANSIT",
+			"algorithm": "S",
+			"logTask": false,
+			"params_info": ["Resolution Divider", "Heuristic Weight"],
+			"params": [100.0, 0.1]
+		},
+		{
+			"name": "SURVEY",
+			"algorithm": "COV",
+			"logTask": false,
+			"params_info": ["Decomposition Type", "B", "C", "D"],
+			"params": [1.0, 6.0, 7.0, 8.0]
+		},
+		{
+			"name": "SURVEY_TRANSIT",
+			"algorithm": "S",
+			"logTask": false,
+			"params_info": ["Resolution Divider", "Heuristic Weight"],
+			"params": [100.0, 0.1]
+		},
+		{
+			"name": "INSPECT",
+			"algorithm": "S",
+			"logTask": false,
+			"params_info": ["A", "B", "C", "D"],
+			"params": [13.0, 14.0, 15.0, 16.0]
+		}
+	]
+}

@@ -1,0 +1,178 @@
+\hypertarget{_planner_helper_8h_source}{}\doxysection{Planner\+Helper.\+h}
+\label{_planner_helper_8h_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/PlannerHelper.h@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/PlannerHelper.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00001}00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00003}00003 \textcolor{preprocessor}{\#include "{}PlannerService.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00005}00005 \textcolor{preprocessor}{\#include <boost/numeric/ublas/matrix.hpp>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00006}00006 \textcolor{preprocessor}{\#include <boost/math/constants/constants.hpp>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00007}00007 \textcolor{preprocessor}{\#include <boost/json.hpp>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00010}00010 \textcolor{preprocessor}{\#include "{}Geometry.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00011}00011 \textcolor{preprocessor}{\#include "{}Configurator.h"{}}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00013}00013 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00014}00014 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00015}00015 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00016}00016 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00018}00018 \textcolor{keyword}{using namespace }boost::numeric::ublas;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00019}00019 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacegeon}{geon}};}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00021}00021 \textcolor{keyword}{namespace }json = boost::json;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00023}00023 \textcolor{preprocessor}{\#define HEX( x ) setw(2) << setfill('0') << hex << (int)(x)}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00024}00024 \textcolor{preprocessor}{\#define PRINT\_DOUBLE\_HEX( d ) \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00025}00025 \textcolor{preprocessor}{\{ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00026}00026 \textcolor{preprocessor}{    double x = (d); \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00027}00027 \textcolor{preprocessor}{    uint8\_t *px = (uint8\_t*)\&x; \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00028}00028 \textcolor{preprocessor}{    std::cout << HEX(px[0]) << HEX(px[1]) << HEX(px[2]) << HEX(px[3]) << HEX(px[4]) << HEX(px[5]) << HEX(px[6]) << HEX(px[7]) << endl; \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00029}00029 \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00031}00031 \textcolor{keyword}{namespace }afarcloud}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00032}00032 \{}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00033}00033 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00034}00034     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\_TaskStruct}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00035}00035     \{}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00036}00036         int32\_t id;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00037}00037         TaskType::type taskType;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00038}00038     \} TaskStruct;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00039}00039 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00041}\mbox{\hyperlink{classafarcloud_1_1_map_stuff}{00041}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_map_stuff}{MapStuff}} \{}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00042}00042     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00043}00043         \mbox{\hyperlink{classafarcloud_1_1_map_stuff}{MapStuff}}()}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00044}00044         \{}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00045}00045         \}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00047}00047         \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00048}00048         \textcolor{keywordtype}{double} absMinLon;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00049}00049         \textcolor{keywordtype}{double} absMinLat;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00050}00050         \textcolor{keywordtype}{double} absMaxLon;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00051}00051         \textcolor{keywordtype}{double} absMaxLat;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00052}00052         \textcolor{keywordtype}{double} absDeltaLon;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00053}00053         \textcolor{keywordtype}{double} absDeltaLat;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00054}00054         \textcolor{keywordtype}{double} n\_distance;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00055}00055         \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00059}\mbox{\hyperlink{classafarcloud_1_1_map_stuff_ac1207af2fffa2fd4191582d574568866}{00059}} \textcolor{comment}{}        std::vector<Task> \mbox{\hyperlink{classafarcloud_1_1_map_stuff_ac1207af2fffa2fd4191582d574568866}{sortedTasks}};}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00061}00061         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} navArea;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00063}00063         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} randArea;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00064}00064         aPoint start;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00065}00065         aPoint goal;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00066}00066         std::vector<aRectangle> obstacles\_rect;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00067}00067         \textcolor{keywordtype}{double} obstacleMinimumSize;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00069}00069         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} randAreaN;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00070}00070         aPoint startN;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00071}00071         aPoint goalN;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00072}00072         std::vector<aRectangle> obstacles\_rectN;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00073}00073     \};}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00075}\mbox{\hyperlink{classafarcloud_1_1_planner_helper}{00075}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_planner_helper}{PlannerHelper}}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00076}00076     \{}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00077}00077     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00078}00078         \mbox{\hyperlink{classafarcloud_1_1_planner_helper}{PlannerHelper}}(}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00079}00079 \#ifdef \_WINDOWS}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00080}00080             CWnd *pWnd}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00081}00081 \#endif \textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00082}00082         );}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00084}00084         \mbox{\hyperlink{classafarcloud_1_1_planner_helper}{\string~PlannerHelper}}();}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00086}00086         \textcolor{keywordtype}{void}    changeMissionEndianness(Mission \&context);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00087}00087         \textcolor{keywordtype}{void}    dumpMission(\textcolor{keyword}{const} Mission \&context, std::ostream\& os);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00088}00088         \textcolor{keywordtype}{void}    dumpMissionAsJson(\textcolor{keyword}{const} Mission \&context, std::ostream\& os);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00090}00090         \textcolor{keywordtype}{void}    \mbox{\hyperlink{classafarcloud_1_1_planner_helper_aaf3fb330caa7d02fdafe250c45301cfa}{preparePlan}}(Mission \&context);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00092}00092         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{double} DEG2RAD;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00093}00093         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{double} RAD2DEG;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00094}00094         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{double} EARTH\_MEAN\_RADIUS;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00095}00095         \textcolor{keyword}{static} \textcolor{keywordtype}{double}   \mbox{\hyperlink{classafarcloud_1_1_planner_helper_a31eb2cd6bca9d1975393d2a34dc9d9c7}{haversine}}(aPoint pt1, aPoint pt2);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00096}00096         \textcolor{keyword}{static} \textcolor{keywordtype}{double}   normalize(\textcolor{keywordtype}{double} value, \textcolor{keywordtype}{double} minVal, \textcolor{keywordtype}{double} maxVal);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00097}00097         \textcolor{keyword}{static} \textcolor{keywordtype}{void} s2ws(\textcolor{keyword}{const} std::string\& s, \textcolor{keywordtype}{wchar\_t}* buf);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00099}00099 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00100}00100         \textcolor{keyword}{static} \textcolor{keywordtype}{wchar\_t}* formatAndAllocateString(\textcolor{keywordtype}{wchar\_t}* format, ...);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00101}00101 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00102}00102     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00103}00103         std::string enquote\_string(std::string orig\_string);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00104}00104         \textcolor{keywordtype}{void}    reversePositionInPlace(Position \&pos);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00105}00105         \textcolor{keywordtype}{void}    reverseOrientationInPlace(Orientation \&orientation);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00106}00106         \textcolor{keywordtype}{void}    matrixRowLimits(matrix<double> mtx, \textcolor{keywordtype}{int} row, \textcolor{keywordtype}{double} \&minVal, \textcolor{keywordtype}{double} \&maxVal);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00108}00108         aPoint  normalizePoint(aPoint ptSrc);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00109}00109         \textcolor{keywordtype}{double}  denormalize(\textcolor{keywordtype}{double} normalizedValue, \textcolor{keywordtype}{double} minVal, \textcolor{keywordtype}{double} maxVal);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00110}00110         \textcolor{keywordtype}{void}    coordNormalization(}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00111}00111             matrix<double> mxIn, matrix<double> myIn,}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00112}00112             matrix<double> \&mxOut, matrix<double> \&myOut,}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00113}00113             \textcolor{keywordtype}{double} xMin, \textcolor{keywordtype}{double} xMax, \textcolor{keywordtype}{double} yMin, \textcolor{keywordtype}{double} yMax);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00115}00115         \textcolor{keywordtype}{void}    preprocessingForOptimalPath(Mission \&context);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00116}00116         \textcolor{keywordtype}{void}    sortTasks(Mission \&context);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00117}00117         \textcolor{keywordtype}{void}    preprocessingPathPlanning(Mission \&context, uint32\_t taskIndex, uint32\_t vehicleIndex);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00118}00118         \textcolor{keywordtype}{void}    preprocessingPositions(Mission \&context, uint32\_t taskIndex, uint32\_t vehicleIndex);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00120}00120         \textcolor{keywordtype}{void}    checkOnFirstTask(\textcolor{keywordtype}{bool} bProceed, Mission context, uint32\_t vehicleIndex, pointVec \&path);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00121}00121         \textcolor{keywordtype}{void}    checkOnLastTask(\textcolor{keywordtype}{bool} bProceed, Mission \&context, uint32\_t vehicleIndex, pointVec \&path);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00122}00122         \textcolor{keywordtype}{bool}    checkPlan(Mission context);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00124}00124         \textcolor{keywordtype}{void}    transit(Mission \&context, uint32\_t taskIndex, \textcolor{keywordtype}{bool} bLastTask);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00125}00125         \textcolor{keywordtype}{void}    survey(Mission \&context, uint32\_t taskIndex, \textcolor{keywordtype}{bool} bLastTask);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00126}00126         \textcolor{keywordtype}{void}    inspect(Mission \&context, uint32\_t taskIndex, \textcolor{keywordtype}{bool} bLastTask);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00128}00128         \textcolor{keywordtype}{void}    fillCommands(Mission \&context, std::vector<aPoint> path, uint32\_t taskIndex, uint32\_t vehicleIndex, \textcolor{keywordtype}{bool} bLastTask);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00129}00129         \textcolor{keywordtype}{void}    fillCommandsForTransitFlyingVehicles(Mission \&context, std::vector<aPoint> path, Task \&task, uint32\_t vehicleIndex, \textcolor{keywordtype}{bool} bLastTask);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00130}00130         \textcolor{keywordtype}{void}    fillCommandsForTransitOtherVehicles(Mission \&context, std::vector<aPoint> path, Task \&task, uint32\_t vehicleIndex, \textcolor{keywordtype}{bool} bLastTask);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00131}00131         \textcolor{keywordtype}{void}    fillCommandsForSurvey(Mission \&context, std::vector<aPoint> path, Task \&task, uint32\_t vehicleIndex, \textcolor{keywordtype}{bool} bLastTask);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00132}00132         \textcolor{keywordtype}{void}    fillCommandsForInspect(Mission \&context, std::vector<aPoint> path, Task \&task, uint32\_t vehicleIndex, \textcolor{keywordtype}{bool} bLastTask);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00134}00134         Command fillCommand(CommandType::type type, Task relatedTask, \textcolor{keywordtype}{double} startTime, \textcolor{keywordtype}{double} endTime, std::vector<double> params);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00135}00135         \textcolor{keyword}{inline} aPoint   LlPositionToPoint(Position pos);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00136}00136         uint32\_t    findVehicleIndexById(Mission \&context, uint32\_t \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00137}00137         \textcolor{keyword}{inline}  \textcolor{keywordtype}{bool}    isAFlyingVehicle(VehicleType::type type);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00138}00138         std::vector<aPoint> denormalizePath(std::vector<aPoint> npath);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00139}00139 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00140}00140         \textcolor{keywordtype}{double}  m\_startTime, m\_endTime;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00141}00141         int32\_t m\_id;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00142}00142         \textcolor{keywordtype}{double}  m\_speed;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00143}00143         std::vector<Command> m\_cmdList;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00144}00144 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00145}00145         \textcolor{keyword}{static}  Position aPointToPosition(aPoint pt, \textcolor{keywordtype}{double} altitude);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00146}00146         \textcolor{keyword}{static}  aPoint positionToAPoint(Position pos);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00147}00147 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00148}00148         \mbox{\hyperlink{classafarcloud_1_1_map_stuff}{MapStuff}} m\_mapStuff;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00149}00149         std::ofstream m\_logfile;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00150}00150         \textcolor{keywordtype}{void}    logPath(Task task, std::vector<aPoint> path);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00152}00152         \textcolor{keywordtype}{void}    loadAlgorithmConfiguration();}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00153}00153 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00154}00154         \textcolor{keywordtype}{bool}    getTaskAlgorithmDescr(std::string taskName, \mbox{\hyperlink{classafarcloud_1_1_task_algorithm}{TaskAlgorithm}} \&ta);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00155}00155         int32\_t getTaskAlgorithm(\mbox{\hyperlink{classafarcloud_1_1_task_algorithm}{TaskAlgorithm}} ta);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00157}00157         algorithmMap m\_algoMap;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00158}00158         taskAlgorithmMap m\_taskAlgoMap;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00160}00160         \textcolor{keywordtype}{double}  altitudeMagic(Task task);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00161}00161 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00162}00162 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00163}00163         \textcolor{keywordtype}{void}    postRectangle(UINT msgId, WPARAM wParam, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aRect);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00164}00164         \textcolor{keywordtype}{void}    postRegion(UINT msgId, WPARAM wParam, Region region);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00165}00165         \textcolor{keywordtype}{void}    postPosition(UINT msgId, WPARAM wParam, Position position);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00166}00166         \textcolor{keywordtype}{void}    postMissionInfo(Mission mission);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00167}00167         \textcolor{keywordtype}{void}    postPath(\textcolor{keywordtype}{int} taskIndex, std::vector<aPoint> path);}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00168}00168 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00169}00169     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00170}00170 \textcolor{preprocessor}{\#ifdef \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00171}00171         CWnd *m\_pWnd;}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00172}00172 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00173}00173     \};}
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{_planner_helper_8h_source_l00175}00175 \}   \textcolor{comment}{//  namespace}}
+
+\end{DoxyCode}

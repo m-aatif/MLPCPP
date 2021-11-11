@@ -1,0 +1,187 @@
+\hypertarget{classafarcloud_1_1_coverage_planner}{}\doxysection{afarcloud\+::Coverage\+Planner Class Reference}
+\label{classafarcloud_1_1_coverage_planner}\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+
+
+{\ttfamily \#include $<$Coverage\+Planner.\+h$>$}
+
+Inheritance diagram for afarcloud\+::Coverage\+Planner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classafarcloud_1_1_coverage_planner}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a3f3fe42b637d27e2f42295fc283e0002}{Coverage\+Planner}} ()
+\item 
+\mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a465425648b26e95c0f498ec58b6876af}{Coverage\+Planner}} (a\+Point pt\+Start, a\+Point pt\+End, rectangle\+Vec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} rect\+Field, a\+Point pt\+Home, double resolution)
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a64f5c3d6fca5bdcf88f907227baa070a}{set\+Up}} (a\+Point pt\+Start, a\+Point pt\+End, rectangle\+Vec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} rect\+Field, a\+Point pt\+Home, double resolution)
+\item 
+point\+Vec \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a683d847171e2eec798964de3d775f28b}{plan}} ()
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a7fe2e093e16220d7c151b31873df330e}{set\+Connection\+Algorithm}} (int algorithm, double conn\+Algo\+Res, double conn\+Algo\+Extra1=0.\+0, double conn\+Algo\+Extra2=0.\+0)
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a2895f01339800a4f5ab02187add1a909}{set\+Decomposition\+Type}} (int decomposition\+Type)
+\item 
+rectangle\+Vec \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a0d1257a3fff6057299ad6633a9bbdcc3}{get\+Basic\+Cells}} () const
+\item 
+rectangle\+Vec \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a17600d293fcfc4312d752be75ca667d6}{get\+Compound\+Cells}} () const
+\item 
+rectangle\+Vec \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a47026daacd1e0bd92d1e6a7f2a540c11}{get\+Compound\+CellsH}} () const
+\item 
+rectangle\+Vec \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a32150a8775fb5ae405a5e5cee24de244}{get\+Compound\+CellsV}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classafarcloud_1_1_coverage_planner}{Coverage\+Planner}}\+: A class that implements the coverage planner algorithm. 
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8h_source_l00099}{99}} of file \mbox{\hyperlink{_coverage_planner_8h_source}{Coverage\+Planner.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a3f3fe42b637d27e2f42295fc283e0002}\label{classafarcloud_1_1_coverage_planner_a3f3fe42b637d27e2f42295fc283e0002}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!CoveragePlanner@{CoveragePlanner}}
+\index{CoveragePlanner@{CoveragePlanner}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{CoveragePlanner()}{CoveragePlanner()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily afarcloud\+::\+Coverage\+Planner\+::\+Coverage\+Planner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Coverage \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructors 
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_coverage_planner_8cpp_source}{Coverage\+Planner.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a465425648b26e95c0f498ec58b6876af}\label{classafarcloud_1_1_coverage_planner_a465425648b26e95c0f498ec58b6876af}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!CoveragePlanner@{CoveragePlanner}}
+\index{CoveragePlanner@{CoveragePlanner}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{CoveragePlanner()}{CoveragePlanner()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily afarcloud\+::\+Coverage\+Planner\+::\+Coverage\+Planner (\begin{DoxyParamCaption}\item[{a\+Point}]{pt\+Start,  }\item[{a\+Point}]{pt\+End,  }\item[{rectangle\+Vec}]{obstacles,  }\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{rect\+Field,  }\item[{a\+Point}]{pt\+Home,  }\item[{double}]{resolution }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a465425648b26e95c0f498ec58b6876af}{Coverage\+Planner\+::\+Coverage\+Planner(a\+Point pt\+Start, a\+Point pt\+End, rectangle\+Vec obstacles, a\+Rectangle rect\+Field, a\+Point pt\+Home, double resolution)}} Summary\+: Coverage \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. Params\+: pt\+Start a\+Point See \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. pt\+Goal a\+Point See \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. obstacles rectangle\+Vec See \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. rect\+Field a\+Rectangle See \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} constructor. pt\+Home a\+Point Home point. resolution double \mbox{\hyperlink{classafarcloud_1_1_algorithm}{Algorithm}}\textquotesingle{}s resolution. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{_coverage_planner_8cpp_source}{Coverage\+Planner.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a958a2542ac6ba24cf041e55f3e6a7b96}\label{classafarcloud_1_1_coverage_planner_a958a2542ac6ba24cf041e55f3e6a7b96}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!````~CoveragePlanner@{$\sim$CoveragePlanner}}
+\index{````~CoveragePlanner@{$\sim$CoveragePlanner}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{$\sim$CoveragePlanner()}{~CoveragePlanner()}}
+{\footnotesize\ttfamily afarcloud\+::\+Coverage\+Planner\+::$\sim$\+Coverage\+Planner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_coverage_planner_8cpp_source}{Coverage\+Planner.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a0d1257a3fff6057299ad6633a9bbdcc3}\label{classafarcloud_1_1_coverage_planner_a0d1257a3fff6057299ad6633a9bbdcc3}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!getBasicCells@{getBasicCells}}
+\index{getBasicCells@{getBasicCells}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{getBasicCells()}{getBasicCells()}}
+{\footnotesize\ttfamily rectangle\+Vec afarcloud\+::\+Coverage\+Planner\+::get\+Basic\+Cells (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8h_source_l00121}{121}} of file \mbox{\hyperlink{_coverage_planner_8h_source}{Coverage\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a17600d293fcfc4312d752be75ca667d6}\label{classafarcloud_1_1_coverage_planner_a17600d293fcfc4312d752be75ca667d6}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!getCompoundCells@{getCompoundCells}}
+\index{getCompoundCells@{getCompoundCells}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{getCompoundCells()}{getCompoundCells()}}
+{\footnotesize\ttfamily rectangle\+Vec afarcloud\+::\+Coverage\+Planner\+::get\+Compound\+Cells (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8h_source_l00122}{122}} of file \mbox{\hyperlink{_coverage_planner_8h_source}{Coverage\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a47026daacd1e0bd92d1e6a7f2a540c11}\label{classafarcloud_1_1_coverage_planner_a47026daacd1e0bd92d1e6a7f2a540c11}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!getCompoundCellsH@{getCompoundCellsH}}
+\index{getCompoundCellsH@{getCompoundCellsH}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{getCompoundCellsH()}{getCompoundCellsH()}}
+{\footnotesize\ttfamily rectangle\+Vec afarcloud\+::\+Coverage\+Planner\+::get\+Compound\+CellsH (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8h_source_l00123}{123}} of file \mbox{\hyperlink{_coverage_planner_8h_source}{Coverage\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a32150a8775fb5ae405a5e5cee24de244}\label{classafarcloud_1_1_coverage_planner_a32150a8775fb5ae405a5e5cee24de244}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!getCompoundCellsV@{getCompoundCellsV}}
+\index{getCompoundCellsV@{getCompoundCellsV}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{getCompoundCellsV()}{getCompoundCellsV()}}
+{\footnotesize\ttfamily rectangle\+Vec afarcloud\+::\+Coverage\+Planner\+::get\+Compound\+CellsV (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8h_source_l00124}{124}} of file \mbox{\hyperlink{_coverage_planner_8h_source}{Coverage\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a683d847171e2eec798964de3d775f28b}\label{classafarcloud_1_1_coverage_planner_a683d847171e2eec798964de3d775f28b}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!plan@{plan}}
+\index{plan@{plan}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily point\+Vec afarcloud\+::\+Coverage\+Planner\+::plan (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+point\+Vec \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a683d847171e2eec798964de3d775f28b}{Coverage\+Planner\+::plan()}} Summary\+: The coverage planner algorithm. Params\+: none. Return\+: path point\+Vec The path obtained. Initialization check.
+
+Calcs obstacles and coverage area coordinates (grid aligned)
+
+Sort obtained coordinates
+
+Calcs all allowed vertices
+
+Calc all basic cells. Each cell is tagged rrrrcccc
+
+Create a map of rectangles tag-\/\texorpdfstring{$>$}{>}rectangle
+
+Basic cell map creation
+
+The coverage planner kernel
+
+Implements \mbox{\hyperlink{classafarcloud_1_1_planner_a19776520ea5516ab7592dc1e2d6e0353}{afarcloud\+::\+Planner}}.
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8cpp_source_l00667}{667}} of file \mbox{\hyperlink{_coverage_planner_8cpp_source}{Coverage\+Planner.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a7fe2e093e16220d7c151b31873df330e}\label{classafarcloud_1_1_coverage_planner_a7fe2e093e16220d7c151b31873df330e}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!setConnectionAlgorithm@{setConnectionAlgorithm}}
+\index{setConnectionAlgorithm@{setConnectionAlgorithm}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{setConnectionAlgorithm()}{setConnectionAlgorithm()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Coverage\+Planner\+::set\+Connection\+Algorithm (\begin{DoxyParamCaption}\item[{int}]{algorithm,  }\item[{double}]{conn\+Algo\+Res,  }\item[{double}]{conn\+Algo\+Extra1 = {\ttfamily 0.0},  }\item[{double}]{conn\+Algo\+Extra2 = {\ttfamily 0.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8h_source_l00108}{108}} of file \mbox{\hyperlink{_coverage_planner_8h_source}{Coverage\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a2895f01339800a4f5ab02187add1a909}\label{classafarcloud_1_1_coverage_planner_a2895f01339800a4f5ab02187add1a909}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!setDecompositionType@{setDecompositionType}}
+\index{setDecompositionType@{setDecompositionType}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{setDecompositionType()}{setDecompositionType()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Coverage\+Planner\+::set\+Decomposition\+Type (\begin{DoxyParamCaption}\item[{int}]{decomposition\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8h_source_l00116}{116}} of file \mbox{\hyperlink{_coverage_planner_8h_source}{Coverage\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_coverage_planner_a64f5c3d6fca5bdcf88f907227baa070a}\label{classafarcloud_1_1_coverage_planner_a64f5c3d6fca5bdcf88f907227baa070a}} 
+\index{afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}!setUp@{setUp}}
+\index{setUp@{setUp}!afarcloud::CoveragePlanner@{afarcloud::CoveragePlanner}}
+\doxysubsubsection{\texorpdfstring{setUp()}{setUp()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Coverage\+Planner\+::set\+Up (\begin{DoxyParamCaption}\item[{a\+Point}]{pt\+Start,  }\item[{a\+Point}]{pt\+End,  }\item[{rectangle\+Vec}]{obstacles,  }\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{rect\+Field,  }\item[{a\+Point}]{pt\+Home,  }\item[{double}]{resolution }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_coverage_planner_8cpp_source_l00102}{102}} of file \mbox{\hyperlink{_coverage_planner_8cpp_source}{Coverage\+Planner.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Coverage\+Planner.\+h\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Aggregators.\+cpp\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Coverage\+Planner.\+cpp\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Coverage\+Procs.\+cpp\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Coverage\+Utils.\+cpp\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Strategies.\+cpp\end{DoxyCompactItemize}

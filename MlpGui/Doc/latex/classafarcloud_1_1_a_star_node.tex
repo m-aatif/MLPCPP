@@ -1,0 +1,136 @@
+\hypertarget{classafarcloud_1_1_a_star_node}{}\doxysection{afarcloud\+::AStar\+Node Class Reference}
+\label{classafarcloud_1_1_a_star_node}\index{afarcloud::AStarNode@{afarcloud::AStarNode}}
+
+
+{\ttfamily \#include $<$AStar\+Planner.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}{AStar\+Node}} ()
+\item 
+\mbox{\hyperlink{classafarcloud_1_1_a_star_node_a2a53c2f9ade6e382fd17e59a5ee9fdb6}{AStar\+Node}} (a\+Point pt\+Start, double cost, int32\+\_\+t parent\+Index)
+\item 
+a\+Point \mbox{\hyperlink{classafarcloud_1_1_a_star_node_ae5a41b29137fd1c2ecb8aa7c5cab28dc}{origin}} () const
+\item 
+double \mbox{\hyperlink{classafarcloud_1_1_a_star_node_a8881b10d7d48af2c410c58389e1f1ad0}{cost}} () const
+\item 
+int32\+\_\+t \mbox{\hyperlink{classafarcloud_1_1_a_star_node_acbba885bc5b9ec0f84edd9a171f86fa3}{parent\+Index}} () const
+\item 
+double \mbox{\hyperlink{classafarcloud_1_1_a_star_node_a13b3257eda6e261c069dd4c0df6f615a}{x}} () const
+\item 
+double \mbox{\hyperlink{classafarcloud_1_1_a_star_node_ac25f22beb22ba4a4eb3815b34913e99b}{y}} () const
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_a_star_node_a1f974cbbecf76575e3b34fd0ae75906c}{set\+Cost}} (double cost)
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_a_star_node_a37200ab8b28fb80e125a2a94caac5775}{set\+Parent\+Index}} (int32\+\_\+t index)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classafarcloud_1_1_a_star_node}{AStar\+Node}}\+: A class that contains the node parameters used by A$\ast$ planner algorithm. 
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00018}{18}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}\label{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!AStarNode@{AStarNode}}
+\index{AStarNode@{AStarNode}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{AStarNode()}{AStarNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily afarcloud\+::\+AStar\+Node\+::\+AStar\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classafarcloud_1_1_a_star_node_a054009ff0c8f3e9a366060040731ac08}{AStar\+Node\+::\+AStar\+Node()}} Summary\+: A$\ast$ Node default constructor. It represents a node with origin=(0,0), cost=0 and parent index=-\/1. Params\+: none. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_a_star_planner_8cpp_source}{AStar\+Planner.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_a2a53c2f9ade6e382fd17e59a5ee9fdb6}\label{classafarcloud_1_1_a_star_node_a2a53c2f9ade6e382fd17e59a5ee9fdb6}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!AStarNode@{AStarNode}}
+\index{AStarNode@{AStarNode}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{AStarNode()}{AStarNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily afarcloud\+::\+AStar\+Node\+::\+AStar\+Node (\begin{DoxyParamCaption}\item[{a\+Point}]{pt\+Start,  }\item[{double}]{cost,  }\item[{int32\+\_\+t}]{parent\+Index }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classafarcloud_1_1_a_star_node_a2a53c2f9ade6e382fd17e59a5ee9fdb6}{AStar\+Node\+::\+AStar\+Node(a\+Point pt\+Start, double cost, int32\+\_\+t parent\+Index)}} Summary\+: A$\ast$ Node specialized constructor. It represents a node with origin=$<$pt\+Start$>$, cost=$<$cost$>$ and parent index=$<$parent\+Index$>$. Params\+: pt\+Start a\+Point The node origin. cost double The cost of the node. parent\+Index int32\+\_\+t Node\textquotesingle{}s parent index. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{_a_star_planner_8cpp_source}{AStar\+Planner.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_a8881b10d7d48af2c410c58389e1f1ad0}\label{classafarcloud_1_1_a_star_node_a8881b10d7d48af2c410c58389e1f1ad0}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!cost@{cost}}
+\index{cost@{cost}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{cost()}{cost()}}
+{\footnotesize\ttfamily double afarcloud\+::\+AStar\+Node\+::cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00025}{25}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_ae5a41b29137fd1c2ecb8aa7c5cab28dc}\label{classafarcloud_1_1_a_star_node_ae5a41b29137fd1c2ecb8aa7c5cab28dc}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!origin@{origin}}
+\index{origin@{origin}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{origin()}{origin()}}
+{\footnotesize\ttfamily a\+Point afarcloud\+::\+AStar\+Node\+::origin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00024}{24}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_acbba885bc5b9ec0f84edd9a171f86fa3}\label{classafarcloud_1_1_a_star_node_acbba885bc5b9ec0f84edd9a171f86fa3}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!parentIndex@{parentIndex}}
+\index{parentIndex@{parentIndex}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{parentIndex()}{parentIndex()}}
+{\footnotesize\ttfamily int32\+\_\+t afarcloud\+::\+AStar\+Node\+::parent\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00026}{26}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_a1f974cbbecf76575e3b34fd0ae75906c}\label{classafarcloud_1_1_a_star_node_a1f974cbbecf76575e3b34fd0ae75906c}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!setCost@{setCost}}
+\index{setCost@{setCost}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{setCost()}{setCost()}}
+{\footnotesize\ttfamily void afarcloud\+::\+AStar\+Node\+::set\+Cost (\begin{DoxyParamCaption}\item[{double}]{cost }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00030}{30}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_a37200ab8b28fb80e125a2a94caac5775}\label{classafarcloud_1_1_a_star_node_a37200ab8b28fb80e125a2a94caac5775}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!setParentIndex@{setParentIndex}}
+\index{setParentIndex@{setParentIndex}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{setParentIndex()}{setParentIndex()}}
+{\footnotesize\ttfamily void afarcloud\+::\+AStar\+Node\+::set\+Parent\+Index (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00031}{31}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_a13b3257eda6e261c069dd4c0df6f615a}\label{classafarcloud_1_1_a_star_node_a13b3257eda6e261c069dd4c0df6f615a}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!x@{x}}
+\index{x@{x}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{x()}{x()}}
+{\footnotesize\ttfamily double afarcloud\+::\+AStar\+Node\+::x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00027}{27}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_a_star_node_ac25f22beb22ba4a4eb3815b34913e99b}\label{classafarcloud_1_1_a_star_node_ac25f22beb22ba4a4eb3815b34913e99b}} 
+\index{afarcloud::AStarNode@{afarcloud::AStarNode}!y@{y}}
+\index{y@{y}!afarcloud::AStarNode@{afarcloud::AStarNode}}
+\doxysubsubsection{\texorpdfstring{y()}{y()}}
+{\footnotesize\ttfamily double afarcloud\+::\+AStar\+Node\+::y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_a_star_planner_8h_source_l00028}{28}} of file \mbox{\hyperlink{_a_star_planner_8h_source}{AStar\+Planner.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/AStar\+Planner.\+h\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/AStar\+Planner.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,177 @@
+\hypertarget{classafarcloud_1_1_planner_helper}{}\doxysection{afarcloud\+::Planner\+Helper Class Reference}
+\label{classafarcloud_1_1_planner_helper}\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_planner_helper_ae9bba7c7fbbae5ec193ba5b80a27346d}{change\+Mission\+Endianness}} (Mission \&context)
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_planner_helper_ae61833900757827a672b8a3e701480dc}{dump\+Mission}} (const Mission \&context, std\+::ostream \&os)
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_planner_helper_a5302d718bdf7aa6dd272d3614cfbe775}{dump\+Mission\+As\+Json}} (const Mission \&context, std\+::ostream \&os)
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_planner_helper_aaf3fb330caa7d02fdafe250c45301cfa}{prepare\+Plan}} (Mission \&context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \mbox{\hyperlink{classafarcloud_1_1_planner_helper_a31eb2cd6bca9d1975393d2a34dc9d9c7}{haversine}} (a\+Point pt1, a\+Point pt2)
+\item 
+static double \mbox{\hyperlink{classafarcloud_1_1_planner_helper_a6d059ed7f118757ea2a167ed73d71de2}{normalize}} (double value, double min\+Val, double max\+Val)
+\item 
+static void \mbox{\hyperlink{classafarcloud_1_1_planner_helper_a1bc157240df5512f7669d5b357c67a97}{s2ws}} (const std\+::string \&s, wchar\+\_\+t $\ast$buf)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const double \mbox{\hyperlink{classafarcloud_1_1_planner_helper_a9e30602a3e1dad2d47e2cce77a70e9b2}{DEG2\+RAD}} = pi / 180.\+0
+\item 
+static const double \mbox{\hyperlink{classafarcloud_1_1_planner_helper_a93a822969a60c67812e1e084c78e3131}{RAD2\+DEG}} = 180.\+0 / pi
+\item 
+static const double \mbox{\hyperlink{classafarcloud_1_1_planner_helper_a232a38ba1f79cb578bc66a3d92b88bcd}{EARTH\+\_\+\+MEAN\+\_\+\+RADIUS}} = 6371000.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8h_source_l00075}{75}} of file \mbox{\hyperlink{_planner_helper_8h_source}{Planner\+Helper.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_aa42c5b8836e2c24d95d077065967a646}\label{classafarcloud_1_1_planner_helper_aa42c5b8836e2c24d95d077065967a646}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!PlannerHelper@{PlannerHelper}}
+\index{PlannerHelper@{PlannerHelper}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{PlannerHelper()}{PlannerHelper()}}
+{\footnotesize\ttfamily afarcloud\+::\+Planner\+Helper\+::\+Planner\+Helper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_ade2e24280e834619f6a17095075b2bd5}\label{classafarcloud_1_1_planner_helper_ade2e24280e834619f6a17095075b2bd5}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!````~PlannerHelper@{$\sim$PlannerHelper}}
+\index{````~PlannerHelper@{$\sim$PlannerHelper}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{$\sim$PlannerHelper()}{~PlannerHelper()}}
+{\footnotesize\ttfamily afarcloud\+::\+Planner\+Helper\+::$\sim$\+Planner\+Helper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_ae9bba7c7fbbae5ec193ba5b80a27346d}\label{classafarcloud_1_1_planner_helper_ae9bba7c7fbbae5ec193ba5b80a27346d}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!changeMissionEndianness@{changeMissionEndianness}}
+\index{changeMissionEndianness@{changeMissionEndianness}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{changeMissionEndianness()}{changeMissionEndianness()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Planner\+Helper\+::change\+Mission\+Endianness (\begin{DoxyParamCaption}\item[{Mission \&}]{context }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l00102}{102}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_ae61833900757827a672b8a3e701480dc}\label{classafarcloud_1_1_planner_helper_ae61833900757827a672b8a3e701480dc}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!dumpMission@{dumpMission}}
+\index{dumpMission@{dumpMission}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{dumpMission()}{dumpMission()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Planner\+Helper\+::dump\+Mission (\begin{DoxyParamCaption}\item[{const Mission \&}]{context,  }\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l00151}{151}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_a5302d718bdf7aa6dd272d3614cfbe775}\label{classafarcloud_1_1_planner_helper_a5302d718bdf7aa6dd272d3614cfbe775}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!dumpMissionAsJson@{dumpMissionAsJson}}
+\index{dumpMissionAsJson@{dumpMissionAsJson}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{dumpMissionAsJson()}{dumpMissionAsJson()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Planner\+Helper\+::dump\+Mission\+As\+Json (\begin{DoxyParamCaption}\item[{const Mission \&}]{context,  }\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l00282}{282}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_a31eb2cd6bca9d1975393d2a34dc9d9c7}\label{classafarcloud_1_1_planner_helper_a31eb2cd6bca9d1975393d2a34dc9d9c7}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!haversine@{haversine}}
+\index{haversine@{haversine}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{haversine()}{haversine()}}
+{\footnotesize\ttfamily double afarcloud\+::\+Planner\+Helper\+::haversine (\begin{DoxyParamCaption}\item[{a\+Point}]{pt1,  }\item[{a\+Point}]{pt2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Haversine formula pt1 \& pt2 (lon,lat) in degrees 
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l00508}{508}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_a6d059ed7f118757ea2a167ed73d71de2}\label{classafarcloud_1_1_planner_helper_a6d059ed7f118757ea2a167ed73d71de2}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!normalize@{normalize}}
+\index{normalize@{normalize}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily double afarcloud\+::\+Planner\+Helper\+::normalize (\begin{DoxyParamCaption}\item[{double}]{value,  }\item[{double}]{min\+Val,  }\item[{double}]{max\+Val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l00519}{519}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_aaf3fb330caa7d02fdafe250c45301cfa}\label{classafarcloud_1_1_planner_helper_aaf3fb330caa7d02fdafe250c45301cfa}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!preparePlan@{preparePlan}}
+\index{preparePlan@{preparePlan}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{preparePlan()}{preparePlan()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Planner\+Helper\+::prepare\+Plan (\begin{DoxyParamCaption}\item[{Mission \&}]{context }\end{DoxyParamCaption})}
+
+Check if current task is TRANSIT
+
+Check if current task is SURVEY
+
+Check if current task is INSPECT
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l01257}{1257}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_a1bc157240df5512f7669d5b357c67a97}\label{classafarcloud_1_1_planner_helper_a1bc157240df5512f7669d5b357c67a97}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!s2ws@{s2ws}}
+\index{s2ws@{s2ws}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{s2ws()}{s2ws()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Planner\+Helper\+::s2ws (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s,  }\item[{wchar\+\_\+t $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{_planner_helper_8cpp_source}{Planner\+Helper.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_a9e30602a3e1dad2d47e2cce77a70e9b2}\label{classafarcloud_1_1_planner_helper_a9e30602a3e1dad2d47e2cce77a70e9b2}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!DEG2RAD@{DEG2RAD}}
+\index{DEG2RAD@{DEG2RAD}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{DEG2RAD}{DEG2RAD}}
+{\footnotesize\ttfamily const double afarcloud\+::\+Planner\+Helper\+::\+DEG2\+RAD = pi / 180.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8h_source_l00092}{92}} of file \mbox{\hyperlink{_planner_helper_8h_source}{Planner\+Helper.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_a232a38ba1f79cb578bc66a3d92b88bcd}\label{classafarcloud_1_1_planner_helper_a232a38ba1f79cb578bc66a3d92b88bcd}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!EARTH\_MEAN\_RADIUS@{EARTH\_MEAN\_RADIUS}}
+\index{EARTH\_MEAN\_RADIUS@{EARTH\_MEAN\_RADIUS}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{EARTH\_MEAN\_RADIUS}{EARTH\_MEAN\_RADIUS}}
+{\footnotesize\ttfamily const double afarcloud\+::\+Planner\+Helper\+::\+EARTH\+\_\+\+MEAN\+\_\+\+RADIUS = 6371000.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8h_source_l00094}{94}} of file \mbox{\hyperlink{_planner_helper_8h_source}{Planner\+Helper.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_helper_a93a822969a60c67812e1e084c78e3131}\label{classafarcloud_1_1_planner_helper_a93a822969a60c67812e1e084c78e3131}} 
+\index{afarcloud::PlannerHelper@{afarcloud::PlannerHelper}!RAD2DEG@{RAD2DEG}}
+\index{RAD2DEG@{RAD2DEG}!afarcloud::PlannerHelper@{afarcloud::PlannerHelper}}
+\doxysubsubsection{\texorpdfstring{RAD2DEG}{RAD2DEG}}
+{\footnotesize\ttfamily const double afarcloud\+::\+Planner\+Helper\+::\+RAD2\+DEG = 180.\+0 / pi\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_helper_8h_source_l00093}{93}} of file \mbox{\hyperlink{_planner_helper_8h_source}{Planner\+Helper.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Planner\+Helper.\+h\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Planner\+Helper.\+cpp\end{DoxyCompactItemize}

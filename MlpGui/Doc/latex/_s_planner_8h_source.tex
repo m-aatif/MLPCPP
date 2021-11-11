@@ -1,0 +1,90 @@
+\hypertarget{_s_planner_8h_source}{}\doxysection{SPlanner.\+h}
+\label{_s_planner_8h_source}\index{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/SPlanner.h@{C:/Users/THRIFT/source/repos/ROOT\_AFAR\_CLOUD/MlpCommon/SPlanner.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00001}00001 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00004}00004 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00006}00006 \textcolor{preprocessor}{\#include "{}Planner.h"{}}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00007}00007 \textcolor{preprocessor}{\#include <boost/numeric/ublas/matrix.hpp>}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00010}00010 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00011}00011 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00012}00012 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00014}00014 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00015}00015 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacegeon}{geon}};}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00017}00017 \textcolor{keyword}{namespace }afarcloud}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00018}00018 \{}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00019}00019     \textcolor{keyword}{typedef} map<int32\_t, aRectangle> rectangleMap;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00020}00020     \textcolor{keyword}{typedef} std::vector<size\_t> tagVec;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00022}\mbox{\hyperlink{classafarcloud_1_1_s_node}{00022}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00023}00023     \{}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00024}00024     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00025}00025         \mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}}() \{ m\_origin = aPoint(0, 0); m\_cost = 0.0; m\_parentIndex = -\/1; \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00026}00026         \mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}}(aPoint origin, \textcolor{keywordtype}{double} cost, \textcolor{keywordtype}{int} parentIndex) \{}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00027}00027             m\_origin = origin; m\_cost = cost; m\_parentIndex = parentIndex;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00028}00028         \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00029}00029         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} cost()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_cost; \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00030}00030         \textcolor{keyword}{inline} int32\_t parentIndex()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_parentIndex; \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00031}00031         \textcolor{keyword}{inline} aPoint origin()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_origin; \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00032}00032         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} x()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_origin.x(); \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00033}00033         \textcolor{keyword}{inline} \textcolor{keywordtype}{double} y()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_origin.y(); \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00035}00035         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setCost(\textcolor{keywordtype}{double} cost) \{ m\_cost = cost; \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00036}00036         \textcolor{keyword}{inline} \textcolor{keywordtype}{void} setParentIndex(int32\_t index) \{ m\_parentIndex = index; \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00037}00037     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00038}00038         \textcolor{keywordtype}{double} m\_cost;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00039}00039         aPoint m\_origin;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00040}00040         \textcolor{keywordtype}{int} m\_parentIndex;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00041}00041     \};}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00043}00043     \textcolor{keyword}{typedef} map<int32\_t, SNode> snodeMap;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00045}\mbox{\hyperlink{classafarcloud_1_1_s_planner}{00045}}     \textcolor{keyword}{class }\mbox{\hyperlink{classafarcloud_1_1_s_planner}{SPlanner}} : \textcolor{keyword}{public} \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00046}00046     \{}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00047}00047     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00048}00048         \mbox{\hyperlink{classafarcloud_1_1_s_planner_a28d0ba1b963dfc355b0dc71b4c18da36}{SPlanner}}();}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00049}00049         \mbox{\hyperlink{classafarcloud_1_1_s_planner_a28d0ba1b963dfc355b0dc71b4c18da36}{SPlanner}}(aPoint ptStart, aPoint ptEnd, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, \textcolor{keywordtype}{double} resolution);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00050}00050         \textcolor{keywordtype}{void} init(aPoint ptStart, aPoint ptEnd, rectangleVec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectField, \textcolor{keywordtype}{double} resolution);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00051}00051         \mbox{\hyperlink{classafarcloud_1_1_s_planner}{\string~SPlanner}}();}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00052}00052         pointVec \mbox{\hyperlink{classafarcloud_1_1_s_planner_a662659ec1402ac0a75b2fc898724411d}{plan}}();}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00053}00053         \textcolor{keyword}{static} \textcolor{keywordtype}{int} m\_logNumber;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00055}00055     \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00056}00056         int32\_t getOpenSetLowestCostIndex(\mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} goalNode);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00057}00057         int32\_t calcGridIndex(\mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} node);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00058}00058         \textcolor{keywordtype}{double} calcHeuristic(\mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} node1, \mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} node2);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00059}00059         \textcolor{keywordtype}{bool} verifyNode(\mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} node, \mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} current);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00060}00060         \textcolor{keywordtype}{bool} collides(\mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} baseNode, \mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} nearNode);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00061}00061         \textcolor{keywordtype}{bool} collides(aPoint p1, aPoint p2);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00062}00062         pointVec calcFinalPath(\mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} goalNode);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00063}00063         \textcolor{keywordtype}{void} logClosedSet(\mbox{\hyperlink{classafarcloud_1_1_s_node}{SNode}} goalNode);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00064}00064         pointVec prunePath(pointVec path);}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00066}00066         aPoint m\_pointStart, m\_pointGoal;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00067}00067         rectangleVec m\_obstacles;   \textcolor{comment}{/*Forbidden areas as they are.*/}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00068}00068         \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} m\_rectField;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00069}00069         \textcolor{keywordtype}{double} m\_resolution;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00070}00070         \textcolor{keywordtype}{int} m\_bSetUp;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00072}00072         snodeMap m\_openSet, m\_closedSet;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00074}00074         pointVec m\_obsVertices;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00076}00076         \textcolor{keywordtype}{double} m\_min\_x;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00077}00077         \textcolor{keywordtype}{double} m\_min\_y;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00078}00078         \textcolor{keywordtype}{double} m\_max\_x;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00079}00079         \textcolor{keywordtype}{double} m\_max\_y;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00080}00080         \textcolor{keywordtype}{double} m\_width;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00081}00081         \textcolor{keywordtype}{double} m\_height;}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00082}00082     \};}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00083}00083 \}}
+\DoxyCodeLine{\Hypertarget{_s_planner_8h_source_l00084}00084 }
+
+\end{DoxyCode}

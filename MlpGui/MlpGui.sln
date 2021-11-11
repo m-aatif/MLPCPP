@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1433
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MlpGui", "MlpGui\MlpGui.vcxproj", "{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MlpGuiSetup", "MlpGuiSetup\MlpGuiSetup.vdproj", "{C4A7BD02-9ABF-4D7C-85C1-080D2BA88B8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}.Debug|x64.ActiveCfg = Debug|x64
+		{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}.Debug|x64.Build.0 = Debug|x64
+		{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}.Debug|x86.ActiveCfg = Debug|Win32
+		{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}.Debug|x86.Build.0 = Debug|Win32
+		{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}.Release|x64.ActiveCfg = Release|x64
+		{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}.Release|x64.Build.0 = Release|x64
+		{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}.Release|x86.ActiveCfg = Release|Win32
+		{1993A0BD-27E6-4A44-98BA-308C0D5BCA0D}.Release|x86.Build.0 = Release|Win32
+		{C4A7BD02-9ABF-4D7C-85C1-080D2BA88B8D}.Debug|x64.ActiveCfg = Debug
+		{C4A7BD02-9ABF-4D7C-85C1-080D2BA88B8D}.Debug|x86.ActiveCfg = Debug
+		{C4A7BD02-9ABF-4D7C-85C1-080D2BA88B8D}.Release|x64.ActiveCfg = Release
+		{C4A7BD02-9ABF-4D7C-85C1-080D2BA88B8D}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A902C1D-791E-4385-94A2-E5F9F3E15C93}
+	EndGlobalSection
+EndGlobal

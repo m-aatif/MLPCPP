@@ -1,0 +1,1818 @@
+\hypertarget{_mlp_gui_dlg_8cpp_source}{}\doxysection{Mlp\+Gui\+Dlg.\+cpp}
+\label{_mlp_gui_dlg_8cpp_source}\index{MlpGui/MlpGuiDlg.cpp@{MlpGui/MlpGuiDlg.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00002}00002 \textcolor{comment}{// MlpGuiDlg.cpp : implementation file}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00003}00003 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include "{}pch.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include "{}framework.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include "{}MlpGui.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include "{}MlpGuiDlg.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00009}00009 \textcolor{preprocessor}{\#include "{}afxdialogex.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00010}00010 \textcolor{preprocessor}{\#include "{}WinMessages.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00011}00011 \textcolor{preprocessor}{\#include "{}Configurator.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00012}00012 \textcolor{preprocessor}{\#include "{}CoveragePlanner.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00013}00013 \textcolor{preprocessor}{\#include "{}AStarPlanner.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00015}00015 \textcolor{preprocessor}{\#ifdef \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00016}00016 \textcolor{preprocessor}{\#define new DEBUG\_NEW}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00017}00017 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00019}00019 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacegeon}{geon}};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00021}00021 \textcolor{preprocessor}{\#define IDC\_ENABLE\_BUTTONS          1900}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00022}00022 \textcolor{preprocessor}{\#define IDC\_PUSH\_BUTTONS            1950}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00023}00023 \textcolor{preprocessor}{\#define IDC\_HOME\_BUTTONS\_BASE       2000}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00024}00024 \textcolor{preprocessor}{\#define IDC\_VEHICLE\_BUTTONS\_BASE    2100}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00025}00025 \textcolor{preprocessor}{\#define IDC\_TASK\_BUTTONS\_BASE       2200}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00026}00026 \textcolor{preprocessor}{\#define IDC\_PATH\_BUTTONS\_BASE       2300}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00027}00027 \textcolor{preprocessor}{\#define IDC\_PATH\_RADIOBUTTONS\_BASE  2400}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00028}00028 \textcolor{preprocessor}{\#define IDC\_EDITS\_BASE              2500}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00029}00029 \textcolor{preprocessor}{\#define IDC\_LABELS\_BASE             2600}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00031}00031 \textcolor{preprocessor}{\#define ID\_OFS\_CURRENT\_WAYPOINT\_NR  0}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00032}00032 \textcolor{preprocessor}{\#define ID\_OFS\_CURRENT\_WAYPOINT\_LON 1}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00033}00033 \textcolor{preprocessor}{\#define ID\_OFS\_CURRENT\_WAYPOINT\_LAT 2}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00034}00034 \textcolor{preprocessor}{\#define ID\_OFS\_TASK\_NAME            3}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00035}00035 \textcolor{preprocessor}{\#define ID\_OFS\_TASK\_ID              4}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00037}00037 \textcolor{preprocessor}{\#define COL1\_W              40}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00038}00038 \textcolor{preprocessor}{\#define COL2\_W              160}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00039}00039 \textcolor{preprocessor}{\#define COL3\_W              30}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00040}00040 \textcolor{preprocessor}{\#define COL4\_W              160}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00042}00042 \textcolor{preprocessor}{\#define COL1\_OFS\_X          (COL1\_W+COL2\_W+COL3\_W+COL4\_W+GAP\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00043}00043 \textcolor{preprocessor}{\#define COL2\_OFS\_X          (COL2\_W+COL3\_W+COL4\_W+GAP\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00044}00044 \textcolor{preprocessor}{\#define COL3\_OFS\_X          (COL3\_W+COL4\_W)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00045}00045 \textcolor{preprocessor}{\#define COL4\_OFS\_X          (COL4\_W)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00047}00047 \textcolor{preprocessor}{\#define GAP\_X               10}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00048}00048 \textcolor{preprocessor}{\#define GAP\_Y               40}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00049}00049 \textcolor{preprocessor}{\#define OFS\_Y               10}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00051}00051 \textcolor{preprocessor}{\#define WIDTH\_CHECKBOXES    COL2\_W}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00052}00052 \textcolor{preprocessor}{\#define WIDTH\_LABELS        COL1\_W}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00053}00053 \textcolor{preprocessor}{\#define WIDTH\_PUSHBUTTONS   ((COL2\_W -\/ GAP\_X)/2)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00054}00054 \textcolor{preprocessor}{\#define WIDTH\_RADIOBUTTONS  (COL3\_W)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00055}00055 \textcolor{preprocessor}{\#define WIDTH\_EDITS         (COL2\_W)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00056}00056 \textcolor{preprocessor}{\#define HEIGHT\_CONTROLS     30}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00058}00058 \textcolor{preprocessor}{\#define MASTER\_ENABLE\_OFS\_X (COL2\_OFS\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00059}00059 \textcolor{preprocessor}{\#define BTN\_BWD\_X           (COL2\_OFS\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00060}00060 \textcolor{preprocessor}{\#define BTN\_FWD\_X           (BTN\_BWD\_X -\/ WIDTH\_PUSHBUTTONS -\/ GAP\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00061}00061 \textcolor{preprocessor}{\#define BTNS\_BASE\_Y         (OFS\_Y + 3 * GAP\_Y)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00063}00063 \textcolor{preprocessor}{\#define EDITS\_OFS\_X         (COL2\_OFS\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00064}00064 \textcolor{preprocessor}{\#define EDITS\_BASE\_Y        (OFS\_Y + 4 * GAP\_Y)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00066}00066 \textcolor{preprocessor}{\#define LABELS\_OFS\_X        (COL1\_OFS\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00067}00067 \textcolor{preprocessor}{\#define LABELS\_BASE\_Y       (EDITS\_BASE\_Y)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00069}00069 \textcolor{preprocessor}{\#define RADIO\_BUTTON\_OFS\_X  (COL3\_OFS\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00070}00070 \textcolor{preprocessor}{\#define CHECK\_BUTTON\_OFS\_X  (COL4\_OFS\_X)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00072}00072 DWORD   WINAPI  lpfnMlpServerFun(\mbox{\hyperlink{class_c_mlp_gui_dlg}{CMlpGuiDlg}}* pDlg)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00073}00073 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00074}00074     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00075}00075     s.Format(\_T(\textcolor{stringliteral}{"{}Starting the MLP server (\%d) ..."{}}), pDlg-\/>GetPort());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00076}00076     pDlg-\/>SetDlgItemText(IDC\_STATUS, s);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00078}00078     pDlg-\/>GetServer()-\/>serve();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00080}00080     pDlg-\/>SetDlgItemText(IDC\_STATUS, \_T(\textcolor{stringliteral}{"{}Server stopped"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00082}00082     \textcolor{keywordflow}{return} 0L;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00083}00083 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00085}00085 \textcolor{keywordtype}{void} CMlpGuiDlg::OnMissionCheckboxClicked(UINT nID)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00086}00086 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00087}00087     RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00088}00088 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00090}00090 \textcolor{keywordtype}{void} CMlpGuiDlg::OnMissionCheckboxEnableAll()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00091}00091 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00092}00092     UINT checked = IsDlgButtonChecked(IDC\_ENABLE\_BUTTONS);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00093}00093     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_pCheckBoxVectorA.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00094}00094         m\_pCheckBoxVectorA[n]-\/>SetCheck(checked);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00095}00095     CheckDlgButton(IDC\_ENABLE\_BUTTONS + 1, checked);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00096}00096     CheckDlgButton(IDC\_ENABLE\_BUTTONS + 2, checked);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00097}00097     RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00098}00098 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00100}00100 \textcolor{keywordtype}{void} CMlpGuiDlg::OnMissionCheckboxEnableTasks()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00101}00101 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00102}00102     UINT checked = IsDlgButtonChecked(IDC\_ENABLE\_BUTTONS + 1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00103}00103     \textcolor{keywordflow}{for} (UINT n = 0; n < m\_rcTasks.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00104}00104         CheckDlgButton(IDC\_TASK\_BUTTONS\_BASE + n, checked);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00105}00105     RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00106}00106 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00108}00108 \textcolor{keywordtype}{void} CMlpGuiDlg::OnMissionCheckboxEnablePaths()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00109}00109 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00110}00110     UINT checked = IsDlgButtonChecked(IDC\_ENABLE\_BUTTONS + 2);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00111}00111     \textcolor{keywordflow}{for} (UINT n = 0; n < m\_ptPaths.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00112}00112         CheckDlgButton(IDC\_PATH\_BUTTONS\_BASE + n, checked);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00113}00113     RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00114}00114 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00116}00116 \textcolor{keywordtype}{void} CMlpGuiDlg::OnBwdButtonClicked()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00117}00117 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00118}00118     \textcolor{keywordflow}{if} (m\_currentWaypoint > 0)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00119}00119     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00120}00120         m\_currentWaypoint-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00121}00121         m\_pPushButtonVector[1]-\/>EnableWindow(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00122}00122         \textcolor{keywordflow}{if} (m\_currentWaypoint == 0)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00123}00123             m\_pPushButtonVector[0]-\/>EnableWindow(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00124}00124         RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00125}00125     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00126}00126 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00128}00128 \textcolor{keywordtype}{void} CMlpGuiDlg::OnFwdButtonClicked()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00129}00129 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00130}00130     \textcolor{keywordflow}{if} (m\_currentWaypoint < m\_aPaths[m\_currentPathSelected].size() -\/ 1)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00131}00131     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00132}00132         m\_currentWaypoint++;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00133}00133         m\_pPushButtonVector[0]-\/>EnableWindow(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00134}00134         \textcolor{keywordflow}{if} (m\_currentWaypoint == m\_aPaths[m\_currentPathSelected].size() -\/ 1)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00135}00135             m\_pPushButtonVector[1]-\/>EnableWindow(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00136}00136         RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00137}00137     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00138}00138 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00139}00139 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00140}00140 \textcolor{keywordtype}{void} CMlpGuiDlg::OnPathRadioButtonClicked(UINT nID)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00141}00141 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00142}00142     m\_pPushButtonVector[0]-\/>EnableWindow(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00143}00143     m\_pPushButtonVector[1]-\/>EnableWindow(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00144}00144     m\_currentPathSelected = nID -\/ IDC\_PATH\_RADIOBUTTONS\_BASE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00145}00145     m\_currentWaypoint = 0;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00146}00146     \textcolor{keywordtype}{string} taskType = \_TaskType\_VALUES\_TO\_NAMES.at(m\_pTaskStructVector[m\_currentPathSelected]-\/>taskType);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00147}00147     std::wstring widestr = std::wstring(taskType.begin(), taskType.end());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00148}00148     SetDlgItemText(IDC\_EDITS\_BASE + 3, widestr.c\_str());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00149}00149     SetDlgItemInt(IDC\_EDITS\_BASE + 4, m\_pTaskStructVector[m\_currentPathSelected]-\/>\textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00150}00150     RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00151}00151 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00152}00152 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00153}00153 \textcolor{comment}{// CAboutDlg dialog used for App About}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00154}00154 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00155}\mbox{\hyperlink{class_c_about_dlg}{00155}} \textcolor{keyword}{class }\mbox{\hyperlink{class_c_about_dlg}{CAboutDlg}} : \textcolor{keyword}{public} CDialogEx}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00156}00156 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00157}00157 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00158}00158     \mbox{\hyperlink{class_c_about_dlg}{CAboutDlg}}();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00160}00160 \textcolor{comment}{// Dialog Data}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00161}00161 \textcolor{preprocessor}{\#ifdef AFX\_DESIGN\_TIME}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00162}00162     \textcolor{keyword}{enum} \{ IDD = IDD\_ABOUTBOX \};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00163}00163 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00164}00164 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00165}00165     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00166}00166     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} DoDataExchange(CDataExchange* pDX);    \textcolor{comment}{// DDX/DDV support}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00168}00168 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00169}00169 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00170}00170     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00171}00171 \};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00172}00172 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00173}00173 CAboutDlg::CAboutDlg() : CDialogEx(IDD\_ABOUTBOX)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00174}00174 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00175}00175 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00176}00176 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00177}00177 \textcolor{keywordtype}{void} CAboutDlg::DoDataExchange(CDataExchange* pDX)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00178}00178 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00179}00179     CDialogEx::DoDataExchange(pDX);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00180}00180 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00181}00181 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00182}00182 BEGIN\_MESSAGE\_MAP(\mbox{\hyperlink{class_c_about_dlg}{CAboutDlg}}, CDialogEx)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00183}00183 END\_MESSAGE\_MAP()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00184}00184 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00185}00185 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00186}00186 \textcolor{comment}{// CMlpGuiDlg dialog}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00187}00187 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00188}00188 void \mbox{\hyperlink{class_c_mlp_gui_dlg}{CMlpGuiDlg}}::ClearData()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00189}00189 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00190}00190     m\_bRefAreaReceived = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00191}00191 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00192}00192     m\_aObstacles.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00193}00193     m\_aHome.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00194}00194     m\_aVehicles.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00195}00195     m\_aTasks.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00196}00196     m\_aPaths.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00197}00197     m\_aPath.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00198}00198 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00199}00199     m\_rcObstacles.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00200}00200     m\_ptHome.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00201}00201     m\_ptVehicles.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00202}00202     m\_rcTasks.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00203}00203     m\_ptPaths.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00204}00204     m\_ptPath.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00205}00205 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00206}00206     m\_scalingFactor = 1.0;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00207}00207     m\_posShift = 0.0;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00208}00208 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00209}00209     m\_currentPathSelected = -\/1;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00210}00210     m\_currentWaypoint = 0;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00211}00211 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00212}00212     m\_missionStatus = -\/1;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00213}00213 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00214}00214 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00215}00215 CMlpGuiDlg::CMlpGuiDlg(LPTSTR lpCmdLine, CWnd* pParent \textcolor{comment}{/*=nullptr*/})}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00216}00216     : CDialog(IDD\_MLPGUI\_DIALOG, pParent)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00217}00217 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00218}00218     m\_hIcon = AfxGetApp()-\/>LoadIcon(IDI\_MLP);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00219}00219 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00220}00220     CreateResources();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00221}00221 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00222}00222     ClearData();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00223}00223 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00224}00224     Configurator::checkConfigurationFolders();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00225}00225 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00226}00226     CString sCmdLine = lpCmdLine;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00227}00227     m\_bTest = !(sCmdLine.CompareNoCase(\_T(\textcolor{stringliteral}{"{}/test"{}})));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00228}00228 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00229}00229 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00230}00230 \textcolor{keywordtype}{void} CMlpGuiDlg::DoDataExchange(CDataExchange* pDX)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00231}00231 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00232}00232     CDialog::DoDataExchange(pDX);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00233}00233 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00234}00234 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00235}00235 BEGIN\_MESSAGE\_MAP(\mbox{\hyperlink{class_c_mlp_gui_dlg}{CMlpGuiDlg}}, CDialog)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00236}00236     ON\_CONTROL\_RANGE(BN\_CLICKED, IDC\_HOME\_BUTTONS\_BASE, IDC\_HOME\_BUTTONS\_BASE + 99, OnMissionCheckboxClicked)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00237}00237     ON\_CONTROL\_RANGE(BN\_CLICKED, IDC\_VEHICLE\_BUTTONS\_BASE, IDC\_VEHICLE\_BUTTONS\_BASE + 99, OnMissionCheckboxClicked)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00238}00238     ON\_CONTROL\_RANGE(BN\_CLICKED, IDC\_TASK\_BUTTONS\_BASE, IDC\_TASK\_BUTTONS\_BASE + 99, OnMissionCheckboxClicked)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00239}00239     ON\_CONTROL\_RANGE(BN\_CLICKED, IDC\_PATH\_BUTTONS\_BASE, IDC\_PATH\_BUTTONS\_BASE + 99, OnMissionCheckboxClicked)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00240}00240     ON\_CONTROL\_RANGE(BN\_CLICKED, IDC\_PATH\_RADIOBUTTONS\_BASE, IDC\_PATH\_RADIOBUTTONS\_BASE + 99, OnPathRadioButtonClicked)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00241}00241     ON\_BN\_CLICKED(IDC\_ENABLE\_BUTTONS, \&CMlpGuiDlg::OnMissionCheckboxEnableAll)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00242}00242     ON\_BN\_CLICKED(IDC\_ENABLE\_BUTTONS + 1, \&CMlpGuiDlg::OnMissionCheckboxEnableTasks)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00243}00243     ON\_BN\_CLICKED(IDC\_ENABLE\_BUTTONS + 2, \&CMlpGuiDlg::OnMissionCheckboxEnablePaths)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00244}00244     ON\_BN\_CLICKED(IDC\_PUSH\_BUTTONS, \&CMlpGuiDlg::OnBwdButtonClicked)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00245}00245     ON\_BN\_CLICKED(IDC\_PUSH\_BUTTONS + 1, \&CMlpGuiDlg::OnFwdButtonClicked)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00246}00246     ON\_WM\_SYSCOMMAND()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00247}00247     ON\_WM\_PAINT()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00248}00248     ON\_WM\_QUERYDRAGICON()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00249}00249 \textcolor{comment}{//  ON\_BN\_CLICKED(IDC\_BUTTON1, \&CMlpGuiDlg::OnBnClickedButton1)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00250}00250     ON\_WM\_CLOSE()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00251}00251 \textcolor{comment}{//  ON\_WM\_DESTROY()}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00252}00252     ON\_WM\_SIZE()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00253}00253     ON\_WM\_DESTROY()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00254}00254     ON\_WM\_CTLCOLOR()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00255}00255 END\_MESSAGE\_MAP()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00256}00256 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00257}00257 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00258}00258 \textcolor{comment}{// CMlpGuiDlg message handlers}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00259}00259 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_c_mlp_gui_dlg}{CMlpGuiDlg}}::CreateResources()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00260}00260 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00261}00261     m\_brClientArea.CreateSolidBrush(RGB(83, 145, 227));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00262}00262     m\_brRandArea.CreateSolidBrush(RGB(235, 151, 75));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00263}00263     m\_brNavArea.CreateSolidBrush(RGB(0, 230, 57));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00264}00264     m\_brForbiddenArea.CreateSolidBrush(RGB(255, 0, 0));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00265}00265     m\_brHomePos.CreateSolidBrush(RGB(255, 0, 255));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00266}00266     m\_brVehiclePos.CreateSolidBrush(RGB(255, 255, 255));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00267}00267     m\_brTaskArea.CreateSolidBrush(RGB(0, 0, 255));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00268}00268 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00269}00269     m\_brRed.CreateSolidBrush(RGB(255, 0, 0));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00270}00270     m\_brGreen.CreateSolidBrush(RGB(0, 255, 0));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00271}00271 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00272}00272 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00273}00273 \textcolor{keywordtype}{void} CMlpGuiDlg::DestroyResources()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00274}00274 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00275}00275     m\_brClientArea.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00276}00276     m\_brRandArea.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00277}00277     m\_brNavArea.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00278}00278     m\_brForbiddenArea.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00279}00279     m\_brHomePos.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00280}00280     m\_brVehiclePos.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00281}00281     m\_brTaskArea.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00282}00282     }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00283}00283     m\_brRed.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00284}00284     m\_brGreen.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00285}00285 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00286}00286 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00287}00287 BOOL CMlpGuiDlg::OnInitDialog()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00288}00288 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00289}00289     CDialog::OnInitDialog();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00290}00290 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00291}00291     \textcolor{comment}{// Add "{}About..."{} menu item to system menu.}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00292}00292 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00293}00293     \textcolor{comment}{// IDM\_ABOUTBOX must be in the system command range.}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00294}00294     ASSERT((IDM\_ABOUTBOX \& 0xFFF0) == IDM\_ABOUTBOX);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00295}00295     ASSERT(IDM\_ABOUTBOX < 0xF000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00296}00296 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00297}00297     CMenu* pSysMenu = GetSystemMenu(FALSE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00298}00298     \textcolor{keywordflow}{if} (pSysMenu != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00299}00299     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00300}00300         BOOL bNameValid;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00301}00301         CString strAboutMenu;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00302}00302         bNameValid = strAboutMenu.LoadString(IDS\_ABOUTBOX);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00303}00303         ASSERT(bNameValid);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00304}00304         \textcolor{keywordflow}{if} (!strAboutMenu.IsEmpty())}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00305}00305         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00306}00306             pSysMenu-\/>AppendMenu(MF\_SEPARATOR);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00307}00307             pSysMenu-\/>AppendMenu(MF\_STRING, IDM\_ABOUTBOX, strAboutMenu);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00308}00308         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00309}00309     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00310}00310 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00311}00311     \textcolor{comment}{// Set the icon for this dialog.  The framework does this automatically}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00312}00312     \textcolor{comment}{//  when the application's main window is not a dialog}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00313}00313     SetIcon(m\_hIcon, TRUE);         \textcolor{comment}{// Set big icon}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00314}00314     SetIcon(m\_hIcon, FALSE);        \textcolor{comment}{// Set small icon}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00315}00315 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00316}00316     ShowWindow(SW\_MAXIMIZE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00317}00317 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00318}00318     StartMlpServer();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00319}00319 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00320}00320     \textcolor{keywordflow}{if} (m\_bTest)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00321}00321         PrepareTestMission();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00322}00322 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00323}00323     \textcolor{keywordflow}{return} TRUE;  \textcolor{comment}{// return TRUE  unless you set the focus to a control}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00324}00324 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00325}00325 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00326}00326 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateMasterEnableButton()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00327}00327 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00328}00328     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00329}00329     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00330}00330     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00331}00331 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00332}00332     s = \_T(\textcolor{stringliteral}{"{}Enable all"{}});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00333}00333     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00334}00334     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00335}00335     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00336}00336         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_AUTOCHECKBOX | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00337}00337         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00338}00338             rcDlg.Width() -\/ MASTER\_ENABLE\_OFS\_X, OFS\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00339}00339             rcDlg.Width() -\/ MASTER\_ENABLE\_OFS\_X + WIDTH\_CHECKBOXES, OFS\_Y + HEIGHT\_CONTROLS}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00340}00340         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00341}00341         pButton-\/>Create(s, style, rc, \textcolor{keyword}{this}, IDC\_ENABLE\_BUTTONS);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00342}00342         pButton-\/>SetCheck(BST\_CHECKED);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00343}00343         pButton-\/>SetFont(this-\/>GetFont());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00344}00344         m\_pCheckBoxVectorB.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00345}00345     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00346}00346     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00347}00347         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating enable button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00348}00348 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00349}00349 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00350}00350 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateEnableTaskButton()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00351}00351 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00352}00352     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00353}00353     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00354}00354     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00355}00355 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00356}00356     \textcolor{keywordtype}{size\_t} nButtons = m\_pCheckBoxVectorB.size();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00357}00357 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00358}00358     s = \_T(\textcolor{stringliteral}{"{}Enable tasks"{}});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00359}00359     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00360}00360     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00361}00361     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00362}00362         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_AUTOCHECKBOX | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00363}00363         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00364}00364             rcDlg.Width() -\/ MASTER\_ENABLE\_OFS\_X, OFS\_Y + nButtons * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00365}00365             rcDlg.Width() -\/ MASTER\_ENABLE\_OFS\_X + WIDTH\_CHECKBOXES, OFS\_Y + HEIGHT\_CONTROLS + nButtons * GAP\_Y}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00366}00366         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00367}00367         pButton-\/>Create(s, style, rc, \textcolor{keyword}{this}, IDC\_ENABLE\_BUTTONS + 1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00368}00368         pButton-\/>SetCheck(BST\_CHECKED);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00369}00369         pButton-\/>SetFont(this-\/>GetFont());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00370}00370         m\_pCheckBoxVectorB.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00371}00371     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00372}00372     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00373}00373         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating enable button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00374}00374 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00375}00375 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00376}00376 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateEnablePathButton()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00377}00377 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00378}00378     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00379}00379     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00380}00380     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00381}00381 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00382}00382     \textcolor{keywordtype}{size\_t} nButtons = m\_pCheckBoxVectorB.size();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00383}00383 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00384}00384     s = \_T(\textcolor{stringliteral}{"{}Enable paths"{}});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00385}00385     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00386}00386     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00387}00387     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00388}00388         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_AUTOCHECKBOX | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00389}00389         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00390}00390             rcDlg.Width() -\/ MASTER\_ENABLE\_OFS\_X, OFS\_Y + nButtons * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00391}00391             rcDlg.Width() -\/ MASTER\_ENABLE\_OFS\_X + WIDTH\_CHECKBOXES, OFS\_Y + HEIGHT\_CONTROLS + nButtons * GAP\_Y}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00392}00392         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00393}00393         pButton-\/>Create(s, style, rc, \textcolor{keyword}{this}, IDC\_ENABLE\_BUTTONS + 2);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00394}00394         pButton-\/>SetCheck(BST\_CHECKED);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00395}00395         pButton-\/>SetFont(this-\/>GetFont());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00396}00396         m\_pCheckBoxVectorB.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00397}00397     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00398}00398     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00399}00399         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating enable button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00400}00400 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00401}00401 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00402}00402 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateBwdButton()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00403}00403 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00404}00404     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00405}00405     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00406}00406 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00407}00407     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00408}00408     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00409}00409     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00410}00410         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_PUSHBUTTON | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00411}00411         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00412}00412             rcDlg.Width() -\/ BTN\_BWD\_X, BTNS\_BASE\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00413}00413             rcDlg.Width() -\/ BTN\_BWD\_X + WIDTH\_PUSHBUTTONS, BTNS\_BASE\_Y + HEIGHT\_CONTROLS}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00414}00414         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00415}00415         pButton-\/>Create(\_T(\textcolor{stringliteral}{"{}<"{}}), style, rc, \textcolor{keyword}{this}, IDC\_PUSH\_BUTTONS);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00416}00416         pButton-\/>EnableWindow(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00417}00417         m\_pPushButtonVector.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00418}00418     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00419}00419     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00420}00420         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating bwd button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00421}00421 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00422}00422 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00423}00423 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateFwdButton()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00424}00424 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00425}00425     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00426}00426     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00427}00427 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00428}00428     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00429}00429     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00430}00430     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00431}00431         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_PUSHBUTTON | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00432}00432         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00433}00433             rcDlg.Width() -\/ BTN\_FWD\_X, BTNS\_BASE\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00434}00434             rcDlg.Width() -\/ BTN\_FWD\_X + WIDTH\_PUSHBUTTONS, BTNS\_BASE\_Y + HEIGHT\_CONTROLS}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00435}00435         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00436}00436         pButton-\/>Create(\_T(\textcolor{stringliteral}{"{}>"{}}), style, rc, \textcolor{keyword}{this}, IDC\_PUSH\_BUTTONS + 1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00437}00437         pButton-\/>EnableWindow(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00438}00438         m\_pPushButtonVector.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00439}00439     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00440}00440     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00441}00441         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating fwd button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00442}00442 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00443}00443 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00444}00444 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateEdit(WPARAM ofsId)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00445}00445 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00446}00446     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00447}00447     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00448}00448 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00449}00449     CEdit *pEdit = \textcolor{keyword}{new} CEdit();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00450}00450     \textcolor{keywordflow}{if} (pEdit)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00451}00451     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00452}00452         UINT style = WS\_CHILD | WS\_VISIBLE | ES\_CENTER | ES\_READONLY | WS\_TABSTOP | WS\_BORDER;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00453}00453         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00454}00454             rcDlg.Width() -\/ EDITS\_OFS\_X, EDITS\_BASE\_Y + ofsId * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00455}00455             rcDlg.Width() -\/ EDITS\_OFS\_X + WIDTH\_EDITS, EDITS\_BASE\_Y + ofsId * GAP\_Y + HEIGHT\_CONTROLS}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00456}00456         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00457}00457         pEdit-\/>Create(style, rc, \textcolor{keyword}{this}, IDC\_EDITS\_BASE + ofsId);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00458}00458         pEdit-\/>SetFont(this-\/>GetFont());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00459}00459         m\_pEditVector.push\_back(pEdit);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00460}00460     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00461}00461     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00462}00462         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating edit ctrl"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00463}00463 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00464}00464 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00465}00465 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateLabel(WPARAM ofsId, LPCTSTR label)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00466}00466 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00467}00467     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00468}00468     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00469}00469 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00470}00470     CStatic *pLabel = \textcolor{keyword}{new} CStatic();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00471}00471     \textcolor{keywordflow}{if} (pLabel)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00472}00472     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00473}00473         UINT style = WS\_CHILD | WS\_VISIBLE | SS\_LEFT | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00474}00474         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00475}00475             rcDlg.Width() -\/ LABELS\_OFS\_X, LABELS\_BASE\_Y + ofsId * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00476}00476             rcDlg.Width() -\/ LABELS\_OFS\_X + WIDTH\_LABELS, LABELS\_BASE\_Y + ofsId * GAP\_Y + HEIGHT\_CONTROLS}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00477}00477         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00478}00478         pLabel-\/>Create(label, style, rc, \textcolor{keyword}{this}, IDC\_LABELS\_BASE + ofsId);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00479}00479         pLabel-\/>SetFont(this-\/>GetFont());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00480}00480         m\_pLabelVector.push\_back(pLabel);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00481}00481     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00482}00482     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00483}00483         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating static ctrl"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00484}00484 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00485}00485 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00486}00486 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateHomeButton(WPARAM \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00487}00487 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00488}00488     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00489}00489     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00490}00490     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00491}00491 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00492}00492     \textcolor{keywordtype}{size\_t} nButtons = m\_pCheckBoxVectorA.size();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00493}00493 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00494}00494     s.Format(\_T(\textcolor{stringliteral}{"{}Home \%d"{}}), \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00495}00495     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00496}00496     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00497}00497     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00498}00498         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_AUTOCHECKBOX | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00499}00499         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00500}00500             rcDlg.Width() -\/ CHECK\_BUTTON\_OFS\_X, OFS\_Y + nButtons * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00501}00501             rcDlg.Width() -\/ CHECK\_BUTTON\_OFS\_X + WIDTH\_CHECKBOXES, OFS\_Y + HEIGHT\_CONTROLS + nButtons * GAP\_Y}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00502}00502         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00503}00503         pButton-\/>Create(s, style, rc, \textcolor{keyword}{this}, IDC\_HOME\_BUTTONS\_BASE + \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00504}00504         pButton-\/>SetCheck(BST\_CHECKED);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00505}00505         m\_pCheckBoxVectorA.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00506}00506     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00507}00507     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00508}00508         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating home button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00509}00509 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00510}00510 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00511}00511 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateVehicleButton(WPARAM \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00512}00512 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00513}00513     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00514}00514     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00515}00515     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00516}00516 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00517}00517     \textcolor{keywordtype}{size\_t} nButtons = m\_pCheckBoxVectorA.size();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00518}00518 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00519}00519     s.Format(\_T(\textcolor{stringliteral}{"{}Vehicle \%d"{}}), \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00520}00520     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00521}00521     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00522}00522     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00523}00523         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_AUTOCHECKBOX | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00524}00524         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00525}00525             rcDlg.Width() -\/ CHECK\_BUTTON\_OFS\_X, OFS\_Y + nButtons * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00526}00526             rcDlg.Width() -\/ CHECK\_BUTTON\_OFS\_X + WIDTH\_CHECKBOXES, OFS\_Y + HEIGHT\_CONTROLS + nButtons * GAP\_Y}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00527}00527         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00528}00528         pButton-\/>Create(s, style, rc, \textcolor{keyword}{this}, IDC\_VEHICLE\_BUTTONS\_BASE + \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00529}00529         pButton-\/>SetCheck(BST\_CHECKED);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00530}00530         m\_pCheckBoxVectorA.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00531}00531     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00532}00532     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00533}00533         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating vehicle button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00534}00534 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00535}00535 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00536}00536 \textcolor{keywordtype}{void} CMlpGuiDlg::CreateTaskButton(WPARAM \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00537}00537 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00538}00538     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00539}00539     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00540}00540     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00541}00541 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00542}00542     \textcolor{keywordtype}{size\_t} nButtons = m\_pCheckBoxVectorA.size();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00543}00543 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00544}00544     s.Format(\_T(\textcolor{stringliteral}{"{}Task \%d"{}}), \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00545}00545     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00546}00546     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00547}00547     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00548}00548         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_AUTOCHECKBOX | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00549}00549         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00550}00550             rcDlg.Width() -\/ CHECK\_BUTTON\_OFS\_X, OFS\_Y + nButtons * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00551}00551             rcDlg.Width() -\/ CHECK\_BUTTON\_OFS\_X + WIDTH\_CHECKBOXES, OFS\_Y + HEIGHT\_CONTROLS + nButtons * GAP\_Y}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00552}00552         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00553}00553         pButton-\/>Create(s, style, rc, \textcolor{keyword}{this}, IDC\_TASK\_BUTTONS\_BASE + \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00554}00554         pButton-\/>SetCheck(BST\_CHECKED);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00555}00555         m\_pCheckBoxVectorA.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00556}00556     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00557}00557     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00558}00558         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating task button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00559}00559 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00560}00560 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00561}00561 \textcolor{keywordtype}{void} CMlpGuiDlg::CreatePathButton(WPARAM \textcolor{keywordtype}{id}, \textcolor{keywordtype}{size\_t} items)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00562}00562 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00563}00563     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00564}00564     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00565}00565     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00566}00566 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00567}00567     \textcolor{keywordtype}{size\_t} nButtons = m\_pCheckBoxVectorA.size();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00568}00568 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00569}00569     s.Format(\_T(\textcolor{stringliteral}{"{}Path \%d [\%d]"{}}), \textcolor{keywordtype}{id}, items);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00570}00570     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00571}00571     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00572}00572     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00573}00573         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_AUTOCHECKBOX | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00574}00574         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00575}00575             rcDlg.Width() -\/ CHECK\_BUTTON\_OFS\_X, OFS\_Y + nButtons * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00576}00576             rcDlg.Width() -\/ CHECK\_BUTTON\_OFS\_X + WIDTH\_CHECKBOXES, OFS\_Y + HEIGHT\_CONTROLS + nButtons * GAP\_Y}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00577}00577         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00578}00578         pButton-\/>Create(s, style, rc, \textcolor{keyword}{this}, IDC\_PATH\_BUTTONS\_BASE + \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00579}00579         pButton-\/>SetCheck(BST\_CHECKED);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00580}00580         m\_pCheckBoxVectorA.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00581}00581     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00582}00582     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00583}00583         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating path button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00584}00584 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00585}00585 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00586}00586 \textcolor{keywordtype}{void} CMlpGuiDlg::CreatePathRadioButton(WPARAM \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00587}00587 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00588}00588     CRect rcDlg;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00589}00589     GetClientRect(rcDlg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00590}00590 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00591}00591     \textcolor{keywordtype}{size\_t} nButtons = m\_pCheckBoxVectorA.size() -\/ 1;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00592}00592 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00593}00593     CButton *pButton = \textcolor{keyword}{new} CButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00594}00594     \textcolor{keywordflow}{if} (pButton)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00595}00595     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00596}00596         UINT style = WS\_CHILD | WS\_VISIBLE | BS\_AUTORADIOBUTTON | BS\_VCENTER | WS\_TABSTOP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00597}00597         \textcolor{keywordflow}{if} (0 == \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00598}00598             style |= WS\_GROUP;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00599}00599         CRect rc(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00600}00600             rcDlg.Width() -\/ RADIO\_BUTTON\_OFS\_X, OFS\_Y + nButtons * GAP\_Y,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00601}00601             rcDlg.Width() -\/ RADIO\_BUTTON\_OFS\_X + COL3\_W, OFS\_Y + HEIGHT\_CONTROLS + nButtons * GAP\_Y}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00602}00602         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00603}00603         pButton-\/>Create(\_T(\textcolor{stringliteral}{"{}"{}}), style, rc, \textcolor{keyword}{this}, IDC\_PATH\_RADIOBUTTONS\_BASE + \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00604}00604         m\_pRadioButtonVector.push\_back(pButton);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00605}00605     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00606}00606     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00607}00607         AfxMessageBox(\_T(\textcolor{stringliteral}{"{}Error creating path radio button"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00608}00608 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00609}00609 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00610}00610 \textcolor{keywordtype}{void} CMlpGuiDlg::DestroyAllDynamicControls()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00611}00611 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00612}00612     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_pCheckBoxVectorA.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00613}00613     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00614}00614         \textcolor{keyword}{delete} m\_pCheckBoxVectorA[n];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00615}00615     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00616}00616     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_pCheckBoxVectorB.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00617}00617     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00618}00618         \textcolor{keyword}{delete} m\_pCheckBoxVectorB[n];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00619}00619     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00620}00620     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_pRadioButtonVector.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00621}00621     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00622}00622         \textcolor{keyword}{delete} m\_pRadioButtonVector[n];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00623}00623     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00624}00624     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_pPushButtonVector.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00625}00625     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00626}00626         \textcolor{keyword}{delete} m\_pPushButtonVector[n];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00627}00627     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00628}00628     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_pEditVector.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00629}00629     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00630}00630         \textcolor{keyword}{delete} m\_pEditVector[n];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00631}00631     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00632}00632     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_pLabelVector.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00633}00633     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00634}00634         \textcolor{keyword}{delete} m\_pLabelVector[n];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00635}00635     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00636}00636     m\_pCheckBoxVectorA.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00637}00637     m\_pCheckBoxVectorB.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00638}00638     m\_pRadioButtonVector.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00639}00639     m\_pPushButtonVector.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00640}00640     m\_pEditVector.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00641}00641     m\_pLabelVector.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00642}00642 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00643}00643 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00644}00644 \textcolor{keywordtype}{void} CMlpGuiDlg::RemapAll()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00645}00645 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00646}00646     CRect rc;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00647}00647     CPoint pt;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00648}00648 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00649}00649     RemapRectangle(m\_aRandArea, m\_rcRandArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00650}00650     RemapRectangle(m\_aRectRefArea, m\_rcNavArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00651}00651     }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00652}00652     m\_ptHome.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00653}00653     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_aHome.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00654}00654     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00655}00655         RemapPoint(m\_aHome[n], pt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00656}00656         m\_ptHome.push\_back(pt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00657}00657     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00658}00658     }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00659}00659     m\_rcObstacles.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00660}00660     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_aObstacles.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00661}00661     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00662}00662         RemapRectangle(m\_aObstacles[n], rc);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00663}00663         m\_rcObstacles.push\_back(rc);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00664}00664     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00665}00665     }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00666}00666     m\_ptVehicles.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00667}00667     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_aVehicles.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00668}00668     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00669}00669         RemapPoint(m\_aVehicles[n], pt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00670}00670         m\_ptVehicles.push\_back(pt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00671}00671     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00672}00672     }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00673}00673     m\_rcTasks.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00674}00674     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_aTasks.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00675}00675     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00676}00676         RemapRectangle(m\_aTasks[n], rc);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00677}00677         m\_rcTasks.push\_back(rc);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00678}00678     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00679}00679 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00680}00680     m\_ptPaths.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00681}00681     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} allp = 0; allp < m\_aPaths.size(); allp++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00682}00682     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00683}00683         std::vector<aPoint> path = m\_aPaths[allp];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00684}00684 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00685}00685         m\_ptPath.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00686}00686         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} np = 0; np < path.size(); np++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00687}00687         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00688}00688             RemapPoint(path[np], pt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00689}00689             m\_ptPath.push\_back(pt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00690}00690         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00691}00691         m\_ptPaths.push\_back(m\_ptPath);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00692}00692     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00693}00693 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00694}00694 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00695}00695 \textcolor{keywordtype}{void} CMlpGuiDlg::OnSysCommand(UINT nID, LPARAM lParam)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00696}00696 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00697}00697     \textcolor{keywordflow}{if} ((nID \& 0xFFF0) == IDM\_ABOUTBOX)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00698}00698     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00699}00699         \mbox{\hyperlink{class_c_about_dlg}{CAboutDlg}} dlgAbout;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00700}00700         dlgAbout.DoModal();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00701}00701     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00702}00702     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00703}00703     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00704}00704         CDialog::OnSysCommand(nID, lParam);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00705}00705     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00706}00706 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00707}00707 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00708}00708 \textcolor{comment}{// If you add a minimize button to your dialog, you will need the code below}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00709}00709 \textcolor{comment}{//  to draw the icon.  For MFC applications using the document/view model,}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00710}00710 \textcolor{comment}{//  this is automatically done for you by the framework.}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00711}00711 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00712}00712 \textcolor{keywordtype}{void} CMlpGuiDlg::OnPaint()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00713}00713 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00714}00714     CPaintDC dc(\textcolor{keyword}{this}); \textcolor{comment}{// device context for painting}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00715}00715 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00716}00716     \textcolor{keywordflow}{if} (IsIconic())}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00717}00717     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00718}00718         SendMessage(WM\_ICONERASEBKGND, \textcolor{keyword}{reinterpret\_cast<}WPARAM\textcolor{keyword}{>}(dc.GetSafeHdc()), 0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00719}00719 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00720}00720         \textcolor{comment}{// Center icon in client rectangle}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00721}00721         \textcolor{keywordtype}{int} cxIcon = GetSystemMetrics(SM\_CXICON);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00722}00722         \textcolor{keywordtype}{int} cyIcon = GetSystemMetrics(SM\_CYICON);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00723}00723         CRect rect;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00724}00724         GetClientRect(\&rect);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00725}00725         \textcolor{keywordtype}{int} x = (rect.Width() -\/ cxIcon + 1) / 2;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00726}00726         \textcolor{keywordtype}{int} y = (rect.Height() -\/ cyIcon + 1) / 2;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00727}00727 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00728}00728         \textcolor{comment}{// Draw the icon}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00729}00729         dc.DrawIcon(x, y, m\_hIcon);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00730}00730     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00731}00731     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00732}00732     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00733}00733         \textcolor{comment}{//CDialogEx::OnPaint();}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00734}00734         DrawData(\&dc);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00735}00735     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00736}00736 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00737}00737 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00738}00738 \textcolor{keywordtype}{void} CMlpGuiDlg::DrawObstacles(CDC *pDC)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00739}00739 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00740}00740     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00741}00741     CSize sz;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00742}00742     \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00743}00743     \textcolor{keywordtype}{int} oldBkMode;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00744}00744     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} na = 0; na < m\_rcObstacles.size(); na++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00745}00745     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00746}00746         pDC-\/>FillRect(m\_rcObstacles[na], \&m\_brForbiddenArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00747}00747         s.Format(\_T(\textcolor{stringliteral}{"{}Obstacle \%d"{}}), na);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00748}00748         sz = pDC-\/>GetTextExtent(s);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00749}00749         x = m\_rcObstacles[na].left + (m\_rcObstacles[na].Width() -\/ sz.cx) / 2;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00750}00750         y = m\_rcObstacles[na].top + (m\_rcObstacles[na].Height() -\/ sz.cy) / 2;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00751}00751         oldBkMode = pDC-\/>SetBkMode(TRANSPARENT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00752}00752         pDC-\/>TextOutW(x, y, s);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00753}00753         pDC-\/>SetBkMode(oldBkMode);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00754}00754     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00755}00755 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00756}00756 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00757}00757 \textcolor{keywordtype}{void} CMlpGuiDlg::DrawHomePositions(CDC *pDC)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00758}00758 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00759}00759     LOGBRUSH logBrush;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00760}00760     CPen drawPen, *pOldPen;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00761}00761 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00762}00762     m\_brHomePos.GetLogBrush(\&logBrush);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00763}00763     drawPen.CreatePen(PS\_SOLID, 3, \&logBrush, 0, NULL);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00764}00764     pOldPen = pDC-\/>SelectObject(\&drawPen);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00765}00765     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} nh = 0; nh < m\_ptHome.size(); nh++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00766}00766     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00767}00767         \textcolor{keywordflow}{if} (BST\_CHECKED == IsDlgButtonChecked(IDC\_HOME\_BUTTONS\_BASE + nh))}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00768}00768         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00769}00769             pDC-\/>MoveTo(m\_ptHome[nh].x -\/ 5, m\_ptHome[nh].y);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00770}00770             pDC-\/>LineTo(m\_ptHome[nh].x + 5, m\_ptHome[nh].y);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00771}00771             pDC-\/>MoveTo(m\_ptHome[nh].x, m\_ptHome[nh].y -\/ 5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00772}00772             pDC-\/>LineTo(m\_ptHome[nh].x, m\_ptHome[nh].y + 5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00773}00773         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00774}00774     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00775}00775     pDC-\/>SelectObject(pOldPen);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00776}00776     drawPen.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00777}00777 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00778}00778 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00779}00779 \textcolor{keywordtype}{void} CMlpGuiDlg::DrawVehiclesPositions(CDC *pDC)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00780}00780 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00781}00781     CPen drawPen, *pOldPen;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00782}00782     LOGBRUSH logBrush;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00783}00783 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00784}00784     m\_brVehiclePos.GetLogBrush(\&logBrush);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00785}00785     drawPen.CreatePen(PS\_SOLID, 2, \&logBrush, 0, NULL);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00786}00786     pOldPen = pDC-\/>SelectObject(\&drawPen);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00787}00787     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} nv = 0; nv < m\_ptVehicles.size(); nv++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00788}00788     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00789}00789         \textcolor{keywordflow}{if} (BST\_CHECKED == IsDlgButtonChecked(IDC\_VEHICLE\_BUTTONS\_BASE + nv))}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00790}00790         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00791}00791             pDC-\/>Ellipse(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00792}00792                 m\_ptVehicles[nv].x -\/ 5, m\_ptVehicles[nv].y -\/ 5,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00793}00793                 m\_ptVehicles[nv].x + 5, m\_ptVehicles[nv].y + 5}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00794}00794             );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00795}00795             \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00796}00796 \textcolor{comment}{            pDC-\/>MoveTo(m\_ptVehicles[nv].x -\/ 5, m\_ptVehicles[nv].y);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00797}00797 \textcolor{comment}{            pDC-\/>LineTo(m\_ptVehicles[nv].x + 5, m\_ptVehicles[nv].y);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00798}00798 \textcolor{comment}{            pDC-\/>MoveTo(m\_ptVehicles[nv].x, m\_ptVehicles[nv].y -\/ 5);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00799}00799 \textcolor{comment}{            pDC-\/>LineTo(m\_ptVehicles[nv].x, m\_ptVehicles[nv].y + 5);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00800}00800 \textcolor{comment}{            */}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00801}00801         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00802}00802     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00803}00803     pDC-\/>SelectObject(pOldPen);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00804}00804     drawPen.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00805}00805 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00806}00806 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00807}00807 \textcolor{keywordtype}{void} CMlpGuiDlg::DrawTasks(CDC *pDC)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00808}00808 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00809}00809     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00810}00810     CSize sz;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00811}00811     \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00812}00812     \textcolor{keywordtype}{int} oldBkMode;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00813}00813 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00814}00814     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} nt = 0; nt < m\_rcTasks.size(); nt++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00815}00815     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00816}00816         \textcolor{keywordflow}{if} (BST\_CHECKED == IsDlgButtonChecked(IDC\_TASK\_BUTTONS\_BASE + nt))}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00817}00817         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00818}00818             pDC-\/>FrameRect(m\_rcTasks[nt], \&m\_brTaskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00819}00819             s.Format(\_T(\textcolor{stringliteral}{"{}Task \%d"{}}), nt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00820}00820             sz = pDC-\/>GetTextExtent(s);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00821}00821             x = m\_rcTasks[nt].right + 5;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00822}00822             y = m\_rcTasks[nt].top + (m\_rcTasks[nt].Height() -\/ sz.cy) / 2;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00823}00823             oldBkMode = pDC-\/>SetBkMode(TRANSPARENT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00824}00824             pDC-\/>TextOutW(x, y, s);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00825}00825             pDC-\/>SetBkMode(oldBkMode);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00826}00826         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00827}00827     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00828}00828 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00829}00829 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00830}00830 \textcolor{keywordtype}{void} CMlpGuiDlg::DrawPaths(CDC *pDC)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00831}00831 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00832}00832     CString s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00833}00833     CPoint waypoint;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00834}00834     CPen drawPen, *pOldPen;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00835}00835 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00836}00836     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} allp = 0; allp < m\_ptPaths.size(); allp++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00837}00837     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00838}00838         \textcolor{keywordflow}{if} (BST\_CHECKED == IsDlgButtonChecked(IDC\_PATH\_BUTTONS\_BASE + allp))}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00839}00839         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00840}00840             BYTE r = (BYTE)(allp * 20);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00841}00841             BYTE g = (BYTE)(allp * 16);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00842}00842             BYTE b = (BYTE)(allp * 8);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00843}00843             drawPen.CreatePen(PS\_SOLID, 1, RGB(r, g, b));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00844}00844             pOldPen = pDC-\/>SelectObject(\&drawPen);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00845}00845 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00846}00846             std::vector<CPoint> path = m\_ptPaths[allp];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00847}00847             \textcolor{keywordflow}{if} (path.size() >= 2)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00848}00848             \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00849}00849                 waypoint = path[0];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00850}00850                 pDC-\/>Ellipse(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00851}00851                     waypoint.x -\/ 10, waypoint.y -\/ 10,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00852}00852                     waypoint.x + 10, waypoint.y + 10}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00853}00853                 );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00854}00854 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00855}00855                 pDC-\/>MoveTo(waypoint);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00856}00856                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} np = 1; np < path.size(); np++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00857}00857                 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00858}00858                     waypoint = path[np];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00859}00859                     pDC-\/>LineTo(waypoint);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00860}00860                 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00861}00861 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00862}00862                 waypoint = path[path.size() -\/ 1];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00863}00863                 pDC-\/>Ellipse(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00864}00864                     waypoint.x -\/ 10, waypoint.y -\/ 10,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00865}00865                     waypoint.x + 10, waypoint.y + 10}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00866}00866                 );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00867}00867             \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00868}00868 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00869}00869             \textcolor{keywordflow}{if} (allp == m\_currentPathSelected)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00870}00870             \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00871}00871                 pointVec apath = m\_aPaths[allp];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00872}00872                 SetDlgItemInt(IDC\_EDITS\_BASE, m\_currentWaypoint);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00873}00873                 s.Format(\_T(\textcolor{stringliteral}{"{}\%.5f"{}}), apath[m\_currentWaypoint].x());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00874}00874                 SetDlgItemText(IDC\_EDITS\_BASE + 1, s);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00875}00875                 s.Format(\_T(\textcolor{stringliteral}{"{}\%.5f"{}}), apath[m\_currentWaypoint].y());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00876}00876                 SetDlgItemText(IDC\_EDITS\_BASE + 2, s);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00877}00877                 waypoint = path[m\_currentWaypoint];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00878}00878                 pDC-\/>MoveTo(waypoint.x -\/ 15, waypoint.y -\/ 15);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00879}00879                 pDC-\/>LineTo(waypoint.x + 15, waypoint.y + 15);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00880}00880                 pDC-\/>MoveTo(waypoint.x -\/ 15, waypoint.y + 15);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00881}00881                 pDC-\/>LineTo(waypoint.x + 15, waypoint.y -\/ 15);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00882}00882             \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00883}00883 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00884}00884             pDC-\/>SelectObject(pOldPen);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00885}00885             drawPen.DeleteObject();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00886}00886         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00887}00887     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00888}00888 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00889}00889 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00890}00890 \textcolor{keywordtype}{void} CMlpGuiDlg::DrawData(CDC *pDC)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00891}00891 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00892}00892     \textcolor{comment}{//pDC-\/>FrameRect(m\_rcClient, \&m\_brClientArea);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00893}00893     \textcolor{keywordflow}{if} (m\_bRefAreaReceived)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00894}00894     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00895}00895         \textcolor{comment}{//pDC-\/>FrameRect(m\_rcRandArea, \&m\_brRandArea);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00896}00896         pDC-\/>FrameRect(m\_rcNavArea, \&m\_brNavArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00897}00897         DrawObstacles(pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00898}00898         DrawHomePositions(pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00899}00899         DrawVehiclesPositions(pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00900}00900         DrawTasks(pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00901}00901         DrawPaths(pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00902}00902     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00903}00903 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00904}00904 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00905}00905 \textcolor{comment}{// The system calls this function to obtain the cursor to display while the user drags}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00906}00906 \textcolor{comment}{//  the minimized window.}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00907}00907 HCURSOR CMlpGuiDlg::OnQueryDragIcon()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00908}00908 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00909}00909     \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}HCURSOR\textcolor{keyword}{>}(m\_hIcon);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00910}00910 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00911}00911 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00912}00912 \textcolor{keywordtype}{void} CMlpGuiDlg::StartMlpServer()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00913}00913 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00914}00914     DWORD   threadID;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00915}00915 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00916}00916     hostParamsMap hostMap;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00917}00917     \mbox{\hyperlink{classafarcloud_1_1_configurator}{Configurator}} cfg(\textcolor{stringliteral}{"{}./MLP.json"{}});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00918}00918     \textcolor{keywordflow}{if} (cfg.loadHostsConfiguration(hostMap))}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00919}00919     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00920}00920         \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00921}00921         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00922}00922             m\_port = hostMap[\textcolor{stringliteral}{"{}MLP"{}}].port;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00923}00923         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00924}00924         \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::exception\&)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00925}00925         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00926}00926             m\_port = MLP\_HOST\_PORT;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00927}00927         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00928}00928     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00929}00929     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00930}00930     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00931}00931         MessageBox(\_T(\textcolor{stringliteral}{"{}Unable to read configuration file"{}}), \_T(\textcolor{stringliteral}{"{}Error"{}}), MB\_ICONERROR | MB\_OK);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00932}00932     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00933}00933 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00934}00934     WSADATA wsaData = \{\};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00935}00935     WORD wVersionRequested = MAKEWORD(2, 2);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00936}00936     \textcolor{keywordtype}{int} err = WSAStartup(wVersionRequested, \&wsaData);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00937}00937     boost::shared\_ptr<TProtocolFactory> protocolFactory(\textcolor{keyword}{new} TBinaryProtocolFactory());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00938}00938     boost::shared\_ptr<PlannerServiceHandler> handler(\textcolor{keyword}{new} \mbox{\hyperlink{class_planner_service_handler}{PlannerServiceHandler}}(\textcolor{keyword}{this}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00939}00939     boost::shared\_ptr<TProcessor> processor(\textcolor{keyword}{new} PlannerServiceProcessor(handler));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00940}00940     boost::shared\_ptr<TServerTransport> serverTransport(\textcolor{keyword}{new} TServerSocket(m\_port));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00941}00941     boost::shared\_ptr<TTransportFactory> transportFactory(\textcolor{keyword}{new} TBufferedTransportFactory());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00942}00942 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00943}00943     m\_pServer = \textcolor{keyword}{new} TSimpleServer(processor,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00944}00944         serverTransport,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00945}00945         transportFactory,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00946}00946         protocolFactory);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00947}00947 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00948}00948     m\_hMlpServerThread = CreateThread(NULL, 0, (LPTHREAD\_START\_ROUTINE)lpfnMlpServerFun, \textcolor{keyword}{this}, 0, \&threadID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00949}00949 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00950}00950 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00951}00951 \textcolor{keywordtype}{void} CMlpGuiDlg::OnClose()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00952}00952 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00953}00953     \textcolor{keywordflow}{if} (IDYES == MessageBox(\_T(\textcolor{stringliteral}{"{}Are you sure you want to exit ?"{}}), \_T(\textcolor{stringliteral}{"{}Warning"{}}), MB\_ICONQUESTION | MB\_YESNO | MB\_DEFBUTTON2))}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00954}00954     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00955}00955         m\_pServer-\/>stop();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00956}00956 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00957}00957         DestroyAllDynamicControls();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00958}00958         ClearTaskStruct();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00959}00959 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00960}00960         CDialog::OnClose();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00961}00961     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00962}00962 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00963}00963 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00964}00964 \textcolor{keywordtype}{void} CMlpGuiDlg::CalcScalingFactor()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00965}00965 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00966}00966     \textcolor{keywordtype}{double} fx = fabs(m\_rcClient.Width() / m\_aRectRefArea.width());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00967}00967     \textcolor{keywordtype}{double} fy = fabs(m\_rcClient.Height() / m\_aRectRefArea.height());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00968}00968     m\_scalingFactor = min(fx, fy);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00969}00969     m\_posShift = 10.0 / m\_scalingFactor;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00970}00970 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00971}00971 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00972}00972 \textcolor{keywordtype}{void} CMlpGuiDlg::RemapRectangle(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectSrc, CRect \&rcDst)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00973}00973 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00974}00974     rcDst.left = m\_rcClient.left + (int)((rectSrc.left() -\/ m\_aRectRefArea.left())*m\_scalingFactor);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00975}00975     rcDst.bottom = m\_rcClient.top + m\_rcClient.Height() -\/ (int)((rectSrc.bottom() -\/ m\_aRectRefArea.bottom())*m\_scalingFactor);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00976}00976     rcDst.right = m\_rcClient.left + (int)((rectSrc.right() -\/ m\_aRectRefArea.left())*m\_scalingFactor);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00977}00977     rcDst.top = m\_rcClient.top -\/ (int)((rectSrc.top() -\/ m\_aRectRefArea.top())*m\_scalingFactor);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00978}00978     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00979}00979 \textcolor{comment}{    TRACE(\_T("{}S(\%f,\%f,\%f,\%f) D(\%d,\%d,\%d,\%d) SF(\%f)"{}),}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00980}00980 \textcolor{comment}{        rectSrc.left(), rectSrc.bottom(), rectSrc.right(), rectSrc.top(),}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00981}00981 \textcolor{comment}{        rcDst.left, rcDst.bottom, rcDst.right, rcDst.top,}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00982}00982 \textcolor{comment}{        m\_scalingFactor}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00983}00983 \textcolor{comment}{    );}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00984}00984 \textcolor{comment}{    */}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00985}00985 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00986}00986 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00987}00987 \textcolor{keywordtype}{void} CMlpGuiDlg::RemapPoint(aPoint aSrc, CPoint \&ptDst)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00988}00988 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00989}00989     ptDst.x = m\_rcClient.left + (int)((aSrc.x() -\/ m\_aRectRefArea.left())*m\_scalingFactor);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00990}00990     ptDst.y = m\_rcClient.top + m\_rcClient.Height() -\/ (int)((aSrc.y() -\/ m\_aRectRefArea.bottom())*m\_scalingFactor);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00991}00991 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00992}00992 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00993}00993 \textcolor{keywordtype}{void} CMlpGuiDlg::ClearTaskStruct()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00994}00994 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00995}00995     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} n = 0; n < m\_pTaskStructVector.size(); n++)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00996}00996     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00997}00997         \textcolor{keyword}{delete} m\_pTaskStructVector[n];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00998}00998     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l00999}00999     m\_pTaskStructVector.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01000}01000 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01001}01001 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01002}01002 BOOL CMlpGuiDlg::PreTranslateMessage(MSG* pMsg)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01003}01003 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01004}01004     Region *pRegion;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01005}01005     Position *pPosition;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01006}01006     \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} aRect;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01007}01007     \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} *paRect;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01008}01008     aPoint aPt;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01009}01009     aPoint *paPt;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01010}01010     CRect rc;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01011}01011     CPoint pt;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01012}01012     CString sz;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01013}01013     UINT id, num;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01014}01014     \textcolor{keywordtype}{wchar\_t}* s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01015}01015     TaskStruct *pTaskStruct;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01016}01016 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01017}01017     \textcolor{keywordflow}{switch} (pMsg-\/>message)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01018}01018     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01019}01019     \textcolor{keywordflow}{case} WM\_MLP\_STATUS:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01020}01020         \textcolor{keywordflow}{switch} (pMsg-\/>wParam)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01021}01021         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01022}01022         \textcolor{keywordflow}{case} WP\_MLP\_START:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01023}01023             SetDlgItemText(IDC\_STATUS, \_T(\textcolor{stringliteral}{"{}"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01024}01024             ClearData();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01025}01025             ClearTaskStruct();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01026}01026             DestroyAllDynamicControls();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01027}01027             CreateMasterEnableButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01028}01028             CreateEnableTaskButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01029}01029             CreateEnablePathButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01030}01030             CreateBwdButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01031}01031             CreateFwdButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01032}01032             CreateLabel(ID\_OFS\_CURRENT\_WAYPOINT\_NR, \_T(\textcolor{stringliteral}{"{}WP"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01033}01033             CreateEdit(ID\_OFS\_CURRENT\_WAYPOINT\_NR);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01034}01034             CreateLabel(ID\_OFS\_CURRENT\_WAYPOINT\_LON, \_T(\textcolor{stringliteral}{"{}LON"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01035}01035             CreateEdit(ID\_OFS\_CURRENT\_WAYPOINT\_LON);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01036}01036             CreateLabel(ID\_OFS\_CURRENT\_WAYPOINT\_LAT, \_T(\textcolor{stringliteral}{"{}LAT"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01037}01037             CreateEdit(ID\_OFS\_CURRENT\_WAYPOINT\_LAT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01038}01038             CreateLabel(ID\_OFS\_TASK\_NAME, \_T(\textcolor{stringliteral}{"{}N"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01039}01039             CreateEdit(ID\_OFS\_TASK\_NAME);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01040}01040             CreateLabel(ID\_OFS\_TASK\_ID, \_T(\textcolor{stringliteral}{"{}ID"{}}));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01041}01041             CreateEdit(ID\_OFS\_TASK\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01042}01042             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01043}01043         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01044}01044         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01045}01045     \textcolor{keywordflow}{case} WM\_MLP\_INFO:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01046}01046         m\_missionStatus = pMsg-\/>wParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01047}01047         s = (\textcolor{keywordtype}{wchar\_t}*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01048}01048         SetDlgItemText(IDC\_STATUS, s);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01049}01049         \textcolor{keyword}{delete} s;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01050}01050         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01051}01051     \textcolor{keywordflow}{case} WM\_MLP\_MISSION\_DURATION:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01052}01052         sz.Format(\_T(\textcolor{stringliteral}{"{}Elapsed time : \%.4f seconds"{}}), (double)((\textcolor{keywordtype}{int})pMsg-\/>lParam / 10000.0));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01053}01053         SetDlgItemText(IDC\_MISSION\_DURATION, sz);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01054}01054         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01055}01055     \textcolor{keywordflow}{case} WM\_MLP\_RAND\_AREA:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01056}01056         paRect = (\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}}*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01057}01057         \textcolor{keyword}{delete} paRect;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01058}01058         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01059}01059     \textcolor{keywordflow}{case} WM\_MLP\_NAV\_AREA:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01060}01060         pRegion = (Region*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01061}01061         m\_aRectRefArea = \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}}(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01062}01062             pRegion-\/>area[0].longitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01063}01063             pRegion-\/>area[0].latitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01064}01064             pRegion-\/>area[2].longitude -\/ pRegion-\/>area[0].longitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01065}01065             pRegion-\/>area[2].latitude -\/ pRegion-\/>area[0].latitude}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01066}01066         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01067}01067         \textcolor{keyword}{delete} pRegion;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01068}01068         m\_bRefAreaReceived = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01069}01069         CalcScalingFactor();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01070}01070         RemapAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01071}01071         RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01072}01072         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01073}01073     \textcolor{keywordflow}{case} WM\_MLP\_OBS\_AREA:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01074}01074         pRegion = (Region*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01075}01075         aRect = \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}}(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01076}01076             pRegion-\/>area[0].longitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01077}01077             pRegion-\/>area[0].latitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01078}01078             pRegion-\/>area[2].longitude -\/ pRegion-\/>area[0].longitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01079}01079             pRegion-\/>area[2].latitude -\/ pRegion-\/>area[0].latitude}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01080}01080         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01081}01081         \textcolor{keyword}{delete} pRegion;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01082}01082         m\_aObstacles.push\_back(aRect);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01083}01083         \textcolor{keywordflow}{if} (m\_bRefAreaReceived)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01084}01084         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01085}01085             RemapAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01086}01086             RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01087}01087         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01088}01088         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01089}01089     \textcolor{keywordflow}{case} WM\_MLP\_HOME\_POS:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01090}01090         CreateHomeButton(pMsg-\/>wParam);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01091}01091         pPosition = (Position*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01092}01092         aPt = aPoint(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01093}01093             pPosition-\/>longitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01094}01094             pPosition-\/>latitude}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01095}01095         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01096}01096         \textcolor{keyword}{delete} pPosition;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01097}01097         m\_aHome.push\_back(aPt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01098}01098         \textcolor{keywordflow}{if} (m\_bRefAreaReceived)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01099}01099         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01100}01100             RemapAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01101}01101             RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01102}01102         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01103}01103         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01104}01104     \textcolor{keywordflow}{case} WM\_MLP\_VEHICLE\_POS:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01105}01105         CreateVehicleButton(pMsg-\/>wParam);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01106}01106         pPosition = (Position*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01107}01107         aPt = aPoint(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01108}01108             pPosition-\/>longitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01109}01109             pPosition-\/>latitude}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01110}01110         );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01111}01111         \textcolor{keyword}{delete} pPosition;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01112}01112         m\_aVehicles.push\_back(aPt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01113}01113         \textcolor{keywordflow}{if} (m\_bRefAreaReceived)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01114}01114         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01115}01115             RemapAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01116}01116             RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01117}01117         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01118}01118         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01119}01119     \textcolor{keywordflow}{case} WM\_MLP\_TASK\_AREA:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01120}01120         CreateTaskButton(pMsg-\/>wParam);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01121}01121         pRegion = (Region*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01122}01122         if (pRegion-\/>area.size() == 1)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01123}01123         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01124}01124             pPosition = \&pRegion-\/>area[0];}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01125}01125             aRect = \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}}(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01126}01126                 pPosition-\/>longitude -\/ m\_posShift,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01127}01127                 pPosition-\/>latitude -\/ m\_posShift,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01128}01128                 2.0 * m\_posShift,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01129}01129                 2.0 * m\_posShift}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01130}01130             );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01131}01131         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01132}01132         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01133}01133         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01134}01134             aRect = \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}}(}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01135}01135                 pRegion-\/>area[0].longitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01136}01136                 pRegion-\/>area[0].latitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01137}01137                 pRegion-\/>area[1].longitude -\/ pRegion-\/>area[0].longitude,}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01138}01138                 pRegion-\/>area[1].latitude -\/ pRegion-\/>area[0].latitude}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01139}01139             );}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01140}01140         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01141}01141         \textcolor{keyword}{delete} pRegion;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01142}01142         m\_aTasks.push\_back(aRect);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01143}01143         \textcolor{keywordflow}{if} (m\_bRefAreaReceived)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01144}01144         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01145}01145             RemapAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01146}01146             RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01147}01147         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01148}01148         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01149}01149     \textcolor{keywordflow}{case} WM\_MLP\_PATH\_BEGIN:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01150}01150         pTaskStruct = (TaskStruct*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01151}01151         m\_pTaskStructVector.push\_back(pTaskStruct);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01152}01152         m\_aPath.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01153}01153         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01154}01154     \textcolor{keywordflow}{case} WM\_MLP\_PATH\_END:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01155}01155         CreatePathButton(pMsg-\/>wParam, m\_aPath.size());}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01156}01156         CreatePathRadioButton(pMsg-\/>wParam);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01157}01157         m\_aPaths.push\_back(m\_aPath);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01158}01158         \textcolor{keywordflow}{if} (m\_bRefAreaReceived)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01159}01159         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01160}01160             RemapAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01161}01161             RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01162}01162         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01163}01163         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01164}01164     \textcolor{keywordflow}{case} WM\_MLP\_WAYPOINT:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01165}01165         \textcolor{keywordtype}{id} = (pMsg-\/>wParam >> 16) \& 0xFFFF;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01166}01166         num = pMsg-\/>wParam \& 0xFFFF;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01167}01167         paPt = (aPoint*)pMsg-\/>lParam;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01168}01168         m\_aPath.push\_back(*paPt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01169}01169         \textcolor{keyword}{delete} paPt;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01170}01170         \textcolor{keywordflow}{return} TRUE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01171}01171     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01172}01172     \textcolor{keywordflow}{return} FALSE;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01173}01173 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01174}01174 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01175}01175 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01176}01176 \textcolor{keywordtype}{void} CMlpGuiDlg::OnSize(UINT nType, \textcolor{keywordtype}{int} cx, \textcolor{keywordtype}{int} cy)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01177}01177 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01178}01178     CDialog::OnSize(nType, cx, cy);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01179}01179 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01180}01180     GetClientRect(m\_rcClient);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01181}01181     m\_rcClient.DeflateRect(10, 80, 10, 50);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01182}01182     \textcolor{keywordflow}{if} (m\_bRefAreaReceived)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01183}01183     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01184}01184         CalcScalingFactor();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01185}01185         RemapAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01186}01186         RedrawWindow();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01187}01187     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01188}01188 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01189}01189 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01190}01190 \textcolor{keywordtype}{void} CMlpGuiDlg::OnDestroy()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01191}01191 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01192}01192     CDialog::OnDestroy();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01193}01193     DestroyResources();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01194}01194 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01195}01195 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01196}01196 HBRUSH CMlpGuiDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01197}01197 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01198}01198     HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01199}01199     }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01200}01200     \textcolor{keywordtype}{int} nID = pWnd-\/>GetDlgCtrlID();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01201}01201 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01202}01202     \textcolor{keywordflow}{if} ((nID == IDC\_PUSH\_BUTTONS) || (nID == IDC\_PUSH\_BUTTONS + 1))}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01203}01203     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01204}01204         \textcolor{keywordtype}{int} index = nID -\/ IDC\_PUSH\_BUTTONS;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01205}01205         \textcolor{keywordflow}{if} (m\_pPushButtonVector.size() > index)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01206}01206         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01207}01207             \textcolor{keywordflow}{if} (m\_pPushButtonVector[index]-\/>IsWindowEnabled())}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01208}01208             \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01209}01209                 pDC-\/>SetBkColor(RGB(0, 255, 0));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01210}01210                 pDC-\/>SetBkMode(TRANSPARENT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01211}01211                 hbr = m\_brGreen;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01212}01212             \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01213}01213             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01214}01214             \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01215}01215                 pDC-\/>SetBkColor(RGB(255, 0, 0));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01216}01216                 pDC-\/>SetBkMode(TRANSPARENT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01217}01217                 hbr = m\_brRed;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01218}01218             \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01219}01219         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01220}01220     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01221}01221     \textcolor{keywordflow}{if} (pWnd-\/>GetDlgCtrlID() == IDC\_STATUS)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01222}01222     \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01223}01223         \textcolor{keywordflow}{if} (WP\_MLP\_INFO\_SUCCESS == m\_missionStatus)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01224}01224         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01225}01225             pDC-\/>SetBkColor(RGB(0, 255, 0));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01226}01226             hbr = m\_brGreen;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01227}01227         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01228}01228         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (WP\_MLP\_INFO\_FAIL == m\_missionStatus)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01229}01229         \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01230}01230             pDC-\/>SetBkColor(RGB(255, 0, 0));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01231}01231             hbr = m\_brRed;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01232}01232         \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01233}01233     \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01234}01234 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01235}01235     \textcolor{keywordflow}{return} hbr;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01236}01236 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01237}01237 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01238}01238 \textcolor{preprocessor}{\#define TM\_ID               1234}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01239}01239 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01240}01240 \textcolor{preprocessor}{\#define TM\_NAV\_AREA\_X0      (-\/9.24218)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01241}01241 \textcolor{preprocessor}{\#define TM\_NAV\_AREA\_Y0      (38.7363)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01242}01242 \textcolor{preprocessor}{\#define TM\_NAV\_AREA\_X1      (-\/9.23507)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01243}01243 \textcolor{preprocessor}{\#define TM\_NAV\_AREA\_Y1      (38.7405)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01244}01244 \textcolor{preprocessor}{\#define TM\_ALTITUDE         30.0}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01245}01245 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01246}01246 \textcolor{preprocessor}{\#define RESCALE\_LON(x)      (TM\_NAV\_AREA\_X0 + (x)*(TM\_NAV\_AREA\_X1-\/TM\_NAV\_AREA\_X0)/1920.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01247}01247 \textcolor{preprocessor}{\#define RESCALE\_LAT(l)      (TM\_NAV\_AREA\_Y0 + (l)*(TM\_NAV\_AREA\_Y1-\/TM\_NAV\_AREA\_Y0)/1080.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01248}01248 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01249}01249 \textcolor{keywordtype}{void} CMlpGuiDlg::PrepareTestMissionNavArea(Mission \&mission)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01250}01250 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01251}01251     Position pos;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01252}01252     Region navArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01253}01253 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01254}01254     pos.\_\_set\_longitude(TM\_NAV\_AREA\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01255}01255     pos.\_\_set\_latitude(TM\_NAV\_AREA\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01256}01256     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01257}01257     navArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01258}01258     pos.\_\_set\_longitude(TM\_NAV\_AREA\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01259}01259     pos.\_\_set\_latitude(TM\_NAV\_AREA\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01260}01260     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01261}01261     navArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01262}01262     pos.\_\_set\_longitude(TM\_NAV\_AREA\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01263}01263     pos.\_\_set\_latitude(TM\_NAV\_AREA\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01264}01264     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01265}01265     navArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01266}01266     pos.\_\_set\_longitude(TM\_NAV\_AREA\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01267}01267     pos.\_\_set\_latitude(TM\_NAV\_AREA\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01268}01268     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01269}01269     navArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01270}01270     pos.\_\_set\_longitude(TM\_NAV\_AREA\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01271}01271     pos.\_\_set\_latitude(TM\_NAV\_AREA\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01272}01272     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01273}01273     navArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01274}01274 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01275}01275     mission.\_\_set\_navigationArea(navArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01276}01276 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01277}01277 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01278}01278 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01279}01279 \textcolor{comment}{\#define TM\_OBS\_0\_X0         RESCALE\_LON(400.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01280}01280 \textcolor{comment}{\#define TM\_OBS\_0\_Y0         RESCALE\_LAT(400.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01281}01281 \textcolor{comment}{\#define TM\_OBS\_0\_X1         RESCALE\_LON(800.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01282}01282 \textcolor{comment}{\#define TM\_OBS\_0\_Y1         RESCALE\_LAT(800.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01283}01283 \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01284}01284 \textcolor{preprocessor}{\#define TM\_OBS\_1\_X0         RESCALE\_LON(10.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01285}01285 \textcolor{preprocessor}{\#define TM\_OBS\_1\_Y0         RESCALE\_LAT(500.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01286}01286 \textcolor{preprocessor}{\#define TM\_OBS\_1\_X1         RESCALE\_LON(490.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01287}01287 \textcolor{preprocessor}{\#define TM\_OBS\_1\_Y1         RESCALE\_LAT(700.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01288}01288 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01289}01289 \textcolor{preprocessor}{\#define TM\_OBS\_2\_X0         RESCALE\_LON(500.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01290}01290 \textcolor{preprocessor}{\#define TM\_OBS\_2\_Y0         RESCALE\_LAT(610.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01291}01291 \textcolor{preprocessor}{\#define TM\_OBS\_2\_X1         RESCALE\_LON(700.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01292}01292 \textcolor{preprocessor}{\#define TM\_OBS\_2\_Y1         RESCALE\_LAT(1050.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01293}01293 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01294}01294 \textcolor{preprocessor}{\#define TM\_OBS\_3\_X0         RESCALE\_LON(710.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01295}01295 \textcolor{preprocessor}{\#define TM\_OBS\_3\_Y0         RESCALE\_LAT(500.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01296}01296 \textcolor{preprocessor}{\#define TM\_OBS\_3\_X1         RESCALE\_LON(1200.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01297}01297 \textcolor{preprocessor}{\#define TM\_OBS\_3\_Y1         RESCALE\_LAT(700.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01298}01298 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01299}01299 \textcolor{preprocessor}{\#define TM\_OBS\_4\_X0         RESCALE\_LON(500.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01300}01300 \textcolor{preprocessor}{\#define TM\_OBS\_4\_Y0         RESCALE\_LAT(100.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01301}01301 \textcolor{preprocessor}{\#define TM\_OBS\_4\_X1         RESCALE\_LON(700.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01302}01302 \textcolor{preprocessor}{\#define TM\_OBS\_4\_Y1         RESCALE\_LAT(590.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01303}01303 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01304}01304 \textcolor{preprocessor}{\#define TM\_OBS\_5\_X0         RESCALE\_LON(1400.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01305}01305 \textcolor{preprocessor}{\#define TM\_OBS\_5\_Y0         RESCALE\_LAT(500.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01306}01306 \textcolor{preprocessor}{\#define TM\_OBS\_5\_X1         RESCALE\_LON(1800.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01307}01307 \textcolor{preprocessor}{\#define TM\_OBS\_5\_Y1         RESCALE\_LAT(700.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01308}01308 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01309}01309 \textcolor{keywordtype}{void} CMlpGuiDlg::PrepareTestMissionForbiddenAreas(Mission \&mission)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01310}01310 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01311}01311     Position pos;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01312}01312     Region obsArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01313}01313     std::vector<Region> obstacles;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01314}01314 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01315}01315     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01316}01316 \textcolor{comment}{    pos.\_\_set\_longitude(TM\_OBS\_0\_X0);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01317}01317 \textcolor{comment}{    pos.\_\_set\_latitude(TM\_OBS\_0\_Y0);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01318}01318 \textcolor{comment}{    pos.\_\_set\_altitude(TM\_ALTITUDE);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01319}01319 \textcolor{comment}{    obsArea.area.push\_back(pos);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01320}01320 \textcolor{comment}{    pos.\_\_set\_longitude(TM\_OBS\_0\_X0);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01321}01321 \textcolor{comment}{    pos.\_\_set\_latitude(TM\_OBS\_0\_Y1);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01322}01322 \textcolor{comment}{    pos.\_\_set\_altitude(TM\_ALTITUDE);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01323}01323 \textcolor{comment}{    obsArea.area.push\_back(pos);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01324}01324 \textcolor{comment}{    pos.\_\_set\_longitude(TM\_OBS\_0\_X1);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01325}01325 \textcolor{comment}{    pos.\_\_set\_latitude(TM\_OBS\_0\_Y1);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01326}01326 \textcolor{comment}{    pos.\_\_set\_altitude(TM\_ALTITUDE);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01327}01327 \textcolor{comment}{    obsArea.area.push\_back(pos);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01328}01328 \textcolor{comment}{    pos.\_\_set\_longitude(TM\_OBS\_0\_X1);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01329}01329 \textcolor{comment}{    pos.\_\_set\_latitude(TM\_OBS\_0\_Y0);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01330}01330 \textcolor{comment}{    pos.\_\_set\_altitude(TM\_ALTITUDE);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01331}01331 \textcolor{comment}{    obsArea.area.push\_back(pos);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01332}01332 \textcolor{comment}{    pos.\_\_set\_longitude(TM\_OBS\_0\_X0);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01333}01333 \textcolor{comment}{    pos.\_\_set\_latitude(TM\_OBS\_0\_Y0);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01334}01334 \textcolor{comment}{    pos.\_\_set\_altitude(TM\_ALTITUDE);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01335}01335 \textcolor{comment}{    obsArea.area.push\_back(pos);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01336}01336 \textcolor{comment}{    obstacles.push\_back(obsArea);}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01337}01337 \textcolor{comment}{    obsArea.area.clear();}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01338}01338 \textcolor{comment}{    */}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01339}01339 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01340}01340     pos.\_\_set\_longitude(TM\_OBS\_1\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01341}01341     pos.\_\_set\_latitude(TM\_OBS\_1\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01342}01342     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01343}01343     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01344}01344     pos.\_\_set\_longitude(TM\_OBS\_1\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01345}01345     pos.\_\_set\_latitude(TM\_OBS\_1\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01346}01346     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01347}01347     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01348}01348     pos.\_\_set\_longitude(TM\_OBS\_1\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01349}01349     pos.\_\_set\_latitude(TM\_OBS\_1\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01350}01350     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01351}01351     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01352}01352     pos.\_\_set\_longitude(TM\_OBS\_1\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01353}01353     pos.\_\_set\_latitude(TM\_OBS\_1\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01354}01354     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01355}01355     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01356}01356     pos.\_\_set\_longitude(TM\_OBS\_1\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01357}01357     pos.\_\_set\_latitude(TM\_OBS\_1\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01358}01358     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01359}01359     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01360}01360     obstacles.push\_back(obsArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01361}01361     obsArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01362}01362 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01363}01363     pos.\_\_set\_longitude(TM\_OBS\_2\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01364}01364     pos.\_\_set\_latitude(TM\_OBS\_2\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01365}01365     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01366}01366     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01367}01367     pos.\_\_set\_longitude(TM\_OBS\_2\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01368}01368     pos.\_\_set\_latitude(TM\_OBS\_2\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01369}01369     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01370}01370     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01371}01371     pos.\_\_set\_longitude(TM\_OBS\_2\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01372}01372     pos.\_\_set\_latitude(TM\_OBS\_2\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01373}01373     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01374}01374     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01375}01375     pos.\_\_set\_longitude(TM\_OBS\_2\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01376}01376     pos.\_\_set\_latitude(TM\_OBS\_2\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01377}01377     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01378}01378     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01379}01379     pos.\_\_set\_longitude(TM\_OBS\_2\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01380}01380     pos.\_\_set\_latitude(TM\_OBS\_2\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01381}01381     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01382}01382     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01383}01383     obstacles.push\_back(obsArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01384}01384     obsArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01385}01385 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01386}01386     pos.\_\_set\_longitude(TM\_OBS\_3\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01387}01387     pos.\_\_set\_latitude(TM\_OBS\_3\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01388}01388     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01389}01389     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01390}01390     pos.\_\_set\_longitude(TM\_OBS\_3\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01391}01391     pos.\_\_set\_latitude(TM\_OBS\_3\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01392}01392     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01393}01393     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01394}01394     pos.\_\_set\_longitude(TM\_OBS\_3\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01395}01395     pos.\_\_set\_latitude(TM\_OBS\_3\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01396}01396     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01397}01397     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01398}01398     pos.\_\_set\_longitude(TM\_OBS\_3\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01399}01399     pos.\_\_set\_latitude(TM\_OBS\_3\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01400}01400     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01401}01401     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01402}01402     pos.\_\_set\_longitude(TM\_OBS\_3\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01403}01403     pos.\_\_set\_latitude(TM\_OBS\_3\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01404}01404     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01405}01405     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01406}01406     obstacles.push\_back(obsArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01407}01407     obsArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01408}01408 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01409}01409     pos.\_\_set\_longitude(TM\_OBS\_4\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01410}01410     pos.\_\_set\_latitude(TM\_OBS\_4\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01411}01411     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01412}01412     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01413}01413     pos.\_\_set\_longitude(TM\_OBS\_4\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01414}01414     pos.\_\_set\_latitude(TM\_OBS\_4\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01415}01415     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01416}01416     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01417}01417     pos.\_\_set\_longitude(TM\_OBS\_4\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01418}01418     pos.\_\_set\_latitude(TM\_OBS\_4\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01419}01419     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01420}01420     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01421}01421     pos.\_\_set\_longitude(TM\_OBS\_4\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01422}01422     pos.\_\_set\_latitude(TM\_OBS\_4\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01423}01423     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01424}01424     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01425}01425     pos.\_\_set\_longitude(TM\_OBS\_4\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01426}01426     pos.\_\_set\_latitude(TM\_OBS\_4\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01427}01427     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01428}01428     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01429}01429     obstacles.push\_back(obsArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01430}01430     obsArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01431}01431 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01432}01432     pos.\_\_set\_longitude(TM\_OBS\_5\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01433}01433     pos.\_\_set\_latitude(TM\_OBS\_5\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01434}01434     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01435}01435     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01436}01436     pos.\_\_set\_longitude(TM\_OBS\_5\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01437}01437     pos.\_\_set\_latitude(TM\_OBS\_5\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01438}01438     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01439}01439     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01440}01440     pos.\_\_set\_longitude(TM\_OBS\_5\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01441}01441     pos.\_\_set\_latitude(TM\_OBS\_5\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01442}01442     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01443}01443     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01444}01444     pos.\_\_set\_longitude(TM\_OBS\_5\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01445}01445     pos.\_\_set\_latitude(TM\_OBS\_5\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01446}01446     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01447}01447     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01448}01448     pos.\_\_set\_longitude(TM\_OBS\_5\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01449}01449     pos.\_\_set\_latitude(TM\_OBS\_5\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01450}01450     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01451}01451     obsArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01452}01452     obstacles.push\_back(obsArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01453}01453     obsArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01454}01454     }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01455}01455     mission.\_\_set\_forbiddenArea(obstacles);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01456}01456 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01457}01457 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01458}01458 \textcolor{preprocessor}{\#define TM\_HOME\_0\_X0        RESCALE\_LON(10.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01459}01459 \textcolor{preprocessor}{\#define TM\_HOME\_0\_Y0        RESCALE\_LAT(10.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01460}01460 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01461}01461 \textcolor{keywordtype}{void} CMlpGuiDlg::PrepareTestMissionHomeLocations(Mission \&mission)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01462}01462 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01463}01463     Position pos;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01464}01464     std::vector<Position> homes;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01465}01465 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01466}01466     pos.\_\_set\_longitude(TM\_HOME\_0\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01467}01467     pos.\_\_set\_latitude(TM\_HOME\_0\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01468}01468     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01469}01469     homes.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01470}01470 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01471}01471     mission.\_\_set\_homeLocation(homes);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01472}01472 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01473}01473 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01474}01474 \textcolor{preprocessor}{\#define TM\_VEHICLE\_0\_ID     1}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01475}01475 \textcolor{preprocessor}{\#define TM\_VEHICLE\_0\_X0     RESCALE\_LON(100.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01476}01476 \textcolor{preprocessor}{\#define TM\_VEHICLE\_0\_Y0     RESCALE\_LAT(100.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01477}01477 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01478}01478 \textcolor{keywordtype}{void} CMlpGuiDlg::PrepareTestMissionVehicles(Mission \&mission)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01479}01479 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01480}01480     Vehicle vehicle;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01481}01481     std::vector<Vehicle> vehicles;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01482}01482     Position pos;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01483}01483     StateVector sv;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01484}01484 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01485}01485     vehicle.\_\_set\_id(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01486}01486     vehicle.\_\_set\_type(VehicleType::UAV);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01487}01487     vehicle.\_\_set\_maxSpeed(5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01488}01488     pos.\_\_set\_longitude(TM\_VEHICLE\_0\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01489}01489     pos.\_\_set\_latitude(TM\_VEHICLE\_0\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01490}01490     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01491}01491     sv.\_\_set\_position(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01492}01492     vehicle.\_\_set\_stateVector(sv);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01493}01493     vehicles.push\_back(vehicle);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01494}01494 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01495}01495     mission.\_\_set\_vehicles(vehicles);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01496}01496 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01497}01497 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01498}01498 \textcolor{preprocessor}{\#define TM\_TASK\_0\_X0        RESCALE\_LON(200.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01499}01499 \textcolor{preprocessor}{\#define TM\_TASK\_0\_Y0        RESCALE\_LAT(200.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01500}01500 \textcolor{preprocessor}{\#define TM\_TASK\_0\_X1        RESCALE\_LON(390.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01501}01501 \textcolor{preprocessor}{\#define TM\_TASK\_0\_Y1        RESCALE\_LAT(390.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01502}01502 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01503}01503 \textcolor{preprocessor}{\#define TM\_TASK\_1\_X0        RESCALE\_LON(390.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01504}01504 \textcolor{preprocessor}{\#define TM\_TASK\_1\_Y0        RESCALE\_LAT(390.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01505}01505 \textcolor{preprocessor}{\#define TM\_TASK\_1\_X1        RESCALE\_LON(200.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01506}01506 \textcolor{preprocessor}{\#define TM\_TASK\_1\_Y1        RESCALE\_LAT(1000.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01507}01507 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01508}01508 \textcolor{preprocessor}{\#define TM\_TASK\_2\_X0        RESCALE\_LON(200.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01509}01509 \textcolor{preprocessor}{\#define TM\_TASK\_2\_Y0        RESCALE\_LAT(1000.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01510}01510 \textcolor{preprocessor}{\#define TM\_TASK\_2\_X1        RESCALE\_LON(390.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01511}01511 \textcolor{preprocessor}{\#define TM\_TASK\_2\_Y1        RESCALE\_LAT(810.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01512}01512 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01513}01513 \textcolor{preprocessor}{\#define TM\_TASK\_3\_X0        RESCALE\_LON(390.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01514}01514 \textcolor{preprocessor}{\#define TM\_TASK\_3\_Y0        RESCALE\_LAT(810.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01515}01515 \textcolor{preprocessor}{\#define TM\_TASK\_3\_X1        RESCALE\_LON(1000.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01516}01516 \textcolor{preprocessor}{\#define TM\_TASK\_3\_Y1        RESCALE\_LAT(1000.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01517}01517 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01518}01518 \textcolor{preprocessor}{\#define TM\_TASK\_4\_X0        RESCALE\_LON(1000.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01519}01519 \textcolor{preprocessor}{\#define TM\_TASK\_4\_Y0        RESCALE\_LAT(1000.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01520}01520 \textcolor{preprocessor}{\#define TM\_TASK\_4\_X1        RESCALE\_LON(810.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01521}01521 \textcolor{preprocessor}{\#define TM\_TASK\_4\_Y1        RESCALE\_LAT(810.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01522}01522 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01523}01523 \textcolor{preprocessor}{\#define TM\_TASK\_5\_X0        RESCALE\_LON(810.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01524}01524 \textcolor{preprocessor}{\#define TM\_TASK\_5\_Y0        RESCALE\_LAT(810.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01525}01525 \textcolor{preprocessor}{\#define TM\_TASK\_5\_X1        RESCALE\_LON(1000.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01526}01526 \textcolor{preprocessor}{\#define TM\_TASK\_5\_Y1        RESCALE\_LAT(200.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01527}01527 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01528}01528 \textcolor{preprocessor}{\#define TM\_TASK\_6\_X0        RESCALE\_LON(1000.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01529}01529 \textcolor{preprocessor}{\#define TM\_TASK\_6\_Y0        RESCALE\_LAT(200.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01530}01530 \textcolor{preprocessor}{\#define TM\_TASK\_6\_X1        RESCALE\_LON(810.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01531}01531 \textcolor{preprocessor}{\#define TM\_TASK\_6\_Y1        RESCALE\_LAT(390.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01532}01532 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01533}01533 \textcolor{preprocessor}{\#define TM\_TASK\_7\_X0        RESCALE\_LON(810.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01534}01534 \textcolor{preprocessor}{\#define TM\_TASK\_7\_Y0        RESCALE\_LAT(390.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01535}01535 \textcolor{preprocessor}{\#define TM\_TASK\_7\_X1        RESCALE\_LON(1300.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01536}01536 \textcolor{preprocessor}{\#define TM\_TASK\_7\_Y1        RESCALE\_LAT(500.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01537}01537 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01538}01538 \textcolor{preprocessor}{\#define TM\_TASK\_8\_X0        RESCALE\_LON(1300.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01539}01539 \textcolor{preprocessor}{\#define TM\_TASK\_8\_Y0        RESCALE\_LAT(450.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01540}01540 \textcolor{preprocessor}{\#define TM\_TASK\_8\_X1        RESCALE\_LON(1600.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01541}01541 \textcolor{preprocessor}{\#define TM\_TASK\_8\_Y1        RESCALE\_LAT(750.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01542}01542 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01543}01543 \textcolor{preprocessor}{\#define TM\_TASK\_9\_X0        RESCALE\_LON(1600.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01544}01544 \textcolor{preprocessor}{\#define TM\_TASK\_9\_Y0        RESCALE\_LAT(750.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01545}01545 \textcolor{preprocessor}{\#define TM\_TASK\_9\_X1        RESCALE\_LON(10.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01546}01546 \textcolor{preprocessor}{\#define TM\_TASK\_9\_Y1        RESCALE\_LAT(10.0)}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01547}01547 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01548}01548 \textcolor{preprocessor}{\#define TM\_TASK\_ID\_BASE     100}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01549}01549 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01550}01550 \textcolor{keywordtype}{void} CMlpGuiDlg::PrepareTestMissionTasks(Mission \&mission)}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01551}01551 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01552}01552     Task task;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01553}01553     TaskTemplate tt;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01554}01554     std::vector<Task> tasks;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01555}01555     Region taskArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01556}01556     Position pos;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01557}01557 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01558}01558     task.\_\_set\_id(TM\_TASK\_ID\_BASE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01559}01559     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01560}01560     tt.\_\_set\_taskType(TaskType::SURVEY);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01561}01561     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01562}01562     task.\_\_set\_startTime(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01563}01563     task.\_\_set\_endTime(1000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01564}01564     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01565}01565     task.\_\_set\_parentTaskId(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01566}01566     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01567}01567     pos.\_\_set\_longitude(TM\_TASK\_0\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01568}01568     pos.\_\_set\_latitude(TM\_TASK\_0\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01569}01569     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01570}01570     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01571}01571     pos.\_\_set\_longitude(TM\_TASK\_0\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01572}01572     pos.\_\_set\_latitude(TM\_TASK\_0\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01573}01573     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01574}01574     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01575}01575     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01576}01576     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01577}01577     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01578}01578     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01579}01579     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01580}01580 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01581}01581     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01582}01582     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01583}01583     tt.\_\_set\_taskType(TaskType::TRANSIT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01584}01584     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01585}01585     task.\_\_set\_startTime(1000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01586}01586     task.\_\_set\_endTime(2000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01587}01587     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01588}01588     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01589}01589     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01590}01590     pos.\_\_set\_longitude(TM\_TASK\_1\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01591}01591     pos.\_\_set\_latitude(TM\_TASK\_1\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01592}01592     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01593}01593     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01594}01594     pos.\_\_set\_longitude(TM\_TASK\_1\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01595}01595     pos.\_\_set\_latitude(TM\_TASK\_1\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01596}01596     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01597}01597     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01598}01598     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01599}01599     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01600}01600     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01601}01601     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01602}01602     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01603}01603 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01604}01604     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 2);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01605}01605     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01606}01606     tt.\_\_set\_taskType(TaskType::SURVEY);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01607}01607     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01608}01608     task.\_\_set\_startTime(2000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01609}01609     task.\_\_set\_endTime(3000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01610}01610     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01611}01611     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE + 1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01612}01612     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01613}01613     pos.\_\_set\_longitude(TM\_TASK\_2\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01614}01614     pos.\_\_set\_latitude(TM\_TASK\_2\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01615}01615     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01616}01616     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01617}01617     pos.\_\_set\_longitude(TM\_TASK\_2\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01618}01618     pos.\_\_set\_latitude(TM\_TASK\_2\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01619}01619     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01620}01620     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01621}01621     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01622}01622     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01623}01623     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01624}01624     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01625}01625     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01626}01626 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01627}01627     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 3);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01628}01628     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01629}01629     tt.\_\_set\_taskType(TaskType::TRANSIT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01630}01630     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01631}01631     task.\_\_set\_startTime(3000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01632}01632     task.\_\_set\_endTime(4000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01633}01633     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01634}01634     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE + 2);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01635}01635     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01636}01636     pos.\_\_set\_longitude(TM\_TASK\_3\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01637}01637     pos.\_\_set\_latitude(TM\_TASK\_3\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01638}01638     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01639}01639     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01640}01640     pos.\_\_set\_longitude(TM\_TASK\_3\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01641}01641     pos.\_\_set\_latitude(TM\_TASK\_3\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01642}01642     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01643}01643     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01644}01644     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01645}01645     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01646}01646     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01647}01647     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01648}01648     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01649}01649 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01650}01650     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 4);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01651}01651     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01652}01652     tt.\_\_set\_taskType(TaskType::SURVEY);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01653}01653     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01654}01654     task.\_\_set\_startTime(4000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01655}01655     task.\_\_set\_endTime(5000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01656}01656     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01657}01657     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE + 3);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01658}01658     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01659}01659     pos.\_\_set\_longitude(TM\_TASK\_4\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01660}01660     pos.\_\_set\_latitude(TM\_TASK\_4\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01661}01661     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01662}01662     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01663}01663     pos.\_\_set\_longitude(TM\_TASK\_4\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01664}01664     pos.\_\_set\_latitude(TM\_TASK\_4\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01665}01665     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01666}01666     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01667}01667     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01668}01668     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01669}01669     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01670}01670     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01671}01671     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01672}01672 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01673}01673     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01674}01674     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01675}01675     tt.\_\_set\_taskType(TaskType::TRANSIT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01676}01676     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01677}01677     task.\_\_set\_startTime(5000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01678}01678     task.\_\_set\_endTime(6000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01679}01679     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01680}01680     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE + 4);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01681}01681     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01682}01682     pos.\_\_set\_longitude(TM\_TASK\_5\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01683}01683     pos.\_\_set\_latitude(TM\_TASK\_5\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01684}01684     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01685}01685     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01686}01686     pos.\_\_set\_longitude(TM\_TASK\_5\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01687}01687     pos.\_\_set\_latitude(TM\_TASK\_5\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01688}01688     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01689}01689     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01690}01690     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01691}01691     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01692}01692     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01693}01693     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01694}01694     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01695}01695 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01696}01696     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 6);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01697}01697     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01698}01698     tt.\_\_set\_taskType(TaskType::SURVEY);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01699}01699     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01700}01700     task.\_\_set\_startTime(6000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01701}01701     task.\_\_set\_endTime(7000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01702}01702     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01703}01703     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE + 5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01704}01704     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01705}01705     pos.\_\_set\_longitude(TM\_TASK\_6\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01706}01706     pos.\_\_set\_latitude(TM\_TASK\_6\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01707}01707     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01708}01708     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01709}01709     pos.\_\_set\_longitude(TM\_TASK\_6\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01710}01710     pos.\_\_set\_latitude(TM\_TASK\_6\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01711}01711     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01712}01712     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01713}01713     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01714}01714     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01715}01715     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01716}01716     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01717}01717     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01718}01718 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01719}01719     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 7);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01720}01720     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01721}01721     tt.\_\_set\_taskType(TaskType::TRANSIT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01722}01722     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01723}01723     task.\_\_set\_startTime(7000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01724}01724     task.\_\_set\_endTime(8000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01725}01725     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01726}01726     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE + 6);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01727}01727     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01728}01728     pos.\_\_set\_longitude(TM\_TASK\_7\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01729}01729     pos.\_\_set\_latitude(TM\_TASK\_7\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01730}01730     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01731}01731     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01732}01732     pos.\_\_set\_longitude(TM\_TASK\_7\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01733}01733     pos.\_\_set\_latitude(TM\_TASK\_7\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01734}01734     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01735}01735     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01736}01736     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01737}01737     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01738}01738     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01739}01739     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01740}01740     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01741}01741 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01742}01742     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 8);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01743}01743     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01744}01744     tt.\_\_set\_taskType(TaskType::SURVEY);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01745}01745     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01746}01746     task.\_\_set\_startTime(8000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01747}01747     task.\_\_set\_endTime(9000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01748}01748     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01749}01749     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE + 7);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01750}01750     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01751}01751     pos.\_\_set\_longitude(TM\_TASK\_8\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01752}01752     pos.\_\_set\_latitude(TM\_TASK\_8\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01753}01753     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01754}01754     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01755}01755     pos.\_\_set\_longitude(TM\_TASK\_8\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01756}01756     pos.\_\_set\_latitude(TM\_TASK\_8\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01757}01757     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01758}01758     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01759}01759     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01760}01760     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01761}01761     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01762}01762     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01763}01763     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01764}01764 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01765}01765     task.\_\_set\_id(TM\_TASK\_ID\_BASE + 9);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01766}01766     task.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01767}01767     tt.\_\_set\_taskType(TaskType::TRANSIT);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01768}01768     task.\_\_set\_taskTemplate(tt);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01769}01769     task.\_\_set\_startTime(9000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01770}01770     task.\_\_set\_endTime(10000);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01771}01771     task.\_\_set\_assignedVehicleId(TM\_VEHICLE\_0\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01772}01772     task.\_\_set\_parentTaskId(TM\_TASK\_ID\_BASE + 8);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01773}01773     task.\_\_set\_repeatCount(0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01774}01774     pos.\_\_set\_longitude(TM\_TASK\_9\_X0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01775}01775     pos.\_\_set\_latitude(TM\_TASK\_9\_Y0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01776}01776     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01777}01777     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01778}01778     pos.\_\_set\_longitude(TM\_TASK\_9\_X1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01779}01779     pos.\_\_set\_latitude(TM\_TASK\_9\_Y1);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01780}01780     pos.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01781}01781     taskArea.area.push\_back(pos);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01782}01782     task.\_\_set\_area(taskArea);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01783}01783     task.\_\_set\_speed(1.5);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01784}01784     task.\_\_set\_altitude(TM\_ALTITUDE);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01785}01785     tasks.push\_back(task);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01786}01786     taskArea.area.clear();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01787}01787 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01788}01788     mission.\_\_set\_tasks(tasks);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01789}01789 \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01790}01790 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01791}01791 \textcolor{keyword}{extern}  \textcolor{keywordtype}{void} LogMission(std::string prefix, int32\_t requestId, \textcolor{keyword}{const} Mission\& context, \mbox{\hyperlink{classafarcloud_1_1_planner_helper}{PlannerHelper}}\& helper);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01792}01792 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01793}01793 \textcolor{keywordtype}{void} CMlpGuiDlg::PrepareTestMission()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01794}01794 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01795}01795     Mission testMission;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01796}01796 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01797}01797     testMission.\_\_set\_missionId(TM\_ID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01798}01798     testMission.\_\_set\_name(\textcolor{stringliteral}{"{}Test Mission"{}});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01799}01799     PrepareTestMissionNavArea(testMission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01800}01800     PrepareTestMissionForbiddenAreas(testMission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01801}01801     PrepareTestMissionHomeLocations(testMission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01802}01802     PrepareTestMissionVehicles(testMission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01803}01803     PrepareTestMissionTasks(testMission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01804}01804 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01805}01805     \mbox{\hyperlink{classafarcloud_1_1_planner_helper}{PlannerHelper}} plannerHelper(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01806}01806 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01807}01807     ::PostMessage(this-\/>m\_hWnd, WM\_MLP\_STATUS, WP\_MLP\_START, 0);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01808}01808     ::PostMessage(this-\/>m\_hWnd, WM\_MLP\_INFO, 0, (LPARAM)PlannerHelper::formatAndAllocateString(\_T(\textcolor{stringliteral}{"{}Computing plan ..."{}})));}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01809}01809     plannerHelper.preparePlan(testMission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01810}01810 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01811}01811     LogMission(\textcolor{stringliteral}{"{}OUT\_"{}}, 5678, testMission, plannerHelper);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8cpp_source_l01812}01812 \}}
+
+\end{DoxyCode}

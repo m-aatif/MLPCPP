@@ -1,0 +1,164 @@
+\hypertarget{classafarcloud_1_1_planner}{}\doxysection{afarcloud\+::Planner Class Reference}
+\label{classafarcloud_1_1_planner}\index{afarcloud::Planner@{afarcloud::Planner}}
+
+
+{\ttfamily \#include $<$Planner.\+h$>$}
+
+Inheritance diagram for afarcloud\+::Planner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classafarcloud_1_1_planner}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual point\+Vec \mbox{\hyperlink{classafarcloud_1_1_planner_a19776520ea5516ab7592dc1e2d6e0353}{plan}} ()=0
+\item 
+void \mbox{\hyperlink{classafarcloud_1_1_planner_a4fc0c5f37c0a984c70cc06834553231c}{enable\+Log}} (bool b\+Enable)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static point\+Vec \mbox{\hyperlink{classafarcloud_1_1_planner_aabee4a51fea8a12167f0ae733716cec6}{prune\+Path}} (point\+Vec path)
+\item 
+static void \mbox{\hyperlink{classafarcloud_1_1_planner_afa4388c0a9a0425615be0cb70c414e87}{log\+Path}} (std\+::ofstream \&\+\_\+logfile, point\+Vec path)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classafarcloud_1_1_planner_ae80432ae7ffe3004ad863fd0520b9224}{Planner}} ()
+\item 
+\mbox{\hyperlink{classafarcloud_1_1_planner_a340e770a280770067de28943616216c1}{Planner}} (a\+Point pt\+Start, a\+Point pt\+Goal, rectangle\+Vec obstacles, \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} rect\+Field)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+rectangle\+Vec \mbox{\hyperlink{classafarcloud_1_1_planner_a27835835a3c032f60657111ad30954db}{m\+\_\+obstacles}}
+\item 
+\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} \mbox{\hyperlink{classafarcloud_1_1_planner_af1df98d30151a3b53c4a6a6e9048b26c}{m\+\_\+rect\+Field}}
+\item 
+bool \mbox{\hyperlink{classafarcloud_1_1_planner_ab7cae46d257a81342ab9dc349c9178db}{m\+\_\+b\+Log}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}}\+: A class that implements the base class for every planner algorithm. This is an abstract class because of protected constructors. Each derived class must implement its own constructor. Moreover, each derived class must implement the planning function. 
+
+Definition at line \mbox{\hyperlink{_planner_8h_source_l00027}{27}} of file \mbox{\hyperlink{_planner_8h_source}{Planner.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_planner_a6863c40128f3dfd1f7827aaf8fb500d2}\label{classafarcloud_1_1_planner_a6863c40128f3dfd1f7827aaf8fb500d2}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!````~Planner@{$\sim$Planner}}
+\index{````~Planner@{$\sim$Planner}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{$\sim$Planner()}{~Planner()}}
+{\footnotesize\ttfamily virtual afarcloud\+::\+Planner\+::$\sim$\+Planner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_8h_source_l00034}{34}} of file \mbox{\hyperlink{_planner_8h_source}{Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_ae80432ae7ffe3004ad863fd0520b9224}\label{classafarcloud_1_1_planner_ae80432ae7ffe3004ad863fd0520b9224}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!Planner@{Planner}}
+\index{Planner@{Planner}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{Planner()}{Planner()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily afarcloud\+::\+Planner\+::\+Planner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\hyperlink{classafarcloud_1_1_planner_ae80432ae7ffe3004ad863fd0520b9224}{Planner()}}\+: The default \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} costructor. 
+
+Definition at line \mbox{\hyperlink{_planner_8h_source_l00044}{44}} of file \mbox{\hyperlink{_planner_8h_source}{Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_a340e770a280770067de28943616216c1}\label{classafarcloud_1_1_planner_a340e770a280770067de28943616216c1}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!Planner@{Planner}}
+\index{Planner@{Planner}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{Planner()}{Planner()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily afarcloud\+::\+Planner\+::\+Planner (\begin{DoxyParamCaption}\item[{a\+Point}]{pt\+Start,  }\item[{a\+Point}]{pt\+Goal,  }\item[{rectangle\+Vec}]{obstacles,  }\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{rect\+Field }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\hyperlink{classafarcloud_1_1_planner_a340e770a280770067de28943616216c1}{Planner(a\+Point pt\+Start, a\+Point pt\+Goal, rectangle\+Vec obstacles, a\+Rectangle rect\+Field)}} Summary\+: It construct a \mbox{\hyperlink{classafarcloud_1_1_planner}{Planner}} object. Params\+: pt\+Start a\+Point The starting point. pt\+Goal a\+Point The goal point. obstacles rectangle\+Vec The vector containing the obstacles. rect\+Field a\+Rectangle The field of allowed positions. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_planner_8h_source_l00057}{57}} of file \mbox{\hyperlink{_planner_8h_source}{Planner.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_planner_a4fc0c5f37c0a984c70cc06834553231c}\label{classafarcloud_1_1_planner_a4fc0c5f37c0a984c70cc06834553231c}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!enableLog@{enableLog}}
+\index{enableLog@{enableLog}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{enableLog()}{enableLog()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Planner\+::enable\+Log (\begin{DoxyParamCaption}\item[{bool}]{b\+Enable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_8h_source_l00036}{36}} of file \mbox{\hyperlink{_planner_8h_source}{Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_afa4388c0a9a0425615be0cb70c414e87}\label{classafarcloud_1_1_planner_afa4388c0a9a0425615be0cb70c414e87}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!logPath@{logPath}}
+\index{logPath@{logPath}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{logPath()}{logPath()}}
+{\footnotesize\ttfamily void afarcloud\+::\+Planner\+::log\+Path (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{\+\_\+logfile,  }\item[{point\+Vec}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+void \mbox{\hyperlink{classafarcloud_1_1_planner_afa4388c0a9a0425615be0cb70c414e87}{Planner\+::log\+Path(std\+::ofstream \&\+\_\+logfile, point\+Vec path)}} Summary\+: It writes the $<$path$>$ vector into a file stream $<$\+\_\+logfile$>$. Params\+: \+\_\+logfile ofstream The stream to write to. path point\+Vec The vector of points to log. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_planner_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_planner_8cpp_source}{Planner.\+cpp}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_a19776520ea5516ab7592dc1e2d6e0353}\label{classafarcloud_1_1_planner_a19776520ea5516ab7592dc1e2d6e0353}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!plan@{plan}}
+\index{plan@{plan}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{plan()}{plan()}}
+{\footnotesize\ttfamily virtual point\+Vec afarcloud\+::\+Planner\+::plan (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+virtual point\+Vec \mbox{\hyperlink{classafarcloud_1_1_planner_a19776520ea5516ab7592dc1e2d6e0353}{plan()}} = 0\+: The planner function the derived classes must implement. 
+
+Implemented in \mbox{\hyperlink{classafarcloud_1_1_a_star_planner_ae284a692dcaf07c0da2c1649183bd2ad}{afarcloud\+::\+AStar\+Planner}}, \mbox{\hyperlink{classafarcloud_1_1_coverage_planner_a683d847171e2eec798964de3d775f28b}{afarcloud\+::\+Coverage\+Planner}}, and \mbox{\hyperlink{classafarcloud_1_1_s_planner_a662659ec1402ac0a75b2fc898724411d}{afarcloud\+::\+SPlanner}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_aabee4a51fea8a12167f0ae733716cec6}\label{classafarcloud_1_1_planner_aabee4a51fea8a12167f0ae733716cec6}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!prunePath@{prunePath}}
+\index{prunePath@{prunePath}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{prunePath()}{prunePath()}}
+{\footnotesize\ttfamily point\+Vec afarcloud\+::\+Planner\+::prune\+Path (\begin{DoxyParamCaption}\item[{point\+Vec}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+point\+Vec \mbox{\hyperlink{classafarcloud_1_1_planner_aabee4a51fea8a12167f0ae733716cec6}{Coverage\+Planner\+::prune\+Path(point\+Vec path)}} Summary\+: Prunes the $<$path$>$ deleting the points belonging to the same line. Params\+: path point\+Vec The path to prune. Return\+: point\+Vec The pruned path. 
+
+Definition at line \mbox{\hyperlink{_planner_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_planner_8cpp_source}{Planner.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classafarcloud_1_1_planner_ab7cae46d257a81342ab9dc349c9178db}\label{classafarcloud_1_1_planner_ab7cae46d257a81342ab9dc349c9178db}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!m\_bLog@{m\_bLog}}
+\index{m\_bLog@{m\_bLog}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{m\_bLog}{m\_bLog}}
+{\footnotesize\ttfamily bool afarcloud\+::\+Planner\+::m\+\_\+b\+Log\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_8h_source_l00064}{64}} of file \mbox{\hyperlink{_planner_8h_source}{Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_a27835835a3c032f60657111ad30954db}\label{classafarcloud_1_1_planner_a27835835a3c032f60657111ad30954db}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!m\_obstacles@{m\_obstacles}}
+\index{m\_obstacles@{m\_obstacles}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{m\_obstacles}{m\_obstacles}}
+{\footnotesize\ttfamily rectangle\+Vec afarcloud\+::\+Planner\+::m\+\_\+obstacles\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_8h_source_l00062}{62}} of file \mbox{\hyperlink{_planner_8h_source}{Planner.\+h}}.
+
+\mbox{\Hypertarget{classafarcloud_1_1_planner_af1df98d30151a3b53c4a6a6e9048b26c}\label{classafarcloud_1_1_planner_af1df98d30151a3b53c4a6a6e9048b26c}} 
+\index{afarcloud::Planner@{afarcloud::Planner}!m\_rectField@{m\_rectField}}
+\index{m\_rectField@{m\_rectField}!afarcloud::Planner@{afarcloud::Planner}}
+\doxysubsubsection{\texorpdfstring{m\_rectField}{m\_rectField}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} afarcloud\+::\+Planner\+::m\+\_\+rect\+Field\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_planner_8h_source_l00063}{63}} of file \mbox{\hyperlink{_planner_8h_source}{Planner.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Planner.\+h\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Planner.\+cpp\end{DoxyCompactItemize}

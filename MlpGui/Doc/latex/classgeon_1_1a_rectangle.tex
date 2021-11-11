@@ -1,0 +1,730 @@
+\hypertarget{classgeon_1_1a_rectangle}{}\doxysection{geon\+::a\+Rectangle Class Reference}
+\label{classgeon_1_1a_rectangle}\index{geon::aRectangle@{geon::aRectangle}}
+
+
+{\ttfamily \#include $<$Geometry.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeon_1_1a_rectangle_abdbd02d417a175f1549ef1d84f5b534d}{a\+Rectangle}} ()
+\item 
+\mbox{\hyperlink{classgeon_1_1a_rectangle_a45477b9422f871572e1c35a6a0708b33}{a\+Rectangle}} (double x, double y, double width, double height)
+\item 
+\mbox{\hyperlink{classgeon_1_1a_rectangle_a102ad63361b0b036a8765c13c55d6556}{a\+Rectangle}} (a\+Point pt\+Start, a\+Point pt\+Stop)
+\item 
+long double \mbox{\hyperlink{classgeon_1_1a_rectangle_a32272d10a95a87d46cad5002c7d9223c}{area}} ()
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a77eb0c4b30c595c530d5e84cafaf6215}{contains}} (a\+Point pt, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_abc3dd280a60a27a059ca2efba0be314a}{contains}} (double x, double y, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_adb8dc47fb147457a9b549abe7d7a800c}{contains}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other, bool consider\+Touch=true)
+\item 
+\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} \mbox{\hyperlink{classgeon_1_1a_rectangle_aeb5d2a94ef6635764ac54b71e9f49a86}{operator+}} (a\+Point pt)
+\item 
+\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} \mbox{\hyperlink{classgeon_1_1a_rectangle_a2165008974ef7cb751cfea3f84ee3c64}{operator+=}} (a\+Point pt)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a5a1e852d84c2eac7d1a684981595b1f8}{operator==}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+void \mbox{\hyperlink{classgeon_1_1a_rectangle_aac5663e473cf92111b9deec6ed35e205}{scale\+Up}} (double amount)
+\item 
+void \mbox{\hyperlink{classgeon_1_1a_rectangle_a6577c325d0b1cab9319c549c145548ce}{scale\+Down}} (double amount)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_ac912a5bbee40d5c9c317178510e3a6d8}{intersect}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a16198dc8d76102d92158bc4fc35cd503}{intersect\+Mod}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a40f030a8831fbea3579244550a36be0c}{intersect}} (a\+Point pt1, a\+Point pt2, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_acc62591355b10d5345ff0a1896efc274}{intersect2}} (a\+Point pt1, a\+Point pt2, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_aa8e372ff76518ffaca50d3ea2efe696e}{is\+Positive}} (double num)
+\item 
+void \mbox{\hyperlink{classgeon_1_1a_rectangle_a4163f2ecbf284a7b5552c46016308787}{inflate}} (double x, double y)
+\item 
+void \mbox{\hyperlink{classgeon_1_1a_rectangle_a32ba1b24abb966ea0f31121473a51461}{inflate}} (double l, double t, double r, double b)
+\item 
+double \mbox{\hyperlink{classgeon_1_1a_rectangle_a555a593e24a7217d6c8c698e2546e9dd}{center\+Distance}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a3b4dd11eda6bacce7c19904ce0422f37}{joinable\+Left}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_aacf26735669cbaad6ce70ad7f7e44e0e}{joinable\+Top\+Left}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a0f2f90e7abf42faa3f2b3256693f124a}{joinable\+Top}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_af4aa7aee2ed665c2bd454c546499d6e4}{joinable\+Top\+Right}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_af4ae402c18d7cb654a76c2688f7daf90}{joinable\+Right}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_afe7d1bb1265531fb8a48f912c0288d2a}{joinable\+Bottom\+Right}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a6f4e5bea2820bf6daea997aef0f38ddb}{joinable\+Bottom}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a7d6d45aadcabcf46755379db9f22fd51}{joinable\+Bottom\+Left}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_ad90d5d87d86b4bd73de876ba425a7355}{joinable}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a2bc48f87513afd53a49d8097eb93f6cd}{join\+Left}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a07ea5b2b61028ed1a7389fe7fbcb17be}{join\+Top}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a29f7fd09ef560a56d29558e2e46c6620}{join\+Right}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a6ecca0de20686149a09072dd9e464ef8}{join\+Bottom}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a0a59df662dd564393dbdc7b842c3ff72}{join}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a86932db9a72e34b7e88da90e62ce3f47}{aligned\+Left}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a1afcaa8e78e3f3bad3b85b8a3010158b}{aligned\+Right}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_aab9b4a68cbf1a0bc477958380797bd21}{aligned\+Top}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_aac16b57e17317acc7db7fcaf483c584f}{aligned\+Bottom}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other, bool consider\+Touch=true)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_af41e0423d4af546c06234ce92ca76e83}{dockable\+At\+Right}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a10677bacb0313112a8ae1992fba37122}{dockable\+At\+Left}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a4ffe15f463199c3d8abd1ea399fd1026}{dockable\+At\+Bottom}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a608d46836acc0bc606202cdeb0145e5a}{dockable\+At\+Top}} (\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} other)
+\item 
+double \mbox{\hyperlink{classgeon_1_1a_rectangle_a790489efc60f5830efd61273e031c7d4}{left}} ()
+\item 
+double \mbox{\hyperlink{classgeon_1_1a_rectangle_a1071b3072277905ae005290267ca6374}{bottom}} ()
+\item 
+double \mbox{\hyperlink{classgeon_1_1a_rectangle_a679b47b1763835e8ccbc8a9432af7203}{right}} ()
+\item 
+double \mbox{\hyperlink{classgeon_1_1a_rectangle_a23cd5eaa5510ea3ac1b9725a84a46e57}{top}} ()
+\item 
+double \mbox{\hyperlink{classgeon_1_1a_rectangle_a528c45e43ff1633aad728ef4f4775ee2}{width}} ()
+\item 
+double \mbox{\hyperlink{classgeon_1_1a_rectangle_ad9af5c4880771d24836a340edfa08941}{height}} ()
+\item 
+a\+Point \mbox{\hyperlink{classgeon_1_1a_rectangle_ac114460dee196f46dfb612e816b0359a}{bottom\+Left}} ()
+\item 
+a\+Point \mbox{\hyperlink{classgeon_1_1a_rectangle_a46859e0e19399683f851c6fead6ab92a}{bottom\+Right}} ()
+\item 
+a\+Point \mbox{\hyperlink{classgeon_1_1a_rectangle_a19a44c674dd3809364a2dd097c5ef8e2}{top\+Left}} ()
+\item 
+a\+Point \mbox{\hyperlink{classgeon_1_1a_rectangle_aa889e8db4cdc2596df8940c15eef089c}{top\+Right}} ()
+\item 
+a\+Point \mbox{\hyperlink{classgeon_1_1a_rectangle_ad778251334376b3bc5be0294bfc75a60}{center}} ()
+\item 
+bpn\+::rectangle\+\_\+data$<$ double $>$ \mbox{\hyperlink{classgeon_1_1a_rectangle_a5ce287ee1c525f107ca1dc76437e502b}{Get\+Rect\+Data}} () const
+\item 
+void \mbox{\hyperlink{classgeon_1_1a_rectangle_a41ce1a8448d4f0f34076cc6d515ed5d2}{dump}} (std\+::string s)
+\item 
+void \mbox{\hyperlink{classgeon_1_1a_rectangle_af329ce27e71914bfec53094768eb1380}{set\+Tag}} (int tag)
+\item 
+int \mbox{\hyperlink{classgeon_1_1a_rectangle_acf66435aadfd67e5241eefc30e6df083}{get\+Tag}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} \mbox{\hyperlink{classgeon_1_1a_rectangle_a2915ecad5eb1df987b94a349cf999ba9}{null\+Rect}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}\+: A class that implements many useful features about rectangles. 
+
+Definition at line \mbox{\hyperlink{_geometry_8h_source_l00023}{23}} of file \mbox{\hyperlink{_geometry_8h_source}{Geometry.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_abdbd02d417a175f1549ef1d84f5b534d}\label{classgeon_1_1a_rectangle_abdbd02d417a175f1549ef1d84f5b534d}} 
+\index{geon::aRectangle@{geon::aRectangle}!aRectangle@{aRectangle}}
+\index{aRectangle@{aRectangle}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{aRectangle()}{aRectangle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily geon\+::a\+Rectangle\+::a\+Rectangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classgeon_1_1a_rectangle_abdbd02d417a175f1549ef1d84f5b534d}{a\+Rectangle\+::a\+Rectangle()}} Summary\+: basic \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} constructor. It creates a rectangle positioned at (0,0) whose dimensions are (10,10). Params\+: none Return\+: none 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a45477b9422f871572e1c35a6a0708b33}\label{classgeon_1_1a_rectangle_a45477b9422f871572e1c35a6a0708b33}} 
+\index{geon::aRectangle@{geon::aRectangle}!aRectangle@{aRectangle}}
+\index{aRectangle@{aRectangle}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{aRectangle()}{aRectangle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily geon\+::a\+Rectangle\+::a\+Rectangle (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{width,  }\item[{double}]{height }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classgeon_1_1a_rectangle_abdbd02d417a175f1549ef1d84f5b534d}{a\+Rectangle\+::a\+Rectangle()}} Summary\+: \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} constructor. It creates a rectangle positioned at (x,y) whose dimensions are (width,height). Params\+: x double The value of left corner. y double The value of bottom corner. width double The width of the rectangle. height double The height of the rectangle. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a102ad63361b0b036a8765c13c55d6556}\label{classgeon_1_1a_rectangle_a102ad63361b0b036a8765c13c55d6556}} 
+\index{geon::aRectangle@{geon::aRectangle}!aRectangle@{aRectangle}}
+\index{aRectangle@{aRectangle}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{aRectangle()}{aRectangle()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily geon\+::a\+Rectangle\+::a\+Rectangle (\begin{DoxyParamCaption}\item[{a\+Point}]{pt\+Start,  }\item[{a\+Point}]{pt\+Stop }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}\+:\+:(a\+Point pt\+Start, a\+Point pt\+Stop) Summary\+: \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} constructor. It creates a rectangle with bottom-\/left corner point $<$pt\+Start$>$ and top-\/right corner $<$pt\+Stop$>$. Params\+: pt\+Start a\+Point The value of bottom-\/left corner. pt\+Stop a\+Point The value of top-\/right corner. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_aac16b57e17317acc7db7fcaf483c584f}\label{classgeon_1_1a_rectangle_aac16b57e17317acc7db7fcaf483c584f}} 
+\index{geon::aRectangle@{geon::aRectangle}!alignedBottom@{alignedBottom}}
+\index{alignedBottom@{alignedBottom}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{alignedBottom()}{alignedBottom()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::aligned\+Bottom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00540}{540}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a86932db9a72e34b7e88da90e62ce3f47}\label{classgeon_1_1a_rectangle_a86932db9a72e34b7e88da90e62ce3f47}} 
+\index{geon::aRectangle@{geon::aRectangle}!alignedLeft@{alignedLeft}}
+\index{alignedLeft@{alignedLeft}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{alignedLeft()}{alignedLeft()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::aligned\+Left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00399}{399}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a1afcaa8e78e3f3bad3b85b8a3010158b}\label{classgeon_1_1a_rectangle_a1afcaa8e78e3f3bad3b85b8a3010158b}} 
+\index{geon::aRectangle@{geon::aRectangle}!alignedRight@{alignedRight}}
+\index{alignedRight@{alignedRight}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{alignedRight()}{alignedRight()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::aligned\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00493}{493}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_aab9b4a68cbf1a0bc477958380797bd21}\label{classgeon_1_1a_rectangle_aab9b4a68cbf1a0bc477958380797bd21}} 
+\index{geon::aRectangle@{geon::aRectangle}!alignedTop@{alignedTop}}
+\index{alignedTop@{alignedTop}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{alignedTop()}{alignedTop()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::aligned\+Top (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00446}{446}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a32272d10a95a87d46cad5002c7d9223c}\label{classgeon_1_1a_rectangle_a32272d10a95a87d46cad5002c7d9223c}} 
+\index{geon::aRectangle@{geon::aRectangle}!area@{area}}
+\index{area@{area}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{area()}{area()}}
+{\footnotesize\ttfamily long double geon\+::a\+Rectangle\+::area (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+long double \mbox{\hyperlink{classgeon_1_1a_rectangle_a32272d10a95a87d46cad5002c7d9223c}{a\+Rectangle\+::area()}} Summary\+: Gets the area of the rectangle. Params\+: none. Return\+: rectangle area. 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00124}{124}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a1071b3072277905ae005290267ca6374}\label{classgeon_1_1a_rectangle_a1071b3072277905ae005290267ca6374}} 
+\index{geon::aRectangle@{geon::aRectangle}!bottom@{bottom}}
+\index{bottom@{bottom}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{bottom()}{bottom()}}
+{\footnotesize\ttfamily double geon\+::a\+Rectangle\+::bottom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00317}{317}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_ac114460dee196f46dfb612e816b0359a}\label{classgeon_1_1a_rectangle_ac114460dee196f46dfb612e816b0359a}} 
+\index{geon::aRectangle@{geon::aRectangle}!bottomLeft@{bottomLeft}}
+\index{bottomLeft@{bottomLeft}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{bottomLeft()}{bottomLeft()}}
+{\footnotesize\ttfamily a\+Point geon\+::a\+Rectangle\+::bottom\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00352}{352}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a46859e0e19399683f851c6fead6ab92a}\label{classgeon_1_1a_rectangle_a46859e0e19399683f851c6fead6ab92a}} 
+\index{geon::aRectangle@{geon::aRectangle}!bottomRight@{bottomRight}}
+\index{bottomRight@{bottomRight}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{bottomRight()}{bottomRight()}}
+{\footnotesize\ttfamily a\+Point geon\+::a\+Rectangle\+::bottom\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00359}{359}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_ad778251334376b3bc5be0294bfc75a60}\label{classgeon_1_1a_rectangle_ad778251334376b3bc5be0294bfc75a60}} 
+\index{geon::aRectangle@{geon::aRectangle}!center@{center}}
+\index{center@{center}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{center()}{center()}}
+{\footnotesize\ttfamily a\+Point geon\+::a\+Rectangle\+::center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00380}{380}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a555a593e24a7217d6c8c698e2546e9dd}\label{classgeon_1_1a_rectangle_a555a593e24a7217d6c8c698e2546e9dd}} 
+\index{geon::aRectangle@{geon::aRectangle}!centerDistance@{centerDistance}}
+\index{centerDistance@{centerDistance}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{centerDistance()}{centerDistance()}}
+{\footnotesize\ttfamily double geon\+::a\+Rectangle\+::center\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00624}{624}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a77eb0c4b30c595c530d5e84cafaf6215}\label{classgeon_1_1a_rectangle_a77eb0c4b30c595c530d5e84cafaf6215}} 
+\index{geon::aRectangle@{geon::aRectangle}!contains@{contains}}
+\index{contains@{contains}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::contains (\begin{DoxyParamCaption}\item[{a\+Point}]{pt,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00250}{250}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_adb8dc47fb147457a9b549abe7d7a800c}\label{classgeon_1_1a_rectangle_adb8dc47fb147457a9b549abe7d7a800c}} 
+\index{geon::aRectangle@{geon::aRectangle}!contains@{contains}}
+\index{contains@{contains}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00277}{277}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_abc3dd280a60a27a059ca2efba0be314a}\label{classgeon_1_1a_rectangle_abc3dd280a60a27a059ca2efba0be314a}} 
+\index{geon::aRectangle@{geon::aRectangle}!contains@{contains}}
+\index{contains@{contains}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::contains (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00272}{272}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a4ffe15f463199c3d8abd1ea399fd1026}\label{classgeon_1_1a_rectangle_a4ffe15f463199c3d8abd1ea399fd1026}} 
+\index{geon::aRectangle@{geon::aRectangle}!dockableAtBottom@{dockableAtBottom}}
+\index{dockableAtBottom@{dockableAtBottom}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{dockableAtBottom()}{dockableAtBottom()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::dockable\+At\+Bottom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00614}{614}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a10677bacb0313112a8ae1992fba37122}\label{classgeon_1_1a_rectangle_a10677bacb0313112a8ae1992fba37122}} 
+\index{geon::aRectangle@{geon::aRectangle}!dockableAtLeft@{dockableAtLeft}}
+\index{dockableAtLeft@{dockableAtLeft}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{dockableAtLeft()}{dockableAtLeft()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::dockable\+At\+Left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00609}{609}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_af41e0423d4af546c06234ce92ca76e83}\label{classgeon_1_1a_rectangle_af41e0423d4af546c06234ce92ca76e83}} 
+\index{geon::aRectangle@{geon::aRectangle}!dockableAtRight@{dockableAtRight}}
+\index{dockableAtRight@{dockableAtRight}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{dockableAtRight()}{dockableAtRight()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::dockable\+At\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00604}{604}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a608d46836acc0bc606202cdeb0145e5a}\label{classgeon_1_1a_rectangle_a608d46836acc0bc606202cdeb0145e5a}} 
+\index{geon::aRectangle@{geon::aRectangle}!dockableAtTop@{dockableAtTop}}
+\index{dockableAtTop@{dockableAtTop}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{dockableAtTop()}{dockableAtTop()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::dockable\+At\+Top (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00619}{619}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a41ce1a8448d4f0f34076cc6d515ed5d2}\label{classgeon_1_1a_rectangle_a41ce1a8448d4f0f34076cc6d515ed5d2}} 
+\index{geon::aRectangle@{geon::aRectangle}!dump@{dump}}
+\index{dump@{dump}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{dump()}{dump()}}
+{\footnotesize\ttfamily void geon\+::a\+Rectangle\+::dump (\begin{DoxyParamCaption}\item[{std\+::string}]{s }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00631}{631}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a5ce287ee1c525f107ca1dc76437e502b}\label{classgeon_1_1a_rectangle_a5ce287ee1c525f107ca1dc76437e502b}} 
+\index{geon::aRectangle@{geon::aRectangle}!GetRectData@{GetRectData}}
+\index{GetRectData@{GetRectData}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{GetRectData()}{GetRectData()}}
+{\footnotesize\ttfamily bpn\+::rectangle\+\_\+data$<$ double $>$ geon\+::a\+Rectangle\+::\+Get\+Rect\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8h_source_l00091}{91}} of file \mbox{\hyperlink{_geometry_8h_source}{Geometry.\+h}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_acf66435aadfd67e5241eefc30e6df083}\label{classgeon_1_1a_rectangle_acf66435aadfd67e5241eefc30e6df083}} 
+\index{geon::aRectangle@{geon::aRectangle}!getTag@{getTag}}
+\index{getTag@{getTag}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{getTag()}{getTag()}}
+{\footnotesize\ttfamily int geon\+::a\+Rectangle\+::get\+Tag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8h_source_l00095}{95}} of file \mbox{\hyperlink{_geometry_8h_source}{Geometry.\+h}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_ad9af5c4880771d24836a340edfa08941}\label{classgeon_1_1a_rectangle_ad9af5c4880771d24836a340edfa08941}} 
+\index{geon::aRectangle@{geon::aRectangle}!height@{height}}
+\index{height@{height}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{height()}{height()}}
+{\footnotesize\ttfamily double geon\+::a\+Rectangle\+::height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00345}{345}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a32ba1b24abb966ea0f31121473a51461}\label{classgeon_1_1a_rectangle_a32ba1b24abb966ea0f31121473a51461}} 
+\index{geon::aRectangle@{geon::aRectangle}!inflate@{inflate}}
+\index{inflate@{inflate}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{inflate()}{inflate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void geon\+::a\+Rectangle\+::inflate (\begin{DoxyParamCaption}\item[{double}]{l,  }\item[{double}]{t,  }\item[{double}]{r,  }\item[{double}]{b }\end{DoxyParamCaption})}
+
+void \mbox{\hyperlink{classgeon_1_1a_rectangle_a32ba1b24abb966ea0f31121473a51461}{a\+Rectangle\+::inflate(double l, double t, double r, double b)}} Summary\+: It inflates a rectangle. Params\+: l double The decrement of left value. t double The increment of top value. r double The increment of right value. b double The decrement of bottom value. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00106}{106}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a4163f2ecbf284a7b5552c46016308787}\label{classgeon_1_1a_rectangle_a4163f2ecbf284a7b5552c46016308787}} 
+\index{geon::aRectangle@{geon::aRectangle}!inflate@{inflate}}
+\index{inflate@{inflate}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{inflate()}{inflate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void geon\+::a\+Rectangle\+::inflate (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})}
+
+void \mbox{\hyperlink{classgeon_1_1a_rectangle_a4163f2ecbf284a7b5552c46016308787}{a\+Rectangle\+::inflate(double x, double y)}} Summary\+: It inflates a rectangle by x,y leaving the origin unchanged. Params\+: x double The increment of width value. y double The increment of heigh value. Return\+: none 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00085}{85}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a40f030a8831fbea3579244550a36be0c}\label{classgeon_1_1a_rectangle_a40f030a8831fbea3579244550a36be0c}} 
+\index{geon::aRectangle@{geon::aRectangle}!intersect@{intersect}}
+\index{intersect@{intersect}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{intersect()}{intersect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::intersect (\begin{DoxyParamCaption}\item[{a\+Point}]{pt1,  }\item[{a\+Point}]{pt2,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00214}{214}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_ac912a5bbee40d5c9c317178510e3a6d8}\label{classgeon_1_1a_rectangle_ac912a5bbee40d5c9c317178510e3a6d8}} 
+\index{geon::aRectangle@{geon::aRectangle}!intersect@{intersect}}
+\index{intersect@{intersect}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{intersect()}{intersect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::intersect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00184}{184}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_acc62591355b10d5345ff0a1896efc274}\label{classgeon_1_1a_rectangle_acc62591355b10d5345ff0a1896efc274}} 
+\index{geon::aRectangle@{geon::aRectangle}!intersect2@{intersect2}}
+\index{intersect2@{intersect2}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{intersect2()}{intersect2()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::intersect2 (\begin{DoxyParamCaption}\item[{a\+Point}]{pt1,  }\item[{a\+Point}]{pt2,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00205}{205}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a16198dc8d76102d92158bc4fc35cd503}\label{classgeon_1_1a_rectangle_a16198dc8d76102d92158bc4fc35cd503}} 
+\index{geon::aRectangle@{geon::aRectangle}!intersectMod@{intersectMod}}
+\index{intersectMod@{intersectMod}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{intersectMod()}{intersectMod()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::intersect\+Mod (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other,  }\item[{bool}]{consider\+Touch = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00190}{190}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_aa8e372ff76518ffaca50d3ea2efe696e}\label{classgeon_1_1a_rectangle_aa8e372ff76518ffaca50d3ea2efe696e}} 
+\index{geon::aRectangle@{geon::aRectangle}!isPositive@{isPositive}}
+\index{isPositive@{isPositive}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{isPositive()}{isPositive()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::is\+Positive (\begin{DoxyParamCaption}\item[{double}]{num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8h_source_l00045}{45}} of file \mbox{\hyperlink{_geometry_8h_source}{Geometry.\+h}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a0a59df662dd564393dbdc7b842c3ff72}\label{classgeon_1_1a_rectangle_a0a59df662dd564393dbdc7b842c3ff72}} 
+\index{geon::aRectangle@{geon::aRectangle}!join@{join}}
+\index{join@{join}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::join (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00591}{591}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_ad90d5d87d86b4bd73de876ba425a7355}\label{classgeon_1_1a_rectangle_ad90d5d87d86b4bd73de876ba425a7355}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinable@{joinable}}
+\index{joinable@{joinable}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinable()}{joinable()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00578}{578}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a6f4e5bea2820bf6daea997aef0f38ddb}\label{classgeon_1_1a_rectangle_a6f4e5bea2820bf6daea997aef0f38ddb}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinableBottom@{joinableBottom}}
+\index{joinableBottom@{joinableBottom}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinableBottom()}{joinableBottom()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable\+Bottom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00531}{531}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a7d6d45aadcabcf46755379db9f22fd51}\label{classgeon_1_1a_rectangle_a7d6d45aadcabcf46755379db9f22fd51}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinableBottomLeft@{joinableBottomLeft}}
+\index{joinableBottomLeft@{joinableBottomLeft}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinableBottomLeft()}{joinableBottomLeft()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable\+Bottom\+Left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00570}{570}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_afe7d1bb1265531fb8a48f912c0288d2a}\label{classgeon_1_1a_rectangle_afe7d1bb1265531fb8a48f912c0288d2a}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinableBottomRight@{joinableBottomRight}}
+\index{joinableBottomRight@{joinableBottomRight}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinableBottomRight()}{joinableBottomRight()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable\+Bottom\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00523}{523}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a3b4dd11eda6bacce7c19904ce0422f37}\label{classgeon_1_1a_rectangle_a3b4dd11eda6bacce7c19904ce0422f37}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinableLeft@{joinableLeft}}
+\index{joinableLeft@{joinableLeft}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinableLeft()}{joinableLeft()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable\+Left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00390}{390}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_af4ae402c18d7cb654a76c2688f7daf90}\label{classgeon_1_1a_rectangle_af4ae402c18d7cb654a76c2688f7daf90}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinableRight@{joinableRight}}
+\index{joinableRight@{joinableRight}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinableRight()}{joinableRight()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00484}{484}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a0f2f90e7abf42faa3f2b3256693f124a}\label{classgeon_1_1a_rectangle_a0f2f90e7abf42faa3f2b3256693f124a}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinableTop@{joinableTop}}
+\index{joinableTop@{joinableTop}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinableTop()}{joinableTop()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable\+Top (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00437}{437}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_aacf26735669cbaad6ce70ad7f7e44e0e}\label{classgeon_1_1a_rectangle_aacf26735669cbaad6ce70ad7f7e44e0e}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinableTopLeft@{joinableTopLeft}}
+\index{joinableTopLeft@{joinableTopLeft}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinableTopLeft()}{joinableTopLeft()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable\+Top\+Left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00429}{429}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_af4aa7aee2ed665c2bd454c546499d6e4}\label{classgeon_1_1a_rectangle_af4aa7aee2ed665c2bd454c546499d6e4}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinableTopRight@{joinableTopRight}}
+\index{joinableTopRight@{joinableTopRight}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinableTopRight()}{joinableTopRight()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::joinable\+Top\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00476}{476}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a6ecca0de20686149a09072dd9e464ef8}\label{classgeon_1_1a_rectangle_a6ecca0de20686149a09072dd9e464ef8}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinBottom@{joinBottom}}
+\index{joinBottom@{joinBottom}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinBottom()}{joinBottom()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::join\+Bottom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00553}{553}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a2bc48f87513afd53a49d8097eb93f6cd}\label{classgeon_1_1a_rectangle_a2bc48f87513afd53a49d8097eb93f6cd}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinLeft@{joinLeft}}
+\index{joinLeft@{joinLeft}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinLeft()}{joinLeft()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::join\+Left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00412}{412}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a29f7fd09ef560a56d29558e2e46c6620}\label{classgeon_1_1a_rectangle_a29f7fd09ef560a56d29558e2e46c6620}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinRight@{joinRight}}
+\index{joinRight@{joinRight}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinRight()}{joinRight()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::join\+Right (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00506}{506}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a07ea5b2b61028ed1a7389fe7fbcb17be}\label{classgeon_1_1a_rectangle_a07ea5b2b61028ed1a7389fe7fbcb17be}} 
+\index{geon::aRectangle@{geon::aRectangle}!joinTop@{joinTop}}
+\index{joinTop@{joinTop}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{joinTop()}{joinTop()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::join\+Top (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00459}{459}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a790489efc60f5830efd61273e031c7d4}\label{classgeon_1_1a_rectangle_a790489efc60f5830efd61273e031c7d4}} 
+\index{geon::aRectangle@{geon::aRectangle}!left@{left}}
+\index{left@{left}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{left()}{left()}}
+{\footnotesize\ttfamily double geon\+::a\+Rectangle\+::left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00310}{310}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_aeb5d2a94ef6635764ac54b71e9f49a86}\label{classgeon_1_1a_rectangle_aeb5d2a94ef6635764ac54b71e9f49a86}} 
+\index{geon::aRectangle@{geon::aRectangle}!operator+@{operator+}}
+\index{operator+@{operator+}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} geon\+::a\+Rectangle\+::operator+ (\begin{DoxyParamCaption}\item[{a\+Point}]{pt }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} \mbox{\hyperlink{classgeon_1_1a_rectangle_aeb5d2a94ef6635764ac54b71e9f49a86}{a\+Rectangle\+::operator + (a\+Point pt)}} Summary\+: Offsets a rectangle by point $<$pt$>$. Params\+: pt a\+Point The point to use as offset. Return\+: The offsetted rectangle. 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00135}{135}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a2165008974ef7cb751cfea3f84ee3c64}\label{classgeon_1_1a_rectangle_a2165008974ef7cb751cfea3f84ee3c64}} 
+\index{geon::aRectangle@{geon::aRectangle}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} geon\+::a\+Rectangle\+::operator+= (\begin{DoxyParamCaption}\item[{a\+Point}]{pt }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} \mbox{\hyperlink{classgeon_1_1a_rectangle_a2165008974ef7cb751cfea3f84ee3c64}{a\+Rectangle\+::operator += (a\+Point pt)}} Summary\+: Offsets this rectangle by point $<$pt$>$. Params\+: pt a\+Point The point to use as offset. Return\+: The offsetted rectangle. 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00148}{148}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a5a1e852d84c2eac7d1a684981595b1f8}\label{classgeon_1_1a_rectangle_a5a1e852d84c2eac7d1a684981595b1f8}} 
+\index{geon::aRectangle@{geon::aRectangle}!operator==@{operator==}}
+\index{operator==@{operator==}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool geon\+::a\+Rectangle\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}}}]{other }\end{DoxyParamCaption})}
+
+bool \mbox{\hyperlink{classgeon_1_1a_rectangle_a5a1e852d84c2eac7d1a684981595b1f8}{a\+Rectangle\+::operator == (a\+Rectangle other)}} Summary\+: Compares this rectangle with $<$other$>$ rectangle. Params\+: other \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} The rectangle to compare. Return\+: TRUE The rectangles match. TRUE The rectangles mismatch. 
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00162}{162}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a679b47b1763835e8ccbc8a9432af7203}\label{classgeon_1_1a_rectangle_a679b47b1763835e8ccbc8a9432af7203}} 
+\index{geon::aRectangle@{geon::aRectangle}!right@{right}}
+\index{right@{right}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{right()}{right()}}
+{\footnotesize\ttfamily double geon\+::a\+Rectangle\+::right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00324}{324}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a6577c325d0b1cab9319c549c145548ce}\label{classgeon_1_1a_rectangle_a6577c325d0b1cab9319c549c145548ce}} 
+\index{geon::aRectangle@{geon::aRectangle}!scaleDown@{scaleDown}}
+\index{scaleDown@{scaleDown}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{scaleDown()}{scaleDown()}}
+{\footnotesize\ttfamily void geon\+::a\+Rectangle\+::scale\+Down (\begin{DoxyParamCaption}\item[{double}]{amount }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00178}{178}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_aac5663e473cf92111b9deec6ed35e205}\label{classgeon_1_1a_rectangle_aac5663e473cf92111b9deec6ed35e205}} 
+\index{geon::aRectangle@{geon::aRectangle}!scaleUp@{scaleUp}}
+\index{scaleUp@{scaleUp}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{scaleUp()}{scaleUp()}}
+{\footnotesize\ttfamily void geon\+::a\+Rectangle\+::scale\+Up (\begin{DoxyParamCaption}\item[{double}]{amount }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00172}{172}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_af329ce27e71914bfec53094768eb1380}\label{classgeon_1_1a_rectangle_af329ce27e71914bfec53094768eb1380}} 
+\index{geon::aRectangle@{geon::aRectangle}!setTag@{setTag}}
+\index{setTag@{setTag}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{setTag()}{setTag()}}
+{\footnotesize\ttfamily void geon\+::a\+Rectangle\+::set\+Tag (\begin{DoxyParamCaption}\item[{int}]{tag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8h_source_l00094}{94}} of file \mbox{\hyperlink{_geometry_8h_source}{Geometry.\+h}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a23cd5eaa5510ea3ac1b9725a84a46e57}\label{classgeon_1_1a_rectangle_a23cd5eaa5510ea3ac1b9725a84a46e57}} 
+\index{geon::aRectangle@{geon::aRectangle}!top@{top}}
+\index{top@{top}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{top()}{top()}}
+{\footnotesize\ttfamily double geon\+::a\+Rectangle\+::top (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00331}{331}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a19a44c674dd3809364a2dd097c5ef8e2}\label{classgeon_1_1a_rectangle_a19a44c674dd3809364a2dd097c5ef8e2}} 
+\index{geon::aRectangle@{geon::aRectangle}!topLeft@{topLeft}}
+\index{topLeft@{topLeft}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{topLeft()}{topLeft()}}
+{\footnotesize\ttfamily a\+Point geon\+::a\+Rectangle\+::top\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00366}{366}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_aa889e8db4cdc2596df8940c15eef089c}\label{classgeon_1_1a_rectangle_aa889e8db4cdc2596df8940c15eef089c}} 
+\index{geon::aRectangle@{geon::aRectangle}!topRight@{topRight}}
+\index{topRight@{topRight}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{topRight()}{topRight()}}
+{\footnotesize\ttfamily a\+Point geon\+::a\+Rectangle\+::top\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00373}{373}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a528c45e43ff1633aad728ef4f4775ee2}\label{classgeon_1_1a_rectangle_a528c45e43ff1633aad728ef4f4775ee2}} 
+\index{geon::aRectangle@{geon::aRectangle}!width@{width}}
+\index{width@{width}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{width()}{width()}}
+{\footnotesize\ttfamily double geon\+::a\+Rectangle\+::width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8cpp_source_l00338}{338}} of file \mbox{\hyperlink{_geometry_8cpp_source}{Geometry.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classgeon_1_1a_rectangle_a2915ecad5eb1df987b94a349cf999ba9}\label{classgeon_1_1a_rectangle_a2915ecad5eb1df987b94a349cf999ba9}} 
+\index{geon::aRectangle@{geon::aRectangle}!nullRect@{nullRect}}
+\index{nullRect@{nullRect}!geon::aRectangle@{geon::aRectangle}}
+\doxysubsubsection{\texorpdfstring{nullRect}{nullRect}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classgeon_1_1a_rectangle}{a\+Rectangle}} geon\+::a\+Rectangle\+::null\+Rect\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{_geometry_8h_source_l00026}{26}} of file \mbox{\hyperlink{_geometry_8h_source}{Geometry.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Geometry.\+h\item 
+C\+:/\+Users/\+THRIFT/source/repos/\+ROOT\+\_\+\+AFAR\+\_\+\+CLOUD/\+Mlp\+Common/Geometry.\+cpp\end{DoxyCompactItemize}

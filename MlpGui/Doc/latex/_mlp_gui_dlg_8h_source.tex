@@ -1,0 +1,173 @@
+\hypertarget{_mlp_gui_dlg_8h_source}{}\doxysection{Mlp\+Gui\+Dlg.\+h}
+\label{_mlp_gui_dlg_8h_source}\index{MlpGui/MlpGuiDlg.h@{MlpGui/MlpGuiDlg.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00001}00001 \textcolor{comment}{// MlpGuiDlg.h : header file}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00002}00002 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00004}00004 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00006}00006 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}PlannerServiceHandler.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00008}00008 \textcolor{preprocessor}{\#include "{}PlannerHelper.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00009}00009 \textcolor{preprocessor}{\#include "{}../../Common/NetConfig.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00010}00010 \textcolor{preprocessor}{\#include <thrift/concurrency/ThreadManager.h>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00011}00011 \textcolor{preprocessor}{\#include <thrift/concurrency/PosixThreadFactory.h>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00012}00012 \textcolor{preprocessor}{\#include <thrift/protocol/TBinaryProtocol.h>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00013}00013 \textcolor{preprocessor}{\#include <thrift/server/TSimpleServer.h>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00014}00014 \textcolor{preprocessor}{\#include <thrift/transport/TServerSocket.h>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00015}00015 \textcolor{preprocessor}{\#include <thrift/transport/TTransportUtils.h>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00016}00016 \textcolor{preprocessor}{\#include <thrift/TToString.h>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00018}00018 \textcolor{preprocessor}{\#include "{}Geometry.h"{}}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00020}00020 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00021}00021 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00022}00022 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00024}00024 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00025}00025 \textcolor{keyword}{using namespace }apache::thrift;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00026}00026 \textcolor{keyword}{using namespace }apache::thrift::concurrency;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00027}00027 \textcolor{keyword}{using namespace }apache::thrift::protocol;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00028}00028 \textcolor{keyword}{using namespace }apache::thrift::transport;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00029}00029 \textcolor{keyword}{using namespace }apache::thrift::server;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00031}00031 \textcolor{keyword}{using namespace }afarcloud;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00032}00032 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacegeon}{geon}};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00034}00034 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00036}00036 \textcolor{comment}{// CMlpGuiDlg dialog}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00037}\mbox{\hyperlink{class_c_mlp_gui_dlg}{00037}} \textcolor{keyword}{class }\mbox{\hyperlink{class_c_mlp_gui_dlg}{CMlpGuiDlg}} : \textcolor{keyword}{public} CDialog}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00038}00038 \{}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00039}00039 \textcolor{comment}{// Construction}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00040}00040 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00041}00041     \mbox{\hyperlink{class_c_mlp_gui_dlg}{CMlpGuiDlg}}(LPTSTR lpCmdLine, CWnd* pParent = \textcolor{keyword}{nullptr});    \textcolor{comment}{// standard constructor}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00043}00043     TSimpleServer *GetServer()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_pServer; \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00044}00044     \textcolor{keywordtype}{int} GetPort()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_port; \}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00046}00046 \textcolor{comment}{// Dialog Data}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00047}00047 \textcolor{preprocessor}{\#ifdef AFX\_DESIGN\_TIME}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00048}00048     \textcolor{keyword}{enum} \{ IDD = IDD\_MLPGUI\_DIALOG \};}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00049}00049 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00051}00051     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00052}00052     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} DoDataExchange(CDataExchange* pDX);    \textcolor{comment}{// DDX/DDV support}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00054}00054 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00055}00055     \textcolor{keywordtype}{void} StartMlpServer();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00056}00056     HANDLE m\_hMlpServerThread;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00057}00057     TSimpleServer *m\_pServer;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00058}00058     \textcolor{keywordtype}{int} m\_port;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00060}00060     \textcolor{keywordtype}{void} ClearData();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00061}00061     CRect m\_rcClient;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00062}00062     std::vector<CPoint> m\_ptHome;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00063}00063     std::vector<CRect> m\_rcObstacles;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00064}00064     std::vector<CPoint> m\_ptVehicles;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00065}00065     std::vector<CRect> m\_rcTasks;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00066}00066     std::vector<std::vector<CPoint>> m\_ptPaths;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00067}00067     std::vector<CPoint> m\_ptPath;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00068}00068     CRect m\_rcRandArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00069}00069     CRect m\_rcNavArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00071}00071     BOOL m\_bRefAreaReceived;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00072}00072     std::vector<aPoint> m\_aHome;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00073}00073     std::vector<aRectangle> m\_aObstacles;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00074}00074     std::vector<aPoint> m\_aVehicles;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00075}00075     std::vector<aRectangle> m\_aTasks;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00076}00076     std::vector<std::vector<aPoint>> m\_aPaths;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00077}00077     std::vector<aPoint> m\_aPath;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00078}00078     \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} m\_aRandArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00079}00079     \mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} m\_aRectRefArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00080}00080     }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00081}00081     \textcolor{keywordtype}{double} m\_scalingFactor;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00082}00082     \textcolor{keywordtype}{double} m\_posShift;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00084}00084     \textcolor{keywordtype}{void} CalcScalingFactor();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00085}00085     \textcolor{keywordtype}{void} RemapAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00086}00086     \textcolor{keywordtype}{void} RemapRectangle(\mbox{\hyperlink{classgeon_1_1a_rectangle}{aRectangle}} rectSrc, CRect \&rcDst);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00087}00087     \textcolor{keywordtype}{void} RemapPoint(aPoint aSrc, CPoint \&ptDst);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00089}00089     \textcolor{keywordtype}{void} CreateResources();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00090}00090     \textcolor{keywordtype}{void} DestroyResources();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00091}00091     \textcolor{keywordtype}{void} DrawData(CDC *pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00092}00092     \textcolor{keywordtype}{void} DrawObstacles(CDC *pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00093}00093     \textcolor{keywordtype}{void} DrawHomePositions(CDC *pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00094}00094     \textcolor{keywordtype}{void} DrawVehiclesPositions(CDC *pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00095}00095     \textcolor{keywordtype}{void} DrawTasks(CDC *pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00096}00096     \textcolor{keywordtype}{void} DrawPaths(CDC *pDC);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00097}00097 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00098}00098     CBrush m\_brClientArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00099}00099     CBrush m\_brRandArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00100}00100     CBrush m\_brNavArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00101}00101     CBrush m\_brForbiddenArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00102}00102     CBrush m\_brHomePos;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00103}00103     CBrush m\_brVehiclePos;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00104}00104     CBrush m\_brTaskArea;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00105}00105     CBrush m\_brRed;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00106}00106     CBrush m\_brGreen;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00108}00108     \textcolor{keywordtype}{int} m\_missionStatus;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00110}00110     std::vector<TaskStruct*> m\_pTaskStructVector;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00111}00111     \textcolor{keywordtype}{void} ClearTaskStruct();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00113}00113     std::vector<CButton *> m\_pCheckBoxVectorA;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00114}00114     std::vector<CButton *> m\_pCheckBoxVectorB;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00115}00115     std::vector<CButton *> m\_pRadioButtonVector;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00116}00116     std::vector<CButton *> m\_pPushButtonVector;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00117}00117     std::vector<CEdit *> m\_pEditVector;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00118}00118     std::vector<CStatic *> m\_pLabelVector;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00120}00120     \textcolor{keywordtype}{void} CreateMasterEnableButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00121}00121     \textcolor{keywordtype}{void} CreateEnableTaskButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00122}00122     \textcolor{keywordtype}{void} CreateEnablePathButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00123}00123     \textcolor{keywordtype}{void} CreateBwdButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00124}00124     \textcolor{keywordtype}{void} CreateFwdButton();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00125}00125     \textcolor{keywordtype}{void} CreateHomeButton(WPARAM \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00126}00126     \textcolor{keywordtype}{void} CreateVehicleButton(WPARAM \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00127}00127     \textcolor{keywordtype}{void} CreateTaskButton(WPARAM \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00128}00128     \textcolor{keywordtype}{void} CreatePathButton(WPARAM \textcolor{keywordtype}{id}, \textcolor{keywordtype}{size\_t} items);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00129}00129     \textcolor{keywordtype}{void} CreatePathRadioButton(WPARAM \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00130}00130     \textcolor{keywordtype}{void} CreateEdit(WPARAM ofsId);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00131}00131     \textcolor{keywordtype}{void} CreateLabel(WPARAM ofsId, LPCTSTR label);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00132}00132     \textcolor{keywordtype}{void} DestroyAllDynamicControls();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00133}00133     \textcolor{keywordtype}{int} m\_currentPathSelected;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00134}00134     \textcolor{keywordtype}{int} m\_currentWaypoint;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00136}00136     \textcolor{keywordtype}{bool} m\_bTest;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00137}00137     \textcolor{keywordtype}{void} PrepareTestMission();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00138}00138     \textcolor{keywordtype}{void} PrepareTestMissionNavArea(Mission \&mission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00139}00139     \textcolor{keywordtype}{void} PrepareTestMissionForbiddenAreas(Mission \&mission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00140}00140     \textcolor{keywordtype}{void} PrepareTestMissionHomeLocations(Mission \&mission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00141}00141     \textcolor{keywordtype}{void} PrepareTestMissionVehicles(Mission \&mission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00142}00142     \textcolor{keywordtype}{void} PrepareTestMissionTasks(Mission \&mission);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00143}00143 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00144}00144 \textcolor{comment}{// Implementation}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00145}00145 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00146}00146     HICON m\_hIcon;}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00147}00147 }
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00148}00148     \textcolor{comment}{// Generated message map functions}}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00149}00149     afx\_msg \textcolor{keywordtype}{void} OnMissionCheckboxEnableAll();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00150}00150     afx\_msg \textcolor{keywordtype}{void} OnMissionCheckboxEnableTasks();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00151}00151     afx\_msg \textcolor{keywordtype}{void} OnMissionCheckboxEnablePaths();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00152}00152     afx\_msg \textcolor{keywordtype}{void} OnMissionCheckboxClicked(UINT nID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00153}00153     afx\_msg \textcolor{keywordtype}{void} OnPathRadioButtonClicked(UINT nID);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00154}00154     afx\_msg \textcolor{keywordtype}{void} OnBwdButtonClicked();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00155}00155     afx\_msg \textcolor{keywordtype}{void} OnFwdButtonClicked();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00156}00156     \textcolor{keyword}{virtual} BOOL OnInitDialog();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00157}00157     afx\_msg \textcolor{keywordtype}{void} OnSysCommand(UINT nID, LPARAM lParam);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00158}00158     afx\_msg \textcolor{keywordtype}{void} OnPaint();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00159}00159     afx\_msg HCURSOR OnQueryDragIcon();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00160}00160     DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00161}00161 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00162}00162     BOOL PreTranslateMessage(MSG* pMsg);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00163}00163     afx\_msg \textcolor{keywordtype}{void} OnClose();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00164}00164     afx\_msg \textcolor{keywordtype}{void} OnSize(UINT nType, \textcolor{keywordtype}{int} cx, \textcolor{keywordtype}{int} cy);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00165}00165     afx\_msg \textcolor{keywordtype}{void} OnDestroy();}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00166}00166     afx\_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);}
+\DoxyCodeLine{\Hypertarget{_mlp_gui_dlg_8h_source_l00167}00167 \};}
+
+\end{DoxyCode}
